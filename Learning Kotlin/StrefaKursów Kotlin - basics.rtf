@@ -1,0 +1,1299 @@
+{\rtf1\ansi\ansicpg1250\cocoartf1561\cocoasubrtf100
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18840\viewh15240\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+Notes I took during doing course about Kotlin language basics: \
+\
+	
+\b\fs28 https://strefakursow.pl/kursy/programowanie/fundamenty_programowania_w_jezyku_kotlin.html
+\b0\fs24 \
+\
+\
+\'97 WARNING I HAD PROBLEMS WITH \'84 AND \'84 \
+\
+- in Kotlin there is no primitives in Kotlin  -> only objects\
+- there are only primitives in execution time\
+\
+- Types:\
+	Double - 64 bits		123.3 33.2e10\
+	Float - 32 bits		22.6f	 or 22.6F\
+	Long - 64 bits		122L	 0x0F. 0b00000001	// there is no \'82octagonal\'92\
+	Int - 32 bits 		234 \
+	Short - 16 bits		\
+	Byte - 8 bits\
+\
+\
+//variable\
+val oneThousand = 1000\
+val oneMilion= 1_000_000 //like in Java 8 (?)\
+\
+Char in Kotlin can\'92t be treated as a number\
+\
+Char c = \'82k\'92 \
+	if( c== 22) \{	// error !!!\
+\
+\
+\}\
+\
+c=\'82j\'92\
+c=\'82\\t\'92 // special char\
+c = \'92u00FF\'92 // unicode\
+\
+c-16 bit unicode\
+\
+\
+// Strings in Kotlin\
+// strings are immutable (like in Java) \
+String text = \'84 text\'94\
+\
+text[5]\
+\
+// iterating through string\
+for(Char znak : text) \{\
+\}\
+\
+// two type off literals : \
+\'84Przyk\uc0\u322 adowy tekst \\n\'94 //escaping\
+\
+\'84\'94\'94  - thre \'84\
+\'84\'94\'94 pierwsza linia\
+		|druga linia\
+			trzecia linia\'94\'94\'94 //we have space and new lines inside\
+// using | with \'84\'94\'94 means that there are no spaces on the left\
+// using \'84\'94\'94 trimMargin() can be useful\
+\
+Text templates in Kotlin  (Java String.format( \'84 formatted text\'94, args)\
+\
+Example: \
+\
+String text = \'84moj\'94\
+\
+\'84Ptzyk\uc0\u322 adowy tekst $text tekst\'94 // here toString is called \
+// with objects (classes) - methods + fields\
+\'84 Przyklad teskt $[s.something]\'94\
+\
+\'84 $[\'82$\'92]\'94 // \'82naked\'92 $ sign\
+\
+// Bool in Kotlin\
+\
+Boolean z1 = true // true or false - not null (but we can in some way - but not so easy)\
+\
+// logical operators:\
+&&\
+||\
+!\
+\
+// arrays: \
+// now arrays are objects. \
+\
+// method arrayOf\
+arrayOf(1,2,3,4) // and we can assign it to variables\
+val tablica = arrayOf(1,2,3,4)\
+tablica.get(1)  or tablica[1] // get(index)\
+tablica.set(3,0) //set(index, value)\
+tablica.size // size (length) of array\
+	elements, whatElements (here lambda)\
+Array(3, \{ I -> (I*i)\}) // another constructor for creating arrays\
+		[0,1,9]\
+\
+val tablica = Array(4, \{i->\{(i*i)\})\
+\
+\
+Array<Object> It can\'92t takeTypes of Array<String> // pseudocode\
+// predefined array\'92s type\
+ByteArray, ShortArray, IntArray\
+// method for creating: \
+byteArrayOf() shortArrayOf() intArrayOf()\
+\
+// Local variables\
+var text : String = \'84123\'94 //type is optional because we have to init on creating\
+var piotr = new Czlowiek() // type is also optional\
+\
+var valueInConstructor : Integer ; //here we have to have type declaration  - this is a declaration\
+//and we HAVE TO init it somewhere in constructor\
+\
+// const in Kotlin: \
+val tekstStaly = \'84Hello\'94 \
+// testStaly = \'84Czesc\'94 //error\
+\
+\
+// checking of types  - \'84instanceof from java\'94\
+\
+if( object is Integer)\{\
+	//\'85.\
+	object.methodOfInteger() // \'84autorzutowanie\'94\
+\}\
+\
+// if not is\
+if(obj !is Integer)\{\
+	//\'85\
+\}\
+// there is no auto conversion in var as they can change in any moment\
+\
+//		Conversions\
+// in Kotlin all conversions has to be done \
+// example of bad usage:\
+val a: Int = 1\
+val v:Long = a\
+\
+print(a==b) // false !!!!! Because equals of long checks as long\
+\
+// how to to this good: \
+Val c:Long = a.toLong() //this is good\
+\
+ // 		Operations:\
+\
+ Binary operators in Java:\
+| & >> (\'85)\
+In kotlin there are no such operators - we have functions\
+Val x = ( 4 shi 3 ) and 0x00cc00\
+// in Java : x = ( 4 << 3 ) & 0x00cc00\
+\
+Functions: \
+Inv() // binary inversion \
+xor() // xor\
+and() //and\
+or() // or\
+ushr() // Java >>> right shift without sign\
+shr() // >> right shift with sign\
+shl() // left shift\
+\
+//			comparasion operators:\
+\
+=== !=== // no overloading \
+\
+== != \
+> < >= <=\
+\
+Comparasion operators for floating point\
+\
+a == b a != b \
+a<b a>b a>=b a<=b\
+//ranges\
+x in a..b //if x is between a and b\
+x !in a..b //if x is not between a and b\
+ \
+NAN==NAN\
+NAN > all including POSITIVE_INFINITY\
+-0.0 < 0.0 \
+\
+//				 null in Kotlin \
+\
+//kotlin is NullSafety\
+// it tries to eliminate nulls but:\
+1. We can throw NullPointerException\
+2. We can get null from java\'92s method and we can call a method on it -> NullPointerException\
+3. we didn\'92t use !! -> NPE (NullPointerException)\
+4. Not initizlized for example this.\
+\
+In Kotlin there is difference between:\
+ - nullable variables -> we can have nulls in them ; example:\
+	var a:String?= \'84ab\'94 // ?  - means we can have null in it\
+	a=null // ok\
+	a.length // nullable - NPE *\
+- nonnullable variables -> we can\'92t have nulls in them\
+		var a:String= \'84ab\'94 // no ? \
+		a=null // error no - ? \
+\
+// how to solve null problems (*)\
+\
+//naive - checking in if  (pseudocode)\
+var b // b can be changed because of the fact of concurrency (threads) \
+if( b != null) b.toString\
+	else\{\
+\
+\}\
+\
+// safe callings in Kotlin ( \'84solving nulls problem \'84 ) \
+\
+var a:Array? = arrayOf(1,2,6,8)\
+// some code -  a may be null\
+//\'85\
+//\'85\
+//there is special operator:\
+a?.length	// if a!=null then length else ignore everything after operator and return //null\
+a.length //here we can have problems ;) \
+\
+// pseudocode: ( \'84snake\'94 calling) - when we meet null everything after it is ignored\
+a.?length.?toString()?.method() // . . . .\
+\
+// if we know that a is not null for 100 % then: \
+a!!.length!!.toString()\
+\
+\
+// 						elvis operator: \
+\
+\
+// in Java:\
+int logicalTest = (a>0)? 5 : -1; \
+\
+int logicalTest1 = (a!=null) ? (a) : -1 // this is in kotlin\'85\
+\
+val k:Int = b?.length ?: -1  // in Kotlin  - k is -1 when (b?.length is false)\
+\
+// other example \
+\
+val x = y.getName() ?: return null \
+val x = y.getName()?: throw java.lang.IllegalArgumentException(\'84Spodziwalem sie imienia\'94)\
+\
+\
+// safety of conversions\
+\
+// in Java \
+\
+Object x = new String(\'84JEstem stringiem\'94)\
+\
+if(x instanceof String)\{\
+	((String)x).endsWith();//no safe when asynchronous\
+\}\
+\
+// in Kotlin: \
+val y:Unit = String(\'84jestem stringiem\'94)\
+//operations\
+val x: String = y as String // as is like (sth)variable in Java - warning !!! It is not save but: \
+\
+val xx:String?=y as String //save when y can be null\
+\
+// - ClassCastException safety: \
+\
+val x:String? = y as? String // when ClassCastException - situation. Then whole expression is. null\
+\
+// 			imports and packages :) \
+\
+In Kotlin package is optional - if there is no package in kotlin it is in default package\
+\
+//		import declarations\
+\
+// in Kotlin:\
+\
+import foo.Bar\
+import foo.* //everything from foo package\
+\
+// when there is collision of names:\
+import sec.Bar  as SecBar // know Bar class is from foo.Bar and sec.Bar is SecBar\
+\
+// there is no static import in Kotlin \
+\
+//			default imports \
+\
+1. import kotlin.* //basic types and instructions\
+2. import kotlin.annotation.* //annotations\
+3. import kotlin.collections.* //collections, iterable\'85.\
+4. import kotlin.comparisions.* // for comprarators\
+5. import kotlin.io.* //I/O streams \
+6. import kotlin.ranges.* // ranges (\'85)\
+7. import kotlin.sequences.* // sequences\
+8. import kotlin.text.* // regular expressions & text\
+\
+// when we are working in Java context: \
+9. import java.lang.*\
+10. import kotlin.jvm.*\
+//when we are working in JavaScript context:\
+11. import kotlin.js.*\
+\
+\
+\
+//				if\
+// in Kotlin if is an expression \
+\
+(a<b) 1:-1 in Kotlin -> if(a<b) 1 else -1\
+// for example:\
+var v= if (a<b) 1 else -1\
+\
+var	x = if ( a<b)\{\
+	print(\'84Wybrano 1\'94)\
+	1 // the last value in block is assigned to x\
+\}else\{\
+	print(\'84Wybrano -1\'94)\
+	-1 // the last value in block is assigned to x\
+\}		\
+\
+//			when expression \
+\
+// in Kotlin there is no switch we use when \
+// when in Kotlin is an expression \
+when(x)\{\
+	1->print(\'841\'94) return 1\
+	2->print(\'842\'94) return 2\
+	3->print(\'843\'94) return 3\
+	else -> print(\'840\'94) return 0 //like default in switch-case\
+\}\
+// the same as\
+return when(x)\{\
+	1->print(\'841\'94) 1\
+	2->print(\'842\'94) 2\
+	3->print(\'843\'94) 3\
+	else -> print(0) 0 //no return \
+\}\
+\
+// grouping:\
+return when(x)\{\
+	1,2->print(\'841 lub 2\'94) 1 // 1 or 2 \
+	3->print(\'843\'94) 3\
+	else -> print(\'840\'94) 0 //no return \
+\}\
+\
+\
+// we don\'92t have to compare only values: -> we can check \'84true-false\'94 values\
+return when(x)\{\
+	1,2 -> print(\'841 lub 2\'94)\
+	parseInt(x) -> print(3) 3\
+	4->print(4) 4\
+	in 10..15 -> print(4) 4\
+	!in 17..22	-> print(1) 8\
+	else -> print(0) 0\
+\}\
+\
+// checking with when \'84instanceof\'94\
+return when(x)\{\
+	is Int -> print(\'84Int\'94) 1\
+	is Double -> print(\'84Double\'94) 2\
+	!is Float -> print(\'84Float\'94) 3\
+\}\
+// without test this is like if - elseif- else\
+// all lines are checked then\
+when\{\
+	x.isOdd() -> print(\'84is odd\'94)\
+	x.isEven() -> print(\'84is even\'94)\
+	else -> print(\'84x is strange\'94)\
+\}\
+\
+// 		for loop\
+\
+for( item in collection)\{\
+	print(item)\
+\}\
+//!!!!!!!\
+// collection has to:\
+//	has interator() function\
+//	has next() function\
+//	has hasNext|() function\
+//!!!!!!!!\
+\
+for( i in collection.indicies)\{\
+	//indicies are like pointer\'85\
+	print(collection[i])\
+\}\
+\
+for ((index, value) in collection.withIndex())\{\
+	print(index)\
+	print(value)\
+\}\
+\
+\
+//		Ranges:\
+\
+1..19  =>[1,19]\
+if( 5 in 1..19) \{\
+	print(\'84true\'94)\
+\}\
+\
+// loop with range\
+for(i in 1..10)\{\
+	print(i)\
+\}\
+\
+for (I in 10..1) // error !!!!!\
+\
+for ( i in 10 downTo i) print(i) // 10 9 8 7 6 5 4 3 2 \
+for ( i in 1..10 step 2) -> 1 2 3 5 7 9 \
+for( i in 7 downTo 2 step 3) \
+\
+// without right ending:\
+for( I in 1 until 10 ) // 1 2 3 4 5 6 7 8 9 \
+\
+//			while loop \
+while are like in java\
+\
+//		jumps and returnings \
+\
+// in Kotlin there are 3 types:\
+	//- return\
+	// - break\
+	// - continue \
+//examples\
+val value = city.name ?: return  // or break or continue \
+// above example returns Nothing - special type in Kotlin \
+\
+//pseudocode\
+outer@ for(I in 1..10) // for has label - outer\
+	inner@ for(I in 1..10)\{\
+			printKratkaStatkow()\
+			// labels in Kotlin\
+			if(\'85) break@outer // goto outer\
+	\}\
+\
+//		inheritance and class declarations\
+\
+ctrl+alt+shift+k // convert java class to kotlin in android studio\
+\
+//classes in Kotlin are by-default public \
+// in Kotlin by-default all classes are also final - we can\'92t extend them\
+open class ParentClass //open removes final from class - \'84we open class declaration\'94\
+\
+class Example : ParentClass()\
+// in Kotlin all classes has Any as a superclass\
+\
+//			making class instances\
+\
+// in Java \
+public class ExampleJava\{\
+	String text = new String(\'84123\'94);\
+\}\
+//in Kotlin:\
+open class ParentClass\{\
+	var text:String=String(\'84123\'94)// there is no new\
+	var number: Integer=Integer(4)\
+\}\
+\
+//			ABSTRACT CLASSES\
+\
+open class ExampleKotlin\
+\
+// open is not necessary\
+ abstract class ChildClass : ExampleKotlin()\{\
+	var text: String = \'84Text\'94\
+	var number: Integer=Integer(4)\
+	\
+	// method can be also abstract !!! - like in Java ;)\
+\}\
+\
+\
+//		COMPANION OBJECT\
+\
+// there is no static method in Kotlin -> package methods\
+\
+open class ExampleKotlin\{\
+	\
+	// this is ExampleKotlin\'92s class component\
+	// but there is only one such object (like static \'84things\'94)\
+	//companion object is singleton\
+	companion object\{\
+		val TEXT = \'84TAG_STRING\'94 // ExampleKotlin.Companion.TEXT		\
+		// \'84static\'94 method\
+		fun create():ExampleKotlin\{ 	//ExampleKotlin.create()\
+			return ExampleKotlin()\
+		\}\
+		// method with this addnotation is \'84strong\'94 static method\
+		@JvmStatic fun create2()\{\
+			return ExampleKotlin()\
+		\}\
+\
+	\}\
+\
+\
+\}\
+\
+\
+//			CONSTRUCTORS\
+\
+// two types -> pierwotny I wt\'f3rne (drugorz\uc0\u281 dne; doprecyzowuje pierwotny)\
+\
+// in Java: \
+\
+public class ChildClassJava extends ExampleJava\{\
+	Integer a,b;\
+	CildClassJAva(Integer a, Integer b, Integer c)\{\
+		super(c);\
+		this.a=a;\
+		this.b=b;\
+	\}\
+\
+\}\
+\
+//in Kotlin:\
+\
+open class ExampleKotlin(var c: Int)\{\
+	//\'85\
+\
+\}\
+\
+\
+// we have ChildClassKotlin( Integer a, Integer b)\
+// super ->  the last arg ( c ) is a value -> we have access to it in the right brackets\
+// pierwotny konstruktor to jest ten po nazwie klasy\
+//constructor is necessary when we want ot use add notations and modificators\
+// class ChildClassKotlin public @Inject constructor (\'85.\
+class ChildClassKotlin(var a:Int, \
+					var b:Int,\
+						c:Int) : ExampleKotlin(c) \{\
+	// in Kotlin in order to use block of (pierwotny) constructor\
+	init\{\
+		print(c)\
+		\
+	\}\
+	\
+\
+// \'85\
+\}\
+\
+\
+//			KONSTRUKTORY WT\'d3RNE\
+\
+//in Java:\
+public class ChildClassJava extends ExampleJava\{\
+	Integer a,b;\
+	ChildClassJava(Integer a, Integer b, Integer c)\{\
+		super(c);\
+		this.a=a;\
+		this.b=b;\
+	\}\
+\
+	// 		new\
+	ChildClassJava(Integer a, Integer b)\{\
+		super(b);\
+	\}\
+\
+\}\
+\
+// kotlin:\
+class ChildClassKotlin(var a:Int, \
+					var b:Int,\
+						c:Int) : ExampleKotlin(c) \{\
+	// in Kotlin in order to use block of (pierwotny) constructor\
+	init\{\
+		print(c)\
+		\
+	\}\
+	\
+	constructor( a: Int, b:Int ) : this(a, b, 1)\{\
+		// in Kotlin we have to call pierwotny constructor \
+		// this(a , b , i)\
+	\}\
+\
+// \'85\
+\}\
+\
+// when we need default (without parameters) constructor:\
+	constructor():this(1) // this(1) call some sort of class constructor with \'84default\'94 param\
+\
+\
+//				CLASS FIELDS\
+ \
+// java:\
+\
+@Inject \
+private CommunicationManager c;\
+\
+// kotlin:\
+// propercja == pole\
+// propercja posiada dodatkowo sposob pozyskania wartosci ale niekoniecznie musi \
+// posiadac wartosc\
+// in Kotlin getters and setters are auto-generated -> but there are no fun like getA() -> we use \
+// we use only a \
+class jsksks():bhgbgb()\{\
+\
+var d:Int 10\
+lateinit var c:CommunicationManager  // latent only with vars\
+// when we don\'92t want to init c in constructor but we know we will do it we can use\
+// lateinit -> it has to be init before firs use !!!!\
+\
+	// lazy init -> the last value in this block is a value of y\
+	val y:ChildClassJava by lazy\{ // lazy in synchronized\
+		ChildClassJava(1,2)\
+	\}\
+\
+\}\
+\
+// 		GETTERS AND SETTERS\
+\
+Access modificatory of setter/getter in Kotlin is the same as the access modificatory of the field\
+\
+// 		OUR OWN SETTER/GETTER\
+\
+// setter liczba byla z zakresu\
+// getter liczba z zakresu\
+\
+var d:Int = 10 //  jesli nie chcemy inicjalizowac to korzystamy z lateimit a w przypadku\
+// val z lazy bloku\
+// ewentunie mozn a inicjalizowac w konstruktorze\
+\
+var d:Int = 10\
+get()\{\
+	return 6 // teraz odwolujac sie do d zawsze dostaniemy 6\
+\}\
+\
+var d:Int = 10\
+get()\{\
+	 //ostatnia instrukcja zawsze zwracana\
+	if(d<20 && d>5)\{\
+		return d 	// StackOverFlowError -> nieskonczona rekursja -> kazde pobranie d\
+// skutkuje wywolaniem gettera\
+	\}else\{\
+		return 13\
+	\}\
+\}\
+\
+var d:Int = 10\
+get()\{\
+	 //ostatnia instrukcja zawsze zwracana\
+	if(d<20 && d>5)\{\
+		return field 	// to dziala\
+	\}else\{\
+		return 13\
+	\}\
+\}\
+\
+//setter\
+private var d:Int = 10\
+get()\{\
+	 //ostatnia instrukcja zawsze zwracana\
+	if(d<20 && d>5)\{\
+		return field 	// to dziala\
+	\}else\{\
+		return 13\
+	\}\
+\}\
+set(value)\{\
+	// some function\
+	updateFun()\
+	if(value>5  && value < 20 ) fields=value\
+\}\
+\
+\
+//	STA\uc0\u321 E CZASU KOMPILACJI\
+\
+// Java: \
+public class ChildClassJava extends ExampleJava\{\
+\
+	private final static String TAG = \'84SOME_TEXT\'94; // to jest inlinowane (wstawianie\
+//w miejsce uzycia w czasie dzialania)\
+\
+\}\
+\
+// Kotlin:\
+\
+class ChildClassKotlin(var a:Int, \
+					var b:Int,\
+					c:Int) : ExampleKotlin(c)\{\
+\
+\
+	private var d:Int = 10\
+	\
+	companion object\{\
+		const val LICZBA = \'84String\'94 // w obiekcie, zainicjalizowania (String lub primitywny typ) i nie ma \
+	//  mozna taka zmienna stosowac w adnotacjach\
+		//getterow -> dopisanych to jest rozumiana jako stala czasu kompilacji\
+	\}\
+\}\
+\
+const val String = \'84tekst\'94 // stala najzyzszego typu -> nie siedzi w klasie\
+\
+//		MODYFIKATORY DOSTEPNOSCI (WIDOCZNOSCI)\
+\
+// private -> nie dostepny w Javie dla klasy\
+// private -> w Kotlinie klasa more bye prywatna\
+//modyfikatory (w Kotlinie) -> dla klas\
+	// private -> rozpatrywany w obrebie pliku a a nie klasy \
+	// protected -> rowniez (jak w Javie) nie jest dostepny dla klasy\
+	// internal -> moyfikator o dostepie  modu\uc0\u322 owym ; nie jest domyslny\
+	// public -> dziala tak samo jak w Javie; jest domyslny\
+// dla pol ( wnetrza klasy):->Kotlin\
+	// private -> widoczny tylko wewn\uc0\u261 trz klasie \
+	// protected ->  pozwala nadpisywac (nizej)\
+	// internal -> analogicznie jak dla klas -> kazdy skladnik modulu ktory widzi klase widzi tez to pole\
+	//public -> domyslne; kazdy kto widzi klase widzi tez ten skladnik\
+	\
+// w Javie mamy dostep w klasie zewnetrznej do prywatnych skladnikow klasy wewnetrznej ->\
+// w Kotlinie tak to nie dziala !!! \
+// w Kotlinie mozna nadpisywac pol (propercje !!!) -> na takiej samej zasadzie jak funkcje\
+\
+// w Kotlinie klasa zewnetrzna nie widzi prywatnych skalnikow klasy wewnetrznej\
+// mdyfikator dla konstruktora pierwotnego -> trzeba uzyc jawnego wsazania (napisac przed\
+// nim slowo constructor)\
+\
+\
+	// 	KOMENTARZE\
+\
+// w Javie -> JavaDocs -> to co piszemy przed klasa w formie:\
+// 	/*\
+//	*	moja dokumentacja\
+//	*/\
+\
+// KDoc ( odpowiednik JavaDocs w Kotlinie) \
+\
+// opis klasy:\
+/*\
+*	komentarz dla klasy\
+*/\
+// jak w Javie (konwencja)\
+1. ogolny opis -> \
+2. Mechanizmy dzialania \
+3. Szczegolne przypadki\
+4. Uwagi\
+\
+// parametry klasy: \
+// tekst po tych kwalifikatorow to tylko przyklady !!!\
+@param a jakis parametr do czegos\
+@property b jakis parametr ktory idzie do propercji\
+@constructor Tworzzy nowa klase kotlinowa\
+@see -> mozna wskazac jakas kwalifikowana nazwe i przejsc od razu do niej\
+// do czegos uzyj [ChildClassKotlin] cos cos -> tego kwadratowego czegos nie ma w JavaDocs\
+ \
+// 			OG\'d3LNA BUDOWA FUNKCJI\
+\
+\
+// in Java\
+\
+public Integer nazwaFunkcji(Integer i, Double d)\{\
+	// instrukcje\
+\
+	return 1;\
+\}\
+\
+// in Kotlin: \
+\
+// public jest domyslny\
+// typ zwracany jest pisany zaraz po parametrow\
+// void to Unit\
+// typ zwracany Unit jest nadmiarowy\
+private fun nazwaFunkcji(a:Int, d:Double):Unit\{\
+	// instructions\
+\}\
+\
+// drugi przyklad:\
+private fun prywatnaFunkcja(a:Int, b:Double):Int\{\
+\
+	return 1\
+\}\
+\
+// wywolywanie -> tak samo jak w javie\'85 \
+// mozna rowniez ( tak samo jak w Javie) lancuchowo wywolywac :) \
+// w funkcjach w kotlinie typ parametru musi byc wksazany jawnie !!!\
+\
+// 		PARAMETRY DOMYSLNE\
+\
+open fun nazwaFunkcji( a:Int, a:Double = 1.9): Unit\{\
+\
+\}\
+\
+// nadpisywanie (przeciazanie takiej funkcji): \
+\
+// tym razem trzeba pomianc wartosc domyslna\
+override fun nazwaFunkcji(i:Int. d:Double):Unit\{\
+\
+\
+\}\
+\
+// 		WYWOLANIE Z PARAMETREM DOMSYSLNYM\
+\
+fun formatText(string:String, upperCase:Boolean = false, upperFirstLetter:Boolean = true, \
+				endWith:Boolean = false)[\
+\
+\
+\
+\}\
+\
+// przy wywolaniu np. Tylko jedno ostatnie chcemy zmienic\'85 to:\
+\
+// formatText(\'84text\'94,false, true, false) // brzydkie !!! Bo mien gamy tylko ostatnie\
+formatText(\'84text\'94, endWithDot = true) // nazwany argument \
+\
+//			SKR\'d3CONE ZAPISY (funkcji)\
+\
+// 1. Jezeli typ jest Unit (odpowiednij Javovego void) moze byc pomiety\
+// 2. Jezeli mamy funkcjie postaci:\
+	fun mojaFunkcja(a:Int, i:Double): Double\{\
+		return I*2\
+	\}\
+	// to mozna ja skrocic do:\
+	// \
+	fun mojaFunkcja(a:Int, i:Double): Double = I*2\
+\
+\
+\
+// 		FUNKCJE ZAGNIE\uc0\u379 D\u379 ONE\
+\
+// w kotlinie mozna deklarowac funkcje najzyzszego poziomu ( w pliku ) jak i w klasie\
+\
+\
+class ChildClassKotlin(var s:Int,\
+					var b: Int,\
+						c:Int) :ExampleKotlin(c)\{\
+\
+\
+	fun doSomething(string:String)\{\
+		val shouldUpper=true\
+		fun doSomethingSmaller(char : Char):Char\{		// FUNCKCJA W FUNKCJI !!!\
+			// w wewnetrznej funkcji mamy dostep do zmiennych zewnetrznej \
+			//funkcji\
+			return char.toUpperCase()\
+			\
+		\}\
+		\
+		for(char in string)\{\
+			doSomethingSmaller(char)\
+		\}\
+\
+	\}\
+\
+\}\
+\
+//			FUNKCJE Infix. - troche jak operatory w C++\
+\
+open class ExampleKotlin(var c: Int)\{\
+	infix fun dodaj(klasaKotlin : ExampleKotlin):ExampleKotlin\{\
+		return this\
+	\}\
+\
+\}\
+\
+// uzycie:\
+\
+class ChildClassKotlin(var s:Int,\
+					var b: Int,\
+						c:Int) :ExampleKotlin(c)\{\
+\
+\
+	fun funkcja()\{\
+		ExampleKotlin(c) dodaj ExampleKotlin(c)\
+		\
+		1 shl 2 // przyklad infix funkcji -> prawa jest argumentem wtedy\
+\
+	\}\
+\
+\}\
+\
+// 			FUNKCJE ROZSZERZAJACE -> zeby pozbyc sie \'84Utils\'94\
+\
+// rozszerzanie klasy bez potrzeby dziedziczenia -> jak w Ruby\
+\
+// pseudocode\
+// dla klasy String pozwol na merode downCase ktora wykona jakas metode\
+// dostepna statycznie na rzecz calego projektu\
+\
+// mamy klase ExampleJava (bo czesto korzystamy jeszcze. Bibliotek/narzedzi napisanych w //javie)\
+\
+public class ExampleJava\{\
+\
+	Integer a = 10;\
+	Integer b =5;\
+	\
+	void nazwaFunkcji(Integer i, Double d)\{\
+		// instrukcje\
+		return ;\
+	\}\
+\
+	Integer nazwaFunkcji(Integer i, Double d)\{\
+		nazwaFunkcji(2);\
+		// instruckje\
+		return 1;\
+	\}\
+\
+	void nazwaFunkcji(Integer i)\{\
+		nazwaFunkcji(i,32.4);\
+	\}\
+\
+\}\
+\
+\
+// teraz w Kotlinie: \
+// mozemy np. Stworzyc oddzielny plik z takimi funkcjiami:\
+\
+/**\
+*	dodaje wszystkie pola klasy i parametr zadany\
+*/\
+// jest to kalsa trywialna -> mzoemy dac = \uc0\u347 \
+fun ExampleJava.sum(c: Int):Int \{\
+	return this.a+this.b+c;\
+\
+\}\
+\
+\
+// uzycie:\
+\
+ExampleJava().sum(4) // wywolywana na insgancji !!!\
+\
+//				STATYCZNE WYWOLANIA\
+\
+// rozszerzenia rozwazane sa statycznie !!!\
+\
+Przy wywolywaniu (teoretycznie) \'84polimorficznym\'94 rozwazane jest statycznie -> zostanie wybrana ta metoda, ktora  \'84jest\'94 w danym skladniku\
+\
+// Propercje rozszerzajace:\
+\
+ // za propercja nie moze sie kryc pole (bo propecja to nie pole, a bardziej jakas wlasnosc) ->. Nie mona jej inicjalizowac\
+val ExampleJava.k:Int\
+	get() = b * b \
+\
+// 			SYNTETYKI\
+\
+// ulepszony widok do widoku \
+// wymog -> buildgradle modulu -> apply plugin: \'82kotlin-android-extension\'92\
+// chodzi o to zeby robic import \'85.nazwa_layout.*\
+// i odposic sie bezposrednio po indentyfikatorze\
+// a nie po findViewById()\
+// rzutowanie -> as TextView\
+\
+\
+//			KLASY DANYCH\
+\
+// -> klasy glownie do przechowywania danych\
+\
+// -> ma dodatkowe metody, generowane komponenty\'85 \
+\
+// zeby ja napisac: \
+// slowka data powoduje ze kompilator\
+// automatycznie dostarczy equals toString f. Kopiowania hasCode\'85 dla \
+//propercji \
+// ale trzeba spelnic:\
+	// 1. Konstruktor -> przynajmniej jeden parametr w konstruktorze pierwotnym\
+	// 2. Wszystkie parapetry musza byc oznaczone jako wartosc lub zmienna\
+	// 3. Nie moze byc ani abstrakcyjna, ani zamknieta, ani zapieczetowana, ani wewnetrzna \
+	// 4. Moze dziedziczyc i imolmenetowac interfejsy\
+\
+// zeby zrobic konstruktor bezparametrowy dla klasy danych wystarczy nadac wartosci domyslne  proprecja\
+data class ModelDanych(val name: String, \
+				val age: Int)\{\
+\
+	\
+\
+\}\
+\
+// dwie standardowe klasy Kotlinowe :\
+\
+	// Pair -> klasa daych, reprenzentuje generyczna pare 2 wartosci -> punkt na plaszczyznie\
+	// Triple -> reprezentuje punkt w 3 wymiarach\
+\
+\
+//				DODATKOWE METODY KLAS DANYCH\
+\
+// ponizsze metody dla klas danych generuja sie automatycznie: \
+\
+//toString : \
+// nazwaKlasy( propercje\'85..)\
+// funkcje komponentow -> jawne definicje nie sa dopuszczalne\
+// funkcja kopiowania -> jawne definiecje nie sa dopuszczalne\
+// equals\
+// hashCode\
+\
+\
+//				DESTRUKTURYZACJA KOMPONENTOW\
+\
+// rozbicie moedlu danych na pojedyncze zmienne -> zamiast pisac modelDanych.get\
+// mamy \'84zwykle\'94 pola w klasie w ktorej chcemy to zrobic\
+//Kotlin -> przyklad\
+class ChildClassKotlin(var a: Int,\
+					var b:Int,\
+						c:Int): ExampleKotlin(c)\{\
+\
+	fun funkcja() \{\
+		var model = ModelDanych(\'84Zosia\'94, 5)\
+		// mozemy rozbic ten model na jego properncje\
+		val (imie, wiek) = model		// deklaracja destrukturyzujaca -> trzeba isc z kolejnoscia deklarowanie w klasie date\
+		print(imie)\
+		print(wiek)\
+\
+		// destrukturyzacja modelu w petli\
+		var list = arrayOf(\
+						ModelDanych(\'84Zosia\'94, 5)\
+						ModelDanych(Kasia\'94,5))\
+		for ((a,b)  in lista)\{\
+			print(a)\
+			print(b)\
+		\}\
+\
+		val (imie1, wiek1) = generujModel() // with function\
+\
+		var mapa = mapOf<String, ModelDanych>(\
+								Paint(\'84jeden\'94,ModelDanych(\'84imie\'94,1),\
+								Paint(\'84jeden\'94,ModelDanych(\'84imie\'94,1),\
+								Paint(\'84jeden\'94,ModelDanych(\'84imie\'94,1),\
+								Paint(\'84jeden\'94,ModelDanych(\'84imie\'94,1))		//		map.mapValues( (key, value, sth)->\
+		//             (_, sth) //_ to jest ieuzywany paraemtr -> nie sa dla niego wywolywane odpowiednie metody\
+		map.mapValues( (key, value)->\
+				print(key)\
+				print(value))\
+	\
+		for ((klucz, wartosc) in mapa)\{\
+			// wartosc dalej mozemy rozbic \'85\
+			\
+\
+		\}\
+							\
+	\}\
+\
+\
+	fun generujModel():ModelDanych\{\
+		\
+		return ModelDanych(\'84Imie\'94,4)\
+	\}\
+\
+\}\
+\
+\
+//			KOPIOWANIE\
+\
+// specjalna funkcja copy -> w modelu danych jest generowana automatycznie\
+var z = ModelDanych(\'84Zosia\'94, 5)\
+z.copy(\'84SamoImie\'94) // Mozna wskazac o co chodzi name: \'84Patryk\'94\
+\
+// 				ZAGNIEZDZANIE KLAS, KLASY WEWNETRZNE\
+\
+open class ExampleKotlin(var c:Int)\{\
+		\
+	// zagniezdzona jest statycznie -> nie do konca ma swiadomosc o istnieniu klasy zewnetrznej\
+	class Zagniezdzona()\{\
+\
+\
+	\}\
+\
+	// jawne deklarowanie klasy wewnetrznej -> slowo inner\
+	inner class Wewnetrzna()\{\
+		fun wewnetrznaFun() : Inr\{\
+			return c // wiemy o funkcji zewnetrznej -> mozemy odwolywac sie do jej propercji\
+		\}\
+\
+	\}\
+	\
+	fun funkcja()\{\
+		var instancja = ExampleKotlin.Zagniezdzona()\
+		\
+		ExampleKotlin(2).Wewnetrzna().wewnetrznaFun() \
+	\}\
+	\
+\}\
+\
+// 			KLASY ANONIMOWE WEWNETRZNE\
+\
+\
+// mamy TextView\
+\
+// mozna lambde albo wewnetrzna anonimowa klase\
+text_id.setOnClickListener(View.onClickistener\{\
+	view -> \
+		view.visibility = View.Gone\
+	\
+\})\
+\
+// alternatywnie (zeby nadpisywac jak w Javie): -> anonymous class -> wyrazenie obiektowe\
+text_id.setOnCLickListener(object: View.onClickListener\{\
+	override fun onClick(v: View?)\{\
+		// do sth\
+		// Override methods\
+	\}\
+\
+\})\
+\
+\
+\
+//			KLASA ENUM I INICJALIZACJA\
+\
+// typ wyliczeniowy\
+enum class Kierunki(val wartosc: Int = -1)\{\
+	// kazde z wyliczen jest tak naprawde obiektem\
+	POLNOC(12), \
+	POLUDNIE(6),\
+	 ZACHOD(9), \
+	WSCHOD(3) // dodatkowo obiekt przechowuje tez \'84godzine\'94 -> mozna domyslny dac\
+\}\
+\
+\
+// jakas przykladowa funkcja: \
+	fun funkcja()\{\
+		Kierunki.POLNOC.ordinal // istotnie, Polnoc to obiekt -> ma funkcje\
+		\
+\
+	\}\
+\
+//			KLASY WYLICZENIOWE Z ANONIMOWYMI KLASAMI\
+\
+enum class Kierunki(val wartosc: Int = -1)\{\
+	// kazde z wyliczen jest tak naprawde obiektem\
+	POLNOC(12)\{\
+		override fun poPrawej(): Kierunki = Kierunki.WSCHOD // funkcja trywalna\
+\
+	\}, \
+	POLUDNIE(6)\{\
+		override fun poPrawej(): Kierunki = Kierunki.ZACHOD // funkcja trywalna\
+	\},\
+	 ZACHOD(9)\{\
+		override fun poPrawej(): Kierunki = Kierunki.POLNOC // funkcja trywalna\
+		\}, \
+	WSCHOD(3)\{\
+		override fun poPrawej(): Kierunki = Kierunki.POLUDNIE // funkcja trywalna\
+	\};\
+\
+	// zwraca kierunek, ktory jest po prawej od aktualnego kierumku\
+	abstract fun poPrawej() : Kierunki\
+\
+	//moga byc tez \'84zwykle funkcje\\\
+	fun wypiszCokolwiek(): String\{\
+			return \'84Cos\'94\
+\
+	\}\
+\
+	\
+\}\
+\
+\
+\
+//			WYRAZENIE OBIEKT (nie isntacje ;) )\
+\
+// -> np. Taki jak w setOnClickListener -> wczesniej \
+// uzywamy gdy chcemy \'84delikatnie\'94 zmodyfikowac pewna klase/ doprecyzowujacy ja \
+// ale bez jawnego wskazywania nowej klasy \
+\
+// moga byc obiektowe wyrazenia i obiektowe deklaracje \
+\
+mozemy np. Rozszerzac inne interface\
+// przyklad: \
+\
+//text_id to jest TextView \
+text_id.setOnClickListener(object: View.OnClickListener, View.OnDragListener\{\
+\
+	override fun onDrag(v: View?, event: DragEvent?): Boolean\{\
+		// implementation\
+	 \}\
+\
+	override fun onClick(v: View?)\{\
+		// implementation\
+\
+	\}\
+\
+\})\
+\
+// obiekt Object mozemy stworzyc \'84tak sobie\'94\
+val temp = object\{\
+	var x =0 \
+	var y = 1\
+\
+	fun funkcja()\{\
+		print(\'84\'94) \
+	\} \
+\
+\}\
+\
+// mozemy jej dalej uzywac: \
+temp.funkcja()\
+\
+// mozna nawet Object zwracac !!!\
+\
+fun getObject() = object\{ // generalnie jest rozpoznawany jako any alo jako nadklasa\
+		var x =0 \
+		var y = 1\
+\
+		fun funkcja()\{\
+			print(\'84\'94) \
+		\} 		\
+\
+	\}	\
+\
+//			DEKLARACJE OBIEKTOW - SINGLETON\
+\
+// moga tez rozszerzac klasy\
+object SingleObject: View.OnClickListener\{\
+// to jest obiekt sam w sobie -> ale nie mozna go instancjonowac\
+	// mozna miec tez w niej funkjce: \
+	fun printHi()\{\
+		print(\'84HI\'94)\
+	\}\
+\
+	// moga byc zmienne\
+	var staticExample = 10 \
+	// moga byc stale\
+	val staticExampleVal = 10\
+\
+	override fun onClick(v: View?)\{\
+\
+	\}\
+\
+\}\
+// w klasach wewnetrznych (tych z inner) nie mozna instancjonowac singletonow\
+// gdzie indziej odwolujemy sie do takiej klasy jak ponizej: \
+SingleObject.printHi()\
+SingleObject.staticExample\
+\
+text_id.setOnClickListener(SingleObject)\
+\
+// 			ROZNICE: WYRAZENIA VS DEKLARACJE OBIEKTOWE\
+// tu juz dany obiekt \'84anonimowy\'94 jest zainicjalizowany\
+val objekt = object\{\
+	val x = 10\
+\}\
+\
+// w przypadku Singletona (np. Naszego SingleObject) inicjaliacja nastepuje dopiero przy \
+// pierwszym uzyciu\
+\
+// w przypadku compnion object\
+companion object\{\
+// inicjalizowany kiedu klasa jest ladowana -> like static block in java\
+// companion object jest tylko jeden dla wszystkich obiektow\
+\
+\}\
+\
+\
+// 			PRAWDA STOJACA ZA OBIEKTAMI COMPANION\
+\
+// do przechowywania:\
+// 	- stalych na rzecz klasy\
+//	- stalych funkcji\
+//	- stalych czasow kompilacji \
+//	- statycznych pol i metod\
+\
+// companion object moze implementowac interfejsy:\
+interface doFun\{\
+	fun zabawa()\
+\}\
+\
+// companion object dla np.  metody wytworcze, fabryka\
+companion object: doFun\{\
+	fun newInstance()\{\
+		return ChildClassKotlin(1,1,1)\
+	\}\
+\
+	override fun zabawa()\{\
+		print(\'8423\'94)\
+	\}\
+	//@JvmStatic // wymusza zeby bylo statyczne @JvmField-> rzeczywiscie pole\
+\
+\}\
+\
+// w innej klasie moxemy do takiej funkcji odnosic sie po prostu jak dla \'84statycznej(Java)\'94\
+ChildClassKotlin.newInstance()\
+\
+\
+\
+ \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+}

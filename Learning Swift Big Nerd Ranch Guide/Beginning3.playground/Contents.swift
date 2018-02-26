@@ -42,7 +42,7 @@ for item in newItems{
 print(bucketList)
 
 // mozemy rowniez dodawac tablic do tablicy:
-print(bucketList.count)
+print(bucketList.§)
 bucketList += newItems
 print(bucketList.count)
 //dodawanie elementu pod wskazany indeks
