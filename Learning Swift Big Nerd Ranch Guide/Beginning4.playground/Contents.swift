@@ -164,11 +164,11 @@ greetByMiddleName1(name: (first: "Tomek", middle: "Marek", last: "Kot"))
 greetByMiddleName1(name: (first: "Tomek", middle: "Jan", last: "Kot"))
 
 //      zadanie na srebny medal
-func beanSifter(groceryList groceryList: [String]) -> (beans: [String], otherGroceries: [String]){
+func beanSifter(groceryList groceryListP: [String]) -> (beans: [String], otherGroceries: [String]){
     var beans = [String]()
     var otherGroceries = [String]()
     
-    for item in groceryList{
+    for item in groceryListP{
         if item.hasSuffix("fasola"){
             beans.append(item)
         }else{
