@@ -3,12 +3,10 @@
 }
 {\colortbl;\red255\green255\blue255;\red153\green168\blue186;\red32\green32\blue32;\red173\green169\blue32;
 \red109\green109\blue109;\red191\green100\blue38;\red254\green187\blue91;\red133\green96\blue154;\red88\green118\blue71;
-\red173\green169\blue32;\red32\green32\blue32;\red191\green100\blue38;\red153\green168\blue186;\red133\green96\blue154;
-\red88\green118\blue71;\red254\green187\blue91;}
+}
 {\*\expandedcolortbl;;\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c67843\c66275\c12549;
 \csgenericrgb\c42745\c42745\c42745;\csgenericrgb\c74902\c39216\c14902;\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c52157\c37647\c60392;\csgenericrgb\c34510\c46275\c27843;
-\csgenericrgb\c67843\c66275\c12549;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c74902\c39216\c14902;\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c52157\c37647\c60392;
-\csgenericrgb\c34510\c46275\c27843;\csgenericrgb\c99608\c73333\c35686;}
+}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
@@ -133,12 +131,12 @@ Spring Bean -> zwykle klasy Javy oznaczone odpowiedzni\uc0\u261  adnotacj\u261  
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f1\fs24 \cf10 \cb11 @Component\
-\cf12 public class \cf13 Castle \{\
+\f1\fs24 \cf4 \cb3 @Component\
+\cf6 public class \cf2 Castle \{\
 \
-    \cf12 private \cf13 String \cf14 \cb11 name \cf13 \cb11 = \cf15 \cb11 "East Watch"\cf12 \cb11 ;\
+    \cf6 private \cf2 String \cf8 name \cf2 = \cf9 "East Watch"\cf6 ;\
 \
-    public \cf16 Castle\cf13 ()\{\
+    public \cf7 Castle\cf2 ()\{\
 \
     \}\
 \}\
@@ -158,6 +156,132 @@ Beany i dopiero wtedy aplikacja konczy dzialanie \
 (String \'85 strings)\
 \
 //			cykla \uc0\u380 ycia Sptring Beans\
+\
+Mo\uc0\u380 emy zareagowa\u263  programistycznie na \'84utworzenie\'94 i \'84zniszczenie\'94 Beana \
+\
+- uzywamy do tego odpowiednich adnotacji: \
+	\
+	@PostConstruct\
+	public void build()\{\
+		System.out.println(\'84Wlasnie stworozono obiekt!\'94);\
+	\}\
+\
+	@PreDestroy\
+	public void tearDown()\{\
+		System.out.println(\'84Wlasnie zniszcono obiekt!\'94);\
+	\}\
+\
+//			wstrzykiwanie zale\uc0\u380 no\u347 ci + Spring Beans\
+\
+Z kontekstu springowego mozemy pobierac beany: \
+\
+\
+Metoda run() \
+\
+Zwraca ConfihurableApplicationContext -> Mona go przypisac do referencji a nastepnie, wywolujac metode\
+refCtx.getBean(\'84odpowiedniaNazwaBeana\'94); mozna uzyskac odpowiedniego Beana\
+\
+	
+\f1\fs24 \cf6 \cb3 package \cf2 com.example.tomek.PrzykladowyProjekt\cf6 ;\
+\
+import \cf2 com.example.tomek.PrzykladowyProjekt.domain.Castle\cf6 ;\
+import \cf2 org.springframework.boot.SpringApplication\cf6 ;\
+import \cf2 org.springframework.boot.autoconfigure.\cf4 SpringBootApplication\cf6 ;\
+import \cf2 org.springframework.context.ConfigurableApplicationContext\cf6 ;\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf4 @SpringBootApplication \cf5 // oznacza ze jest to glowna klasa startowa dla naszej\
+// aplikacji\
+\cf6 public class \cf2 PrzykladowyProjektApplication \{\
+\
+	\cf6 public static void \cf7 main\cf2 (String[] args) \{\
+\
+\
+		ConfigurableApplicationContext ctx=SpringApplication.
+\f2\i \cf2 \cb3 run
+\f1\i0 \cf2 \cb3 (PrzykladowyProjektApplication.\cf6 class, \cf2 args)\cf6 ;\
+\
+		\cf2 Castle castle=(Castle)ctx.getBean(\cf9 "castle"\cf2 )\cf6 ;\
+\
+        \cf2 System.
+\f2\i \cf8 out
+\f1\i0 \cf2 .println(castle)\cf6 ;\
+\
+	\cf2 \}\
+\}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \cb1 \
+// ALE MAMY LEPSZE METODY:\
+\
+	ale mozna zrobic:\
+	1. Zmienna referencyjna odpowiedniego typu (np. Castle) w danej klasie\
+	we wnetrzu ktorej znajduje sie metododa run z ktorej chcielibysmy uzyskac dostep 	do odpowiedniego beana nalezy oznaczyc jak nizej:\
+	\
+	@Autowired // tylko dla klas oznaczonych adnotacja @Component -> Beansow !!! -> bo musi byc przeciez w Kontenerze !!! -> jak 2 benay tej samej klasy ale pod inna nazwa to tez blad !!!\
+	Castle castle; // dzieki temu gdy spring buduje ta klase to odszuka nam castle i wstrzyknie -> mozemy go uzyc \
+\
+//				Wstrzykiwanie typ\'f3w prymitywnych\
+\
+Do wstrzykiwania typ\'f3w prymitywnych s\uc0\u322 u\u380 y adnotacja \
+@Value(\'84jakasWartoscOdpowiedniegoTypu\'94)\
+\
+@Value(\'84Lancelot\'94)\
+private String name;\
+\
+@Value(\'8429\'94) // mimo ze wpisujemy Stringa to pod spodem jest parsowanie do int\
+private int age;\
+\
+ Ale takie wstrzykiwanie to rzadko\uc0\u347 \u263 \
+private String name = \'84Lancelot\'94;\
+\
+private int age = 27;\
+\
+cz\uc0\u281 stszym zastosowaniem adnotacji @Value jest wstrzykiwanie zawarto\u347 ci, kt\'f3r\u261  podali\u347 my w application.properties\
+\
+application.properties -> przechowuje propertiesy aplikacji \
+\
+np. Mozemy stworzyc \
+my.castle.name=East Watch\
+\
+// . . .. teraz w klasie np.  Castle \
+@Value(\'84$(my.castle.name))\
+private String name; // tutaj wstrzykujemy properties\'92a\
+// podawanie wartosci domyslnej ( gdyby nie.bylo danego propertiesa): \
+@Value(\'84$(my.castle.name:East Watch)\'94)\
+private String name;\
+\
+jezeli chcemy stworzyc wlasny plik propertiesow (oczywiscie w katalogu resources) to \
+Musimy dodac odpowiedni\uc0\u261  adnotacje @PropertySource(\'84classpath:NazwaPlikuZProperties\'94)\
+\
+//			Rodzaje wstrzykiwania zale\uc0\u380 no\u347 ci w Spring Framework\
+\
+@Authowired -> 3 typ wstrzykiwania przez reflection API \
+\
+Mozna np. Wstrzykiwac rowniez do metody: \
+@Autowired 	// tutaj wstrzykujemy rycerza\
+public Castle(Knight knight)\{ // konstruktor\
+	this.knight = knight; 	// knight to pole odpowiedniego typu\
+\}\
+\
+\
+- zeby wstrzykiwac do metody wystarczy tez dopisac adnotacje @Autowired\
+public void setQuest(Quest quest)\{ // quest jest wstrzykiwany  -> setQuest to metoda wstrzykujaca\
+	this.quest = quest; // quest to odpowiednie pole klasy\
+\}\
+\
+//			testowanie aplikacji \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
 \
 \
 \

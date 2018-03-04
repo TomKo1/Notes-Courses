@@ -177,7 +177,10 @@ totalProjection
 let myTotalProjection = projectedPopulations.reduce(0) { $0 + $1 }
   print(myTotalProjection)
 
-//                              TYPY WYLICZENIOWE, STRUKTURY I KLASY
+
+
+
+
 
 
 
