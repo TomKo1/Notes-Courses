@@ -279,6 +279,66 @@ print("\(shapeDimension.perimeter())  | \(shapeDimension1.perimeter()) | \(shape
 
 //      STRUKTURY I KLASY
 
+//       ROZWIJANIE FUNKCJI
+
+// operacja rozwijania funkcji pozwala na ponowne utworzenie istniejeacej funkcji pobierajacej wiele parametrow jako nowej funkcji
+// ktora pobiera jeden parametr i zwraca inna funkcje; zwrocona funkcja pobiera pozostale parametry pierwotnej funkcji i zwraca taka sama wartosc
+// jaka byla zwracana przez funkcje pierwotna
+
+func greetName(name: String, withGreeting greeting: String) -> String{
+    return "\(greeting) \(name)"
+}
+
+// ta sama funkcja w postaci funkcji rozwijanej:
+func greetingForName(name: String) -> (String)->String {
+    
+    func greeting(greeting: String) -> String{
+        return "\(greeting) \(name)"
+    }
+    return greeting
+    
+}
+
+// uzycie rozwinietej funkcji:
+let greeterFunction = greetingForName(name: "Mateusz")
+let theGreeting = greeterFunction("Witaj,")
+
+
+// jezyk Swift oferuje znacznie wygodniejsza skladnie przeznaczona do tworzenia funkcji rozwinietych :
+func greeting(greeting: String, name: String) -> String{
+    return "\(greeting) \(name)"
+}
+
+let friendlyGreeting = greeting(greeting: "Witaj, ",name: "Mateusz")
+print(friendlyGreeting)
+
+// powracanie do slowa mutating\
+struct Person{
+    var firstName = "Mateusz"
+    var lastName = "Mateuszewski"
+    
+    mutating func changeName(fn: String, ln: String){
+        firstName = fn
+        lastName = ln
+    }
+}
+
+
+var p = Person()
+// metody egzemplarza w jezyku Swift to tak naprawde funkcje rozwiniete
+let changer = Person.changeName // tutaj uzyskujemy dostep do funkcji changeName() w strukturze Person
+// let changer: (inout Person) -> (String, String) -> ()
+//          deklaracja ta onzacza: changer przechowuje funkcje ktorej jedynym argumentem jest egzempalrz struktury Person
+//          przekazanej jako parametr inout, wartoscia zwrotna tej funkcji jest funkcja pobierajaca dwa argumenty typu: (String, String)
+//          dla imienia i nazwiska... funkcja ta nie zwraca zadnej wartosic
+
+
+// zbierajac wszystkie informacje razem, mozna powiedziec ze funkcja oznaczona slowem kluczowym mutating to po prostu funkcja
+// rozwinieta, ktorej pierwszyzm argumentem jest self przekazany jako inout
+
+// funckja przypisana stalej changer w dzialaniu:
+changer(&p)("Jan","Kowalski") //  p - egzemparz struktury Person przeznaczony do modyfikacji ; po czym przekazujemy jeszcze 2 Stringi
+p.firstName
 
 
 
