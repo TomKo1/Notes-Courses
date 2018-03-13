@@ -6,8 +6,15 @@
 
 
 // przyklad obrazujacy utworzenie struktury
-
 import Foundation
+// wlasciwosci sa dostepne w dwoch rodzajach:
+// SKLADOWANE - moze miec przypisana wartosc domyslna
+// OBLICZANE - moze zwracac wynoik pewnych obliczen przeprowadzanych na podstawie dostepnych informacji
+// wlasciwosci mozna monitorowac pod katem zmian i wykonywac okreslony kod, gdy wlasciwosci ma byc przypisana nowa
+// wartosc
+
+
+
 
 struct Town {
     // ponizej deklarujemy tzw WLASCIWOSCI  -> sa to  zmmienne lub stale

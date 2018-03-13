@@ -1,14 +1,14 @@
-{\rtf1\ansi\ansicpg1250\cocoartf1561\cocoasubrtf100
+{\rtf1\ansi\ansicpg1250\cocoartf1561\cocoasubrtf200
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 Menlo-Italic;
-}
+\f3\fmodern\fcharset0 Courier;}
 {\colortbl;\red255\green255\blue255;\red153\green168\blue186;\red32\green32\blue32;\red173\green169\blue32;
 \red109\green109\blue109;\red191\green100\blue38;\red254\green187\blue91;\red133\green96\blue154;\red88\green118\blue71;
-\red153\green168\blue186;\red32\green32\blue32;\red173\green169\blue32;\red191\green100\blue38;\red109\green109\blue109;
-\red254\green187\blue91;}
+\red107\green0\blue1;\red246\green246\blue246;\red38\green38\blue38;\red50\green109\blue108;\red106\green0\blue108;
+\red29\green0\blue255;}
 {\*\expandedcolortbl;;\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c67843\c66275\c12549;
 \csgenericrgb\c42745\c42745\c42745;\csgenericrgb\c74902\c39216\c14902;\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c52157\c37647\c60392;\csgenericrgb\c34510\c46275\c27843;
-\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c67843\c66275\c12549;\csgenericrgb\c74902\c39216\c14902;\csgenericrgb\c42745\c42745\c42745;
-\csgenericrgb\c99608\c73333\c35686;}
+\cssrgb\c50196\c0\c0;\cssrgb\c97255\c97255\c97255;\cssrgb\c20000\c20000\c20000;\cssrgb\c24706\c49804\c49804;\cssrgb\c49804\c0\c49804;
+\cssrgb\c16471\c0\c100000;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww11880\viewh10620\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
@@ -277,14 +277,14 @@ public void setQuest(Quest quest)\{ // quest jest wstrzykiwany  -> setQuest to m
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\fs24 \cf10 \cb11 \
+\fs24 \cf2 \cb3 \
 
-\f1 \cf12 @RunWith\cf10 (SpringRunner.\cf13 class\cf10 )  \cf14 // spring ma wlasnego runnera testow\
-\cf12 @SpringBootTest\
-\cf13 public class \cf10 PrzykladowyProjektApplicationTests \{\
+\f1 \cf4 @RunWith\cf2 (SpringRunner.\cf6 class\cf2 )  \cf5 // spring ma wlasnego runnera testow\
+\cf4 @SpringBootTest\
+\cf6 public class \cf2 PrzykladowyProjektApplicationTests \{\
 \
-	\cf12 @Test\
-	\cf13 public void \cf15 contextLoads\cf10 () \{\
+	\cf4 @Test\
+	\cf6 public void \cf7 contextLoads\cf2 () \{\
 	\}\
 \
 \}\
@@ -335,22 +335,366 @@ public class CastleTest\{\
 \
 \}\
 \
+//				AUTOMATYCZNE WYSZUKIWANIE KOMPONENT\'d3W\
+\
+\
+1. Spring wyszukuje komponenty w g\uc0\u322 \'f3wnym katalogu aplikacji -> czyli w tym katalogu	w kt\'f3rym znajduje si\u281  g\u322 \'f3wna klasa aplikacji Springowej -> adnotacja 	@SpringBootApplication i poczonaj\u261 c od niego przeszukuje podkatalogi -> \
+	jezeli utworzymy go w innym folderze to uzyskamy b\uc0\u322 \u261 d tworzenia kontekstu\
+\
+2. To domy\uc0\u347 lne zachowanie mo\u380 emy zmieni\u263  poprzez adnotacj\u281  \
+@ComponentScan(\'84\'94) // gdzie \'84argumentem\'94 adnotacji jest paczka od kt\'f3rej \
+// ma rozpocz\uc0\u261 \u263  si\u281  przeszukiwanie (doda\u263  now\u261  paczk\u281 )  -> adnotacj\u281  t\u261  umieszczamy tam gdzie jest klasa \
+Z adnotacj\uc0\u261  @SpringBootApplication \
+- adnotacja ta moze przyjmowac rowniez liste np. \
+	@ComponentScan(\{\'84com.clockworkjava.kursspring\'94, com.clockworkjava.component\'94\})\
+\
+- gdy mamy wiele klas biznesowych i tylko kilka klas componentow w domyslnym katalogu \
+Warto umiescic te komponenty w jednym katalogu po to by Spring odnalaz\uc0\u322  je wcze\u347 niej \
+-> szybciej startowa\uc0\u322 \
+\
+ 	-> istnieje 2 sposob dodawania komponentow do sciezki: \
+		-> zamiast podawac paczki w annotacji mozna wpisac: \
+			@ComponentScan(basePackageClasses = \{Starter.class, Castle.class\})\
+\
+\
+//				KONFIGURACJA KOMPONENT\'d3W. ANNOTACJE\
+\
+-> w Springu wersji 4 sa 3 sposoby oznaczania komponentow:\
+		1. Przez annotacje -> @Component ; wstrzykujemy @Autowired\
+		 -> istnieja wariacje komponent\'f3w jak: \
+			@Repository\
+			@Service \
+			@Controler\
+//				KONFIGURACJA KOMPONENT\'d3W. XML\
+\
+2 sposob na konfiguracje komponentow -> najstarszy sposob \
+	XML troche bardziej przejrzysty -> spotykany w wiekszych aplikacjach \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f3\fs30 \cf10 \cb11 \expnd0\expndtw0\kerning0
+<?xml version="1.0" encoding="UTF-8"?>\cf12 \
+\pard\pardeftab720\partightenfactor0
+\cf13 <beans\cf12  \cf14 xmlns\cf12 =\cf15 "http://www.springframework.org/schema/beans"\cf12 \
+       \cf14 xmlns:xsi\cf12 =\cf15 "http://www.w3.org/2001/XMLSchema-instance"\cf12 \
+       \cf14 xsi:schemaLocation\cf12 =\cf15 "\
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"\cf13 >\
+	\
+	<!  - - glowny tag: \'97 >\
+	<! - - odpowiednim @ComponentScan w XML jest zapisany ponizej \'97 > \
+	<context:component-scan base-package = \'84com.clockworkjava\'94/>\
+	<context:property-placeholder location=\'84class path: castle.properties\'94/> <! \'97 - ten tag - property jest po to by \
+Byl dosten do odpowiedniego stringa \'97>\
+	<bean id=\'84quest\'94 class=\'84com.clockworkjava.kursspring.domain.Quest\'94/>\
+\
+\
+	<! \'97 tak wyglada inicjalizacja pol klasy  - - > \
+	<bean id=\'84knight\'94 class=\'84com.clockworkjava.kursspring.domain.Knight>\
+	<constructor-arg index=\'840\'94 value=\'84Lancelot\'94/>\
+	<! - - Ustawia daje pierwszemu argumentow wartosc Lancelot;\
+		 \'97 indeksy dotycza odpowiedniego konstruktora - >\
+	<constructor-arg index=\'841\'94 value=\'8429\'94/>\
+	\
+	<! - - Ustawianie(warotosci pol) nie poprzez konstruktor a metode wstrzykujaca \'97 > \
+\
+		<property name=\'84quest\'94  ref=\'84quest\'94/>\
+		<property name=\'84name\'94 value=\'84$\{my.castle.name:East Watch\}\'94/>\
+	</bean>\
+\
+\
+<!  - - by ustawic metode stora odpali sie tuz po utworzeniu obiektu ustawiamy argument init-method=\'84\'85\'94\'97>\
+	<bean id=\'84castle\'94 class=\'84com.clockworkjava.kursspring.domain.Castle\'94 init-method=\'84build\'94 destroy-method=\'84tearDown\'94>\
+// przed rym gdy zostanie zniszczony -> destroy-method=\'84..\'94\
+\
+	<constructor-arg inex=\'840\'94 ref=\'84knight\'94/>\
+	\
+\
+</bean>\
+\
+\
+</beans>\
+\
+\
+Trzeba jeszcze zaladowac takiego xml\'92a\
+Przez dodanie adnotacji do kalsy z adnotacja @SpringBootApplication\
+\
+@ImportResource(\'84classpath:config/spring-config.xml\'94)
+\f0\fs28 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 		spring-config.xml to nazwa a config katalog\
+\
+- mozna mieszac sposoby konfiguracji -> wszydstkie laduja w kontenerze\
+\
+<! - - w pokazany ponizej sposob importujemy inny plik do xml  - - >\
+<import resource=\'84class path:config/castle-config.xml\'94/>\
+\
+//				KONFIGURACJA KOMPONENT\'d3W @Configuration\
+\
+ -> 3 spos\'f3b to konfiguracja za pomoc\uc0\u261  klasy konfiguracyjnej \
+@Configuration // dzieki tej adnotacji Spring wie, \uc0\u380 e klasa ta zawiera definicje beanow\
+@ImportResource(\'84classpath:config/castle-confi.xml\'94) // mozemy tez importowac pliki \
+// konfiguracyjne XML do klasy\
+public class MainConfig\{\
+	\
+	// ta klasa musi znajdowac sie na sciezce komponentow store sa przeszukiwane pod k\uc0\u261 tem beanow\
+\
+	@Bean\
+	public Quest createQuest()\{\
+		// to co dana metoda zwroci -> traktowane jako bean\
+		return new Quest();\
+	\}\
+	\
+	@Bean\
+	public Knight createKnight()\{\
+		Knight knight = new Knight();\
+		\
+		knight.setQuest( createQuest() ); // tu wstrzykujemy beana\
+		return knight;\
+	\}\
+\
+\}\
+\
+\
+// mozemy wstrzyknac klase konfiguracyjna do innej przy pomocy adnotacji \
+@Import(MainConfig.class)\
+\
+// 					Ktory sposob konfiguracji wybrac?\
+\
+-> kazdy projekt zaczynac od adnotacji @Component/@Autowired w roznych odmianach\
+-> komponenty zewnetrzne -> wtedy klasy konfiguracyjne np. DataSource jest klasa zewnetrzna\
+-> XML -> gdy mamy do czynienia ze starszymi aplikacjami (gdy XML byl glownym sposbem\
+Tworzenia aplikacji)\
+\
+//				WZORZEC Singleton\
+// klasy bezstanowe to klasy ktore zwieraja tylko metody statycznej (Utils) \
+// czesto opatrzone sa annotacja @Singleton -> wtedy na JVM tylko jedna \
+// instancja sie znajduje\
+\
+\
+// ponizsza klasa ma problemy jezeli chodzi o Serializacje czy wielowatkowosc\
+public class PersonUtils\{\
+	\
+	PersonUtils instance = null;\
+	\
+	// nie mozna stworzyc\
+	private PersonUtils()\{\
+\
+	\}\
+	\
+	public PersonUtils getInstance()\{\
+		if(instance == null)\{\
+			instance = new PersonUtils();\
+		\}\
+\
+		return instance;\
+	\}\
+\
+\
+	\
+\
+\
+\}\
+\
+\
+// prawidlowe tworzeniee: \
+// sama Java zapewni ze bedzie to Singleton\
+public enum PersonUtils2\{\
+	INSTANCE:\
+	\
+	public final String operacja(Person person)\{\
+		return person.name.toUpperCase();\
+	\}\
+\
+\}\
+\
+\
+// Stany to po prostu pola klasy\
+\
+\
+//					Bean @Scope\
+- domyslnie zasieg kazdego beana jest ustawiony na Singleton -> \
+Bean ma dokladnie jedna instancje i wlasnie ona jest wstrzykiwana za kazdym razem jako \
+Zaleznosc -> dlatego gdy jakas klasa w ktorej jest wstrzyknieta zmieni stan tego beana to \
+Ta zmiana jest widziana w innych klasach do ktorych jest ona wstrzyknieta\
+\
+- oczywiscie mozna temu zaradzic bo istnieje drugi scope zwany prototype\
+@Component\
+@Scope(\'84singleto\'94) // nawet jakby tego nie bylo to wtedy ta klasa jest domyslnie singletonem\
+\
+// zeby to zmienic: \
+@Component\
+@Scope(\'84prototype\'94) // za kazdym razem gdy dany bean jest wstrzykiwany do innej klasy\
+// to jest tam wstrzykiwana jej nowa instacja\
+\
+// zeby zmienic Scope w klasie konfiguracyjnej (oznaczonej annotacja @Configuration)\
+// dodajemy pod @Bean annotacje @Scope(\'84prototype\'94)\
+\
+w xml jazzy bean ma atrubut scope = \'84prototype\'94/\'84singleton\'94\
+\
+- mamy 5 typow Scopow -> pozostale 3 dotycza juz aplikacji Webowych\
+\
+//					WSTRZYKIWANIE BEANOW TEGO SAMEGO TYPU\
+\
+// co zrobic gdy chcemy miec 2  roznych rycerzy(class Knight) jako komponenty a nie \
+// kolejne instancje tego\
+\
+-> nie da sie tego zrobic z poziomu adnoatcji @Component czy @Scope\
+\
+-> mozemy w klasie konfiguracyjnej np skopiowac:  -> jednak spowoduje to \
+-> blad -> mamy 2 beany tego samego typu !!! Bo gdy chcemy potem wstrzyknac rycerza\
+-> z kontenera -> to blad \'85 \
+\
+@Configuration\
+public class MainConfig\{\
+	\
+	@Autowired\
+	Quest quest;\
+	\
+	@Bean(name=\'84lancelot\'94)\
+	public Knight lancelot()\{\
+		Knight lancelot = new Knight(\'84Lancelot\'94, 29);\
+		lancelot.setQuest(quest);\
+		return lancelot;\
+	\}\
+\
+	@Bean(name=\'84persival\'94)\
+	public Knight createKnightBean()\{\
+		Knight persival = new Knight(\'84Persival\'94, 29);\
+		persival.setQuest(quest);\
+		return persival;\
+	\}\
+	\
+\
+\
+\}\
+\
+// adnotacja @Qualifier(value=\'84lancelot\'94) -> przy parametrze konstruktora\
+// w adnotacji tej podajemy nazwe konkretnego Beana, ktorego chcemy wstrzyknac\
+// \
+\
+// do Castle jest wstrzykiwany rycerz\
+@Autowired\
+public Castle(@Qualifier(value=\'84lancelot\'94)Knight knight)\{\
+	this.knight = knight;\
+\
+\}\
 \
 \
 \
+// annotacja Qualifier more bye rowniez przed polem, ktore jest wstrzykiwane np. \
+// w ponizszej klasie wstrzykujemy  ( rozniej od Castle) wstrzykujemy konkretne pole: \
+@Autowired\
+@Qualifier(value = \'84percival\'94)\
+Knight knight;\
+\
+// mozn tez beany skonsuowac przez XML -> ustawiajac odpowiednie\
+// id w beanach\
+\
+// XML nie moze wstrzykiwac bezposrednio do pol\
+\
+// adnotacja @Primary\
+// -> ustawiamy jednego z powtarzajacych sie Beanow tak i powodujemy wtedy ze \
+// gdy nie podamy Qualifier to nie przekreci sie (crash) kontekstu (Springa/apki)\
+\
+// robimy to jak nizej \
+\
+@Configuration\
+public class MainConfig\{\
+	\
+	@Autowired\
+	Quest quest;\
+	\
+	@Bean(name=\'84lancelot\'94)\
+	@Primary\
+	public Knight lancelot()\{\
+		Knight lancelot = new Knight(\'84Lancelot\'94, 29);\
+		lancelot.setQuest(quest);\
+		return lancelot;\
+	\}\
+\
+	@Bean(name=\'84persival\'94)\
+	public Knight createKnightBean()\{\
+		Knight persival = new Knight(\'84Persival\'94, 29);\
+		persival.setQuest(quest);\
+		return persival;\
+	\}\
+	\
+\}\
+\
+\
+// efetk primary mosey rowniez uzyskac xml-em \
+// dodajemy do bean atrybut primary=\'84true\'94\
+\
+\
+//							WSTRZYKIWANIE KOLEKCJI\
+\
+public class Tournament\{\
+	@Autowired\
+	@Qualifier(value = \'84percival\'94)\
+	List<Knight> knights; // oczywiscie Knight to bean\
+\
+\
+	// metoda mutujaca\
+	public void setKnight(List<Knight> knights)\{\
+		this.knights = knights;	\
+	\}\
+\
+\
+// tutaj wstrzyknelo sie bez problemu. ..\
+\
+\}\
+\
+// dla Set -> tez bedzie dzialac\
+public class Tournament\{\
+	@Autowired\
+	@Qualifier(value = \'84percival\'94)\
+	Set<Knight> knights; // oczywiscie Knight to bean\
+\
+\
+	// metoda mutujaca\
+	public void setKnight(Set<Knight> knights)\{\
+		this.knights = knights;	\
+	\}\
+\
+\
+// tutaj wstrzyknelo sie bez problemu. .. -> \
+// jednak jak mamy Set to jak obiekty beda mialy taki sam Hash i equals to nie zostana wstrzykniete duplikaty\
+\}\
+\
+// jezeli chcemy pewien podzbior wszystkich beanow Knight: -> najlepiej XML\
+// Mapy nie jesesmy w stanie wstrzyknac - > XML \
+// np. Jezeli chcemy wstrzyknac do klasy Tournament: \
+<bean id=\'84tournament\'94  class=\'84com.clockworkjava.kursspring.domain.Tournament\'94>\
+	<property name=\'84knights\'94>\
+		<list>\
+			<!\'97 tu podajemy nazwy beanow ktore chcemy wstezykiwac \'97>\
+			<!\'97 sztuczne klasy -> zla metoda!!!\'97>\
+			<ref bean=\'84percival\'94/>\
+			<ref bean=\'84lancelot\'94/>\
+			<!\'97 jesli Set to znacznik <set> \'85</set> \'97>\
+			<!\'97 jesli 2 beany sa sobie rowne -> to wstrzykniety zostanie tylko jeden \'97>\
+		</list>\
+	</property>\
+</bean>\
+\
+// w przypadku \
+\
+//@Autowired\
+//Map<String, Knight> knights;\
+To normlnie w XML :\
+\
+<bean id=\'84tournament\'94  class=\'84com.clockworkjava.kursspring.domain.Tournament\'94>\
+	<property name=\'84knights\'94>\
+		<map>	\
+			<entry key=\'84Lancelot\'94 value-ref=\'84Lancelot\'94/>\
+			<!\'97 .. . . .\'97>\
+		</map>\
+	</property>\
+</bean>\
 \
 \
 \
-\
-\
-\
-\
-\
-\
-\
-\
-\
-\
+// 						CO POWINNO BYC BEANEM?\
 \
 \
 \
