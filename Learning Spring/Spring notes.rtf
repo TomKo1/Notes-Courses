@@ -4,11 +4,15 @@
 {\colortbl;\red255\green255\blue255;\red153\green168\blue186;\red32\green32\blue32;\red173\green169\blue32;
 \red109\green109\blue109;\red191\green100\blue38;\red254\green187\blue91;\red133\green96\blue154;\red88\green118\blue71;
 \red107\green0\blue1;\red246\green246\blue246;\red38\green38\blue38;\red50\green109\blue108;\red106\green0\blue108;
-\red29\green0\blue255;}
+\red29\green0\blue255;\red173\green169\blue32;\red32\green32\blue32;\red153\green168\blue186;\red197\green195\blue255;
+\red88\green118\blue71;\red191\green100\blue38;\red254\green187\blue91;\red225\green179\blue88;\red133\green96\blue154;
+\red172\green172\blue172;\red149\green184\blue79;}
 {\*\expandedcolortbl;;\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c67843\c66275\c12549;
 \csgenericrgb\c42745\c42745\c42745;\csgenericrgb\c74902\c39216\c14902;\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c52157\c37647\c60392;\csgenericrgb\c34510\c46275\c27843;
 \cssrgb\c50196\c0\c0;\cssrgb\c97255\c97255\c97255;\cssrgb\c20000\c20000\c20000;\cssrgb\c24706\c49804\c49804;\cssrgb\c49804\c0\c49804;
-\cssrgb\c16471\c0\c100000;}
+\cssrgb\c16471\c0\c100000;\csgenericrgb\c67843\c66275\c12549;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c77255\c76471\c100000;
+\csgenericrgb\c34510\c46275\c27843;\csgenericrgb\c74902\c39216\c14902;\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c88235\c70196\c34510;\csgenericrgb\c52157\c37647\c60392;
+\csgenericrgb\c67451\c67451\c67451;\csgenericrgb\c58431\c72157\c30980;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww11880\viewh10620\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
@@ -696,9 +700,205 @@ To normlnie w XML :\
 \
 // 						CO POWINNO BYC BEANEM?\
 \
+-> wiele instancji np. Wielu rycerzy (dane przekazywane przez uzytkownika) -> rycerz to \
+	nie powinien byc komponent\
+-> zapisywanie/usuwanie obiektu domenowego -> nazywamy repozytoriami \
+-> Spring oferuje annotacje @Repository -> robi to samo co komponent ale \
+	jest ona uzywana dla programistow by wiedzieli ze jest to klasa odpowiedzialna\
+	za zapisywanie/odczytywanie do pamieci/ bazy danych\
+\
+-> annotacja @Service -> klasy bezstanowe, komponenty springowe,\
+	zestaw publicznych metod oblusgujacych czesc operacji biznesowych, \
+	znowu przeznaczona bardziej dla programisty\
 \
 \
+//					TASK SCHEDULER\
 \
+@EnableScheduling  dodana na poczatku klasy bedacej SpringBootem powopduje \
+Zainicjalizowanie task schedulera (cos jak timer) \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs24 \cf2 \cb3 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \cb1 \
+@Scheduled(fixedDelay = 1000) // powoduje ze ta metoda b\uc0\u281 dzie wykonywana co sekunde\
+// fixedDealy dopiero po zakonczeniu calej metody czeka sekunde\
+public void createRandomQuest()\{\
+// \'85 \
+\}\
+-> uwaga!!! Aplikacja nie zamyka sie recznie bo caly czas dziala scheduler\
+@Scheduled(fixedRate=1000) //teraz sekunda jest liczona od momentu wywolania metody \
+\
+@Scheduled(fixedRate = 1000, initialDelay = 3000)\
+// initialDelay okresla po jakim czasie dana metoda ma zaczac sie wykonywac\
+\
+Taka annotacje mozemy rowniez parametryzowac stringiem przykladowo:\
+Jezeli mamy jakis string okreslajacy wartosc w xml to wtedy: \
+@Scheduled(fixedDelayString =\'84$\{stringZXML\}\'94)\
+\
+\'85 konfiguracja schedulera w XML: \
+<task:scheduler id=\'84myScheduler\'94 pool-size=\'8410\'94/>\
+\
+// pool-size mowi (prawie) ile metod moze jednoczesnie byc obslugiwanych (?)\
+\
+// utworzenie zadania (w XML):\
+<task:scheduled-tasks>\
+	<task:scheduled ref=\'84questRepository\'94 method=\'84createRandomQuest\'94 fixed-rate=\'841000\'94/>\
+</task:scheduled-tasks>\
+// ref to klasa w ktorej znajduje sie metoda do wywolania co jakis czas\
+// method -> nazwa metody\
+// fixed-rate -> czas co jaki ma byc ona uruchamiana\
+\
+\
+//					WZORZEC STRATEGII\
+\
+We wzorcu strategii chodzi o to by rozdzielic to co robi od tego w jaki sposob to robimy\
+// chodzi o to by wsztrzyknac dynamicznie to jak cos zrobic -> np. jak sortowac liczby\
+\
+// Profil springowy okresla zestaw Beanow, ktory zostanie wlasnie w danym profilu np. \
+// przy starcie aplikacji\
+@Profile(\'84dev\'94) -> dodajemy przed definicja odpowiednich beanow\
+@Profile(\'84prod\'94)\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs24 \cf16 \cb17 @Bean\cf18 (\cf19 name \cf18 = \cf20 "DbKnightRepository"\cf18 )\
+\cf16 @Profile\cf18 (\cf20 "prod"\cf18 )\
+\cf21 public \cf18 KnightRepository \cf22 createDbKnightRepository\cf18 ()\{\
+    \cf21 return new \cf18 DbKnightRepository()\cf21 ;\
+\cf18 \}\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \cb1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs24 \cf6 \cb3 spring.profiles.active \cf5 = \cf9 prod\cf20 \cb17 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \cb1 \
+\
+To samo mo\uc0\u380 emy zrobi\u263  w XML -> \
+Znacznik beans posiada atrybut profile np. <beans profile=\'84dev\'94 \'85\
+\
+//						SPRING MVC\
+\
+Tak jak zawsze -> wzorzec architektoniczny \
+\
+Controller -> praise widok I model \
+View -> klikniety guzik -> przekazuje do Cotnroller (controller analizuje i przesyla do Modelu)\
+	Model zwraca dane -> zwraca kontrolerowi -> kontroler tworzy strone\
+\
+// w Springu: \
+1. Kazdy request trafia do FrontContorollera (tez wzorzec projektowy) -> w Springu nazywany\
+	Dispatcher Servlet -> jego zadaniem jest przeslanie do odpowiedniego kontrolera\
+2. Handler Mapping -> przesylany Request I handler na podstawie danych z requesta \
+		jest w stanie wskazac konkretny controller -> zwraca taka informacje do Dispatcher 		Servlet\
+3. Controller \'84rozbiera\'94 request -> parametry, metadane \'85 \
+		// uwaga !! Spring ma kilka Controllerow\
+4. Controller przesyla zadania do odpowiednich komponentow odpowiedzialnych za \
+	logik\uc0\u281  biznesowa\
+5. Po przetworzeniu idzie do Controllera z ktorego idzie widok do utworzenia do \
+	Dispatcher Servleta -> idzie do View Resolvera(jest on w stanie wskazac \
+		konkretna sciezke gdzie dany widok jest) -> potem zwroca odpowiedni \
+		View ktory jest tworzony.\
+\
+//					HELLO SPRING MVC\
+\
+Dodawanie webowej strony springa: \
+<dependency>\
+	<groupId>org.springframework.boot</groupId>\
+	<artifactId>spring-boot-starter-web</artifactId>\
+</dependency>\
+\
+Adnotacja @Controller powoduje ze dana klasa staje sie kontrolerem\
+Localhost:8080 -> domyslny link TomCata\
+\
+Po tym nalezy zamapowac odpowiedni request dla przegladarki \
+@RequestMapping(\'84/hello\'94) // obsluguje request hello\
+public String hello()\{\
+	return \'84hellospring.html\'94; // to jest HTML \
+\}\
+\
+// domyslnie statyczne strony html umieszczamy w resources w podkatalogu srtatic \
+I naywamy odpowiednia nazwa \'85 np. tutaj  helloworld.html\
+\
+\
+//				THYMELEAF I PRACA Z MODELEM\
+\
+\
+Controller jest komponentem Front-Endowym kontroluj\uc0\u261 cym widok i model \
+Repozytorium jest komponentem ktory ma za zadanie komunikowac sie z baz danych \
+-> lepiej nie mieszac tych dwoch elementow \
+-> warto mieszy nimi umiescic Service\
+\
+Dane z kilku widokow -> DTO (Data Transfer Object)\
+\
+//\'85.\
+Przyklad przekazywania modelu do odpowiedniej metody: \
+@RequestMapping(\'84/knight\'94)\
+public String getKnight(Model model)\{\
+	//knightService to wstrzykniety  odpowiedni Service \
+	List<Knight> allKnights = knightService.getAllKnights();\
+	model.addAttribute(\'84knights\'94, allKnights);\
+	return \'84knights\'94; // juz bez rozszerzenia .html bo to templatka dynamiczna\
+\}\
+\
+\
+//  zeby widok mogl cos zrobic z modelem mozemy uzyc jakis silnik \'84templatek\'94 \
+// np. JSP czy Thymleaf (powiazany ze Springiem)\
+\
+// -> dodawanie go do xml: \
+<dependency>\
+		<groupId>org.springframework.boot</groupId>\
+		<artifactId>spring-boot-starter-thymelead</artifactId>\
+</dependency>\
+\
+Domyslnie strony thymeleafa laduja w resources -> templates \
+\
+@RequestMapping(\'84/knight\'94)\
+public String getKnight(Model model)\{\
+	//knightService to wstrzykniety  odpowiedni Service \
+	List<Knight> allKnights = knightService.getAllKnights();\
+	model.addAttribute(\'84knights\'94, allKnights);\
+	model.addAttribute(\'84hello\'94,\'94Witaj \uc0\u347 wiecie\'94); // potem z takiego atrybutu mozemy\
+	// odpowiednio skorzystac w html i wyswietlic na stronie\
+	return \'84knights\'94; // juz bez rozszerzenia .html bo to templatka dynamiczna\
+\}\
+\
+<p th:text=\'84$\{hello\}\'94/>\
+\
+\
+// obiekty (lista) ; \
+<div th:each=\'84knight : $\{knights\}\'94>\
+	<p th:text=\'84$\{knight\}\'94/>\
+</div>\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs24 \cf23 \cb17 <table>\
+    <thead>\
+        <tr>\
+            <td>\cf18 \cb17 Imie rycerza\cf23 \cb17 </td>\
+            <td>\cf18 \cb17 Wiek\cf23 \cb17 </td>\
+        </tr>\
+    </thead>\
+    <tbody \cf24 th\cf25 :each=\cf26 "knight : $\{knights\}"\cf23 >\
+        <tr>\
+            <td \cf24 th\cf25 :text=\cf26 "$\{knight.name\}"\cf23 />\
+            <td \cf24 th\cf25 :text=\cf26 "$\{knight.age\}"\cf23 />\
+        </tr>\
+    </tbody>\
+</table>\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs28 \cf0 \cb1 \
+\
+ \
+\
+	\
 \
 \
 \

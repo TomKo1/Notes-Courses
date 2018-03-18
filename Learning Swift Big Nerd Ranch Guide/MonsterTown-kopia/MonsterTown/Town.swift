@@ -18,16 +18,25 @@ import Foundation
 
 struct Town {
     
-    static let region = "Południe"
+    let region:String
     
     // region to wlasciwosc tylko do odczytu przeznaczona do przechowywania nazwy regionu
     // region nie mozna zmieniac ... taka implemetnacja stalej posiada jednak pewne wady
-    let region = "Poludnie"
+
+    
+    
+    
+    
+    
+    func printTownDescription(){
+        print("Populacja miasta to: \(population), a liczba mstoplightow to: \(numberOfStoplights), region: \(region)")
+    }
+    
     
     var mayor:Mayor?
     
     // population to wartosc skladowana
-    var population = 5422 {
+    var population:Int {
         // didSet udostepnia uchwyt do poprzedniej wartosci wlasciwosci (willSet udostepnia uchwyt do nowej wartosci wlasciwosci)
         didSet(oldPopulation) {
             if oldPopulation > population{
@@ -36,10 +45,10 @@ struct Town {
             }
         }
     }
-    var numberOfStoplights = 4
+    var numberOfStoplights:Int
     
     // metoda egzemplarza
-    func printTownDescription() {
+    func printTownDescription2() {
         print("Populacja: \(population), liczba skrzyżowań z sygnalizacją świetln \(numberOfStoplights).")
     }
     
@@ -100,6 +109,22 @@ struct Town {
         
     }
     
+    
+    init?(region: String = "Południe", population: Int = 500, stoplights: Int = 4){
+        
+        if population <= 0{
+            return nil
+        }
+        
+        self.region = region
+        self.population = population
+        numberOfStoplights = stoplights
+    }
+    
+    // deklaracja metody inicjalizacyjnej
+    init?(population: Int, stoplights: Int){
+        self.init(region: "brak danych", population: population, stoplights: stoplights)
+    }
     
     
 }

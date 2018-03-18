@@ -15,7 +15,7 @@ class Monster{
     
     
     var town: Town?
-    var name = "Potwór"
+    var name: String
     
     func terrorizeTown(){
         if town != nil{
@@ -23,6 +23,12 @@ class Monster{
         }else{
             print("\(name) jeszcze nie znalazł miasta do terroryzowania...")
         }
+    }
+    
+    
+    required init(town: Town?, monsterName: String){
+        self.town = town
+        name = monsterName
     }
     
     
@@ -53,6 +59,8 @@ class Monster{
         
     }
     
+
+   
     
     
     

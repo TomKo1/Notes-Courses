@@ -15,7 +15,7 @@ class Vampire:Monster{
         if let unwrapped = town{
             if(unwrapped.population >= 1){
                 town?.changePopulation(amount: 1)
-                vampires.append(Vampire())
+                vampires.append(Vampire(town: unwrapped, monsterName: "Vampire"))
             }
         }
     }

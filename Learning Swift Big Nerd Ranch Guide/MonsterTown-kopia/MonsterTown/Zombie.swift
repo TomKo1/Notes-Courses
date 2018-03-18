@@ -23,13 +23,13 @@ class Zombie: Monster{
     // metoda getter dla isFallingApart ma miec wewnetrzny poziom dostepu
     // natomiast setter prywatny -> Uwaga !!! Metoda setter nie moze byc bardziej widoczna niz getter
     // z racji ze internal jest domyslny to nie musimy go pisac
-    internal private(set) var isFallingApart = false
+    internal private(set) var isFallingApart: Bool
     
     
     
     // typ Zombie ma wszystkie wlasciwosci i metody typu Monster np. funkcje terrorizeTown()
     
-    var walksWithLimp = true
+    var walksWithLimp: Bool
     
     // nadpisujemy metode z podklasy
     override func terrorizeTown() {
@@ -60,6 +60,27 @@ class Zombie: Monster{
     func changeName(name: String, walksWithLimp: Bool){
         self.name = name
         self.walksWithLimp = walksWithLimp
+    }
+    
+    
+    init(limp: Bool, fallingApart: Bool, town: Town?, monsterName: String){
+        walksWithLimp = limp
+        isFallingApart = fallingApart
+        super.init(town: town, monsterName: monsterName)
+    }
+    
+    convenience init(limp: Bool, fallingApart: Bool){
+        self.init(limp: limp, fallingApart: fallingApart, town: nil, monsterName: "Fred")
+        if walksWithLimp { // jezeli taka operacje jak sprawdzanie probowalibysmy
+            // wykonac przed wywolaniem metody desygnowanej to otrzymalibysmy blad 
+            print("Zombie ma uszkodzone kolano")
+        }
+    }
+
+    required init(town: Town?, monsterName: String) {
+        walksWithLimp = false
+        isFallingApart = false
+        super.init(town: town, monsterName: monsterName)
     }
     
     

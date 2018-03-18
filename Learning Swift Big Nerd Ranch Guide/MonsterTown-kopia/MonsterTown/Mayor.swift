@@ -10,12 +10,12 @@ struct Mayor{
     private var anxietyLevel:Int = 0
     
     mutating func notifyOfZombieAttack() {
-        anxietyLevel++
+        self.anxietyLevel += 1
     }
     
-     func beSaad(){
+     mutating func beSaad(){
             print("Jestem gleboko zasmucony!")
-            anxietyLevel += 1
+            self.anxietyLevel += 1
     }
     
 }
