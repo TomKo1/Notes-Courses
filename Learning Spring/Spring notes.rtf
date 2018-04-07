@@ -4,16 +4,14 @@
 {\colortbl;\red255\green255\blue255;\red153\green168\blue186;\red32\green32\blue32;\red173\green169\blue32;
 \red109\green109\blue109;\red191\green100\blue38;\red254\green187\blue91;\red133\green96\blue154;\red88\green118\blue71;
 \red107\green0\blue1;\red246\green246\blue246;\red38\green38\blue38;\red50\green109\blue108;\red106\green0\blue108;
-\red29\green0\blue255;\red173\green169\blue32;\red32\green32\blue32;\red153\green168\blue186;\red197\green195\blue255;
-\red88\green118\blue71;\red191\green100\blue38;\red254\green187\blue91;\red225\green179\blue88;\red133\green96\blue154;
-\red172\green172\blue172;\red149\green184\blue79;}
+\red29\green0\blue255;\red197\green195\blue255;\red225\green179\blue88;\red172\green172\blue172;\red149\green184\blue79;
+}
 {\*\expandedcolortbl;;\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c67843\c66275\c12549;
 \csgenericrgb\c42745\c42745\c42745;\csgenericrgb\c74902\c39216\c14902;\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c52157\c37647\c60392;\csgenericrgb\c34510\c46275\c27843;
 \cssrgb\c50196\c0\c0;\cssrgb\c97255\c97255\c97255;\cssrgb\c20000\c20000\c20000;\cssrgb\c24706\c49804\c49804;\cssrgb\c49804\c0\c49804;
-\cssrgb\c16471\c0\c100000;\csgenericrgb\c67843\c66275\c12549;\csgenericrgb\c12549\c12549\c12549;\csgenericrgb\c60000\c65882\c72941;\csgenericrgb\c77255\c76471\c100000;
-\csgenericrgb\c34510\c46275\c27843;\csgenericrgb\c74902\c39216\c14902;\csgenericrgb\c99608\c73333\c35686;\csgenericrgb\c88235\c70196\c34510;\csgenericrgb\c52157\c37647\c60392;
-\csgenericrgb\c67451\c67451\c67451;\csgenericrgb\c58431\c72157\c30980;}
-\paperw11900\paperh16840\margl1440\margr1440\vieww11880\viewh10620\viewkind0
+\cssrgb\c16471\c0\c100000;\csgenericrgb\c77255\c76471\c100000;\csgenericrgb\c88235\c70196\c34510;\csgenericrgb\c67451\c67451\c67451;\csgenericrgb\c58431\c72157\c30980;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11880\viewh7940\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs24 \cf0 \
@@ -764,18 +762,19 @@ We wzorcu strategii chodzi o to by rozdzielic to co robi od tego w jaki sposob t
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f1\fs24 \cf16 \cb17 @Bean\cf18 (\cf19 name \cf18 = \cf20 "DbKnightRepository"\cf18 )\
-\cf16 @Profile\cf18 (\cf20 "prod"\cf18 )\
-\cf21 public \cf18 KnightRepository \cf22 createDbKnightRepository\cf18 ()\{\
-    \cf21 return new \cf18 DbKnightRepository()\cf21 ;\
-\cf18 \}\
+\f1\fs24 \cf4 \cb3 @Bean\cf2 (\cf16 name \cf2 = \cf9 "DbKnightRepository"\cf2 )\
+\cf4 @Profile\cf2 (\cf9 "prod"\cf2 )\
+\cf6 public \cf2 KnightRepository \cf7 createDbKnightRepository\cf2 ()\{\
+    \cf6 return new \cf2 DbKnightRepository()\cf6 ;\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf2 \}\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs28 \cf0 \cb1 \
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f1\fs24 \cf6 \cb3 spring.profiles.active \cf5 = \cf9 prod\cf20 \cb17 \
+\f1\fs24 \cf6 \cb3 spring.profiles.active \cf5 = \cf9 prod\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs28 \cf0 \cb1 \
@@ -878,27 +877,494 @@ public String getKnight(Model model)\{\
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
-\f1\fs24 \cf23 \cb17 <table>\
+\f1\fs24 \cf17 \cb3 <table>\
     <thead>\
         <tr>\
-            <td>\cf18 \cb17 Imie rycerza\cf23 \cb17 </td>\
-            <td>\cf18 \cb17 Wiek\cf23 \cb17 </td>\
+            <td>\cf2 Imie rycerza\cf17 </td>\
+            <td>\cf2 Wiek\cf17 </td>\
         </tr>\
     </thead>\
-    <tbody \cf24 th\cf25 :each=\cf26 "knight : $\{knights\}"\cf23 >\
+    <tbody \cf8 th\cf18 :each=\cf19 "knight : $\{knights\}"\cf17 >\
         <tr>\
-            <td \cf24 th\cf25 :text=\cf26 "$\{knight.name\}"\cf23 />\
-            <td \cf24 th\cf25 :text=\cf26 "$\{knight.age\}"\cf23 />\
+            <td \cf8 th\cf18 :text=\cf19 "$\{knight.name\}"\cf17 />\
+            <td \cf8 th\cf18 :text=\cf19 "$\{knight.age\}"\cf17 />\
         </tr>\
     </tbody>\
 </table>\
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
 \f0\fs28 \cf0 \cb1 \
+//					WEBJARS\
 \
- \
+-> Webjars -> Biblioteki webowe, ktore sa opakowane w archiwum jar\'92a -> moja \
+	byc dodane do konfiguracji mavena \
+-> np celem zaciagniecia webjarsow reprezentujacych jquerry czy bootstrap: \
+		<dependency> \
+			<groupId>org.webjars</groupId>\
+			<artifactId>jquerry</artifactId>\
+			<version>3.2.1</version>\
+		</dependency>\
 \
+// przyklad jak podciagnac bootstrapa do html - > \
+W <head>\
+\
+<title rel=\'84stylesheet\'94  th:href=\'84@\{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css\}\'94/>\
+// analogicznie skrpyty js -> znacznik <script> \'85\
+\
+//					UTWORZENIE NOWEGO RYCERZA\
+\
+// przykladowy formularz tupescirptu: \
+<form class=\'84form-horizontal\'94 th:object=\'84$\{knight\}\'94  \
+					th:action=\'84@/products\'94 th:method=\'84post\'94/>\
+\
+th:object to obiekt ktory zostanie przeslany\
+th:action to adres url gdzie zostanie przekazany ten obiekt\
+th:method  -> to metoda protokul http ktora zostanie uzyta\
+\
+// w srodku tagu <form> towrzymy odpowiednie inputy na dane\
+<div class=\'84form-group\'94>\
+	<label class=\'84control-label\'94>Imie:</label>\
+	<input type=\'84text\'94 class=\'84form-control\'94 th:field=\'84*\{name\}\'94/>\
+</div>\
+Parametr th:field okresla nazwe pola obiektu okreslonego w form \
+	ktore zostanie zainicjalizowane wartoscia z tego input\'92a\
+\
+// metoda do obslugiwania formularza: \
+@RequestMapping(value = \'84/knights\'94, method = RequestMethod.POST)\
+public String saveKnight(Knight knight)\{\
+	knightServices.saveKnight(knight); // przy pomocy service zapisujemy \
+	return \'84redirect:/knights\'94;  // tutaj przekierowujemy do strony ze wszystkimi rycerzami\
+\}\
+\
+\
+// 			WIDOK SZCZEG\'d3\uc0\u321 OWY RYCERZA \
+\
+// przekierowanie do podstrony, ze szczegolwami rycerza: \
+<a th:href=\'84$\{\'82/knight?id=\'82+knight.id\}\'94>Podgl\uc0\u261 d</a> \
+// w tym html uzywamy parametr url do przekazania id rycerza, ktory zostal klikniety\
+\
+// pobieranie argumentow z url w controllerze: \
+\
+@RequestMapping(\'84/knight\'94)\
+public String getKnight(@RequestParam(\'84id\'94) Integer id, Model model)\{\
 	\
+\}\
+\
+// 		    USUWANIE RYCERZA\
+\
+Id mozemy przesylac przez URL albo przez sciezke \
+ Ponizszy przyklad reprezentuje przyklad przesylania przez sciezke: \
+\
+<a th:ref=\'84$\{\'82/knight/delete/\'82+knight.id\}\'94>Usun</a>\
+\
+\
+Bardziej popularne jest jednak przesylanie przez sciezke \
+\
+W kontrolerze taki argument w sciezce obsluguje sie jak nizej: \
+@RequestMapping(value = \'84/knights/delete/\{id\}\'94)\
+public String deleteKnight(@PathVariable(\'84id\'94) Integer id)\}\
+	//\'85 jakis kod\
+\
+\}\
+\
+\
+\
+//			WEB SCOPES\
+\
+	// Prototype\
+	// SIngleton \
+// w webowym: \
+	// Request\
+	//Session\
+// czas powinno sie robic w JavaScript a nie przez backend ale tutaj tak bedzie\
+<p th:text=\'84$\{timecomponent.time\}\'94/>\
+\
+prototype  w webowe -> kazda sesja ta sama godzina !!!\
+	lepiej u\uc0\u380 y\u263  @Scope(value = \'84request\'94, proxyMode = ScopedProxyMode.TARGET_CLASS)\
+			// dzieki temu mozna wstrzyknac komponent o kontekscie webowym -> godzina 				sie  zmienia  -> dzieki temu ze jestr request to co request jest wstrzykiwanie \
+// (cofanie nie daje nowego requesta!!!);\
+// klasa wstrzykiwana jako godzina: \
+@Component\
+@Scope(\'84prototype\'94)\
+public class TimeComponent\{\
+\
+	private TImeComponent time = LocalDateTime.now();\
+\
+// gettery i settery dla HTML \
+\
+\}\
+\
+\
+\
+// jeszcze moze byc session scope, czyli \
+@Scope(value = \'84session\'94,  proxyMode = ScopedProxyMode.TARGET_CLASS) \
+-> teraz godizna odswieza sie kiedy mamy nowa sesje (np. Przegladarka w \
+		w trybie prywatnym a potem w zwyklym)\
+\
+//					WALIDACJA FORMULARZY\
+\
+// Spring wspiera API Javy EE tzw. Bean validation \
+\
+np. Adnotacja @NotNull przy polach co nie maja byc nullem \
+@Min(2) // przy polu typu int naklada ograniczenie na minimalna wielkosc \
+@Max(40)  // przy polu typu int naklada ograniczenie na maksymalna wielkosc \
+// przy stringach ograniczenie na dlugosc nakladamy jako: \
+@Size(min = 2, max = 40) // ofraniczenie na stringa\
+// mozna rowniez podawac im customowe wiadomosci: \
+@Size(min = 2, max = 40, message = \'84Moja wiadomosc o bledzie\'94)\
+\
+@Range( min = 18, max = 80) // nak\uc0\u322 adamy ograniczenia na pole typu int\
+\
+Po takim oznaczeniu odpowiednich pol w klasie modelujacej dany obiekty aplikacji (Np. Uzytkownika, postac z gry itd.) \
+Nalezy w kontrolerze zrobic cos takiego: \
+@RequestMapping(value = \'84/knights\'94, method = RequestMethod.POST)\
+public String saveKnight(@Valid Knight knight, BindingResult bindingResult)\{\
+	\
+	if(bindingesult.hasErrors())\{\
+		System.out.println(\'84There were errors\'94);\
+		return \'84/knightform\'94;\
+	\}else\{\
+		service,saveKnight(knight);\
+		return \'84redirect:/knights\'94;\
+\
+	\}\
+\
+\
+\}\
+\
+// adnotacja @Valid powoduje sprawdzanie poprawnosci danych \
+// BindingResult to obiekt, ktory pomaga okreslic czy mial miejsce blad czy nie\
+\
+// mozna za pomoca bindingResult uzyskac bardziej konkretne wiadomosci o bledach: \
+\
+bindingResult.getAllErrors().forEach(\
+		error->\{\
+			System.out.println(\'84error.getObjectName() + \'84 \'84 + error.getDefaultMessage());\
+	\});\
+\
+// wypisywanie bledow w forumalrzu w przegldarce: \
+<p th:if=\'84$\{#fields.hasErrors(\'82name\'92)\} th:errors=\'84*\{age\}\'94/>\
+// powyzsza konstrukcja jestli wystapily beldy przwpisywaniu age \
+// wypisuje je \'85 fields to wbudowany obiekt w th -> nie trzeba go definiowac oddzielnie\
+\
+// 				METODY BIZNESOWE\
+\
+// interesujaca konstrukcja -> oczywiscie odpowiednie gettery i settery musza byc w odpowiednich klasach\
+\
+<span th:if=\'84$\{knight.quest == null\}\'94 th:text=\'84\'82Brak aktualnego zadania\'92\'94/>\
+\
+// z hamcrest -> obecnie jest juz dolaczona do JUNIT\'92a assertThat : \
+assertThat(allNotStartedQuests, containsInAnyOrder(q1,q3));\
+// allNotStartedQuests to lista questow \
+\
+Jak mamy mocki w testach to musimy w klasie ktora jest testem dodac odpowiedniego \
+Runnera: \
+@RunWith(MockitoJUnitRunner.class)\
+\
+//					PRZYPISYWANIE ZADAN\
+\
+Java 7/8 -> defaultowa implementacja w interfejsie: \
+public interface MyInterface\{\
+	default void myMtehod()\{\
+		throw new NotImplementedException();\
+\
+	\}\
+\
+\}\
+\
+\
+Czasami moze byc potrzeba utworzenia ukrytych pol celem przechowania i odzyskania tego samego stanu obiektu: \
+<input type=\'84hidden\'94 th:field=\'84*\{id\}\'94/>\
+\
+//				TESTOWANIESPRING MVC\
+\
+@WebAppConfiguration -> adnotacja do oznaczania klasy gdzie znajduj\uc0\u261  si\u281  testy \
+	zwi\uc0\u261 zane ze Spring MVC\
+\
+@Mock -> tak oznaczamy pola klas ktorre beda Mockowe z pomoca Mockito\
+\
+@InjectMock -> tak oznaczamy klase do ktorej chcemy wstrzyknac dane mocki\
+\
+\
+// mozna stworzyc metode stora zostanie wykonana przed kazdym testem: \
+\
+@Before\
+public void setUp()\{\
+	MockitoAnnotations.initMocks(this); // aktywuje wszystkie mocki i wsztrzykuje je do odpowiedniego \
+\}\
+\
+MockMvc -> klasa Springowa sluzaca do testowania MVC springowego\
+// budowanie takiego obiektu odbywa sie jak ponizej: \
+MockMvc mockMvc = MockMvcBuilders.standaloneSetup(questController).build();\
+\
+// zeby \'84uderzyc\'94(wyslac odpowiednia metode) w odpowiedni link do mock\'92a\
+// nalezy uzyc jak nizej: \
+mockMvc.perform(get(\'84/nazwaLinku\'94));\
+\
+// przy perform mozemy ustawiac odpowiednie atrybuty np. \
+mockMvc.perform(get(\'84/nazwaLinku\'94).requestAttr(\'84id\'94,1));\
+\
+Na takim mocku mozmey rowniez sprawdzac inne rzeczy: \
+mockMvc.perform(get(\'84/nazwaLinku\'94)).\
+		andExpect(status().is3xxRedirection()) // sprawdza kod odpowiedzi\
+		.andExpect(view().name(\'84redirect:/knights\'94));		// sprawdza widok, ktory zostanie zwrocony\
+\
+//			JAVA PERSISTENCE API \
+\
+JPA -> interfejs do mapowania obiektow czystow Javovwych na relacyjne bazy danych \
+H2 -> baza danych w pamieci -> proste przyklady/ proste aplikacje\
+// dzialanie JPA\
+EntinityManagerFactory -> singleton gdzie trzymana jest pula polaczen do bazy danych/ tez\
+		tworzy EntityManager (w hibernate -> SessionFactory)\
+\
+EntityManager -> obiekt sesji, ktory tworzymy za kazdym razem nowy gdy chcemy wykonac\
+	jakas operacje na bazie danych (Hibernate -> Session)\
+\
+@PersistenceContext\
+\
+//				DODANIE JPA DO PROJEKTU\
+\
+W pliku pom.xml 2 zaleznosci: \
+	<dependency>\
+		<groupId>org.springframework.boot</groupId>\
+		<artifactId>spring-boot-starter-data-jpa</artifactId>\
+	</dependency>\
+\
+// 2 zaleznosc to:\
+	<dependency>\
+		<groupId>com.h2database</groupId>\
+		<artifactId>h2</artifactId>\
+	</dependency>\
+		\
+H2 -> spring ja automatycznie konfiguruje -> nowa przy kazdym starcei aplikacji \
+\
+W properties wpis wlaczajacy konsole: \
+spring.h2.console.enabled=true\
+\
+I mozemy po tym wpisie odpalic konsople linkiem\
+/h2-console\
+\
+// 		TWORZENIE PIERWSZYCH PERSYSTENCJI \
+\
+-> nalezy dodac adnotacje @Entity\
+-> oraz pole reprezentujace id oznaczone przez @Id\
+	@Id\
+	@GeneratedValue(strategy = GenerationType.AUTO) // strategia generacji jako AUTO -> unikalne -> z reguly inkrementowane jako jeden\
+-> pusty konstruktor\
+\
+-> laczac sie poprzez konsole nalezy nastepnie wybrac (domyslne jest) przy jdbc url\
+		jdbc:h2:mem:testdb \
+\
+Mozna nadac swoja nazw bazy danych poprzez plik application.properties: \
+\
+spring.datasource.url=jdbc:h2:mem:mydb\
+\
+// zeby widziec jakie zapytania zostaly wykonane przez Hibernate w konsoli\
+// wystarczy wpisac: \
+spring.jpa.properties.hibernate.show_sql=true\
+spring.jpa.properties.hibernate.format_sql=true\
+\
+Gdy nie chcemy zeby jakies pole bylo zapisywane do bazy danych \
+	wystarczy uzyc na tym polu adnotacji @Transient\
+\
+Jesli podamy na polu o nazwie id adnotacje @Id wowczas do\
+	zapisywania do bazy danych i odczytywania jest uzywana refleksja\
+\
+A jesli takie adnotacji uzyjemy powyzej getId wowczas\
+	Hibernate bedzie uzywal do obslugi mapowamia do i z bazy danych getterow\
+		i setterow\
+Jesli chcemy zmioenic nazwe tablicy to \
+@Table(name = \'84Zadania\'94) -> przed nazwa klasy\
+\
+A jesli kolumny to przed nazwa pola ktore reprezentuje\
+@Column(name = \'84 Nazwa kolumny\'94)\
+\
+\
+Oczywiscie klasa moze byc i encja i komponentem Springa \
+	ale trzeba uwazac na czytelnosc by nie przesadzic ;) \
+\
+\
+//				RELACJE\
+\
+Jezeli obiekt jakiejsc klasy jest \'84wbudowany\'94 (tzn. Zawiera pole typu ktory nie jest \
+	prymitywem) w inny obiekt klasy to mozemy go okreslic np. Adnotacja\
+		\
+	@Embedded -> typ danych ktory jest scisle zwiazy e encja w ktorej sie znajduje\
+		ale dla wygody i przejrzystosci przeniesiony do innej klasy ale nalezy do \
+			tej samej tabeli c oklasa w ktorej sie znajduje\
+\
+	lub mozna go oznaczyc jako relacje \
+\
+	RELACJE ZACHODZA MIEDZY ENCJAMI ZAWIERAJACYMI ID\
+\
+	1-1 (@OneToOne)\
+	1- wiele (@OneToMany)\
+	wiele- wiele(@ManyToMany)\
+\
+//				ZAPISYWANIE DANYCH\
+\
+By wykonac operacje na bazie danyuch potrzebujemy wsztrzyknietego przez\
+	EntinityManagerFactory obiektu EntityManager\
+	\
+	@PersistenceContext\
+	private EntityManager entinityManager;\
+\
+	// zapisyeanie do bazy\
+	entityManager.persist(jakisObiekt);\
+	\'97 metode w ktorej jest wywolywana \
+		metoda persist trzeba oznaczyc jako \
+			@Transactional\
+				-> to jest od teraz transakcja ->\
+					jesli bedzie np., wyjatek w srodku to nie spowoduje to \
+						zapisu do bazy danych (wszystko co zostanie \
+								wykonane przez tym wyjatkiem zostanie \
+									cofniete)\
+\
+// wystosowanie zapytania do takiej \'84bazy\'94 \
+entinityManager.createQuery(\'84from Nazwa_Tabeli\'94, Quest.class);\
+	na tak uzyskanym obiekcie mozemy wtedy wywolac metode\
+			getResultList() po to by uzyskac liste tych obiektow\
+\
+// usuwanie z takiej bazy danych: \
+entinityManager.remove(obiekt_Reprezentujacy_To_co_chcemy_usunac);\
+\
+// updatowanie odpowiedniego wpisu w bazie danych: \
+entinityManager.merge(ObiektKtoryChcemyMergowac);\
+\
+// pobieranie o zadanym id: \
+entinityManager.find(Quest.class, id);\
+\
+// zapytanie do bazy z wherem : \
+	entinityManager.createQuery(\'84from Knight k where k.name = :name\'94, Knight.class).\
+				setParameter(\'84name\'94, name).\
+				getSingleResult();\
+	return Optional.ofNullable(knight);\
+//			DODANIE SPRING SECURITY DO PROJEKTU\
+\
+<dependecny>\
+	<groupId>org.springframework.boot</groupId>\
+	<artifactId>spring-boot-starter-security</artifactId>\
+</dependency>\
+\
+// wowczzas w klasie konfigurujacej mozemy wstrzyknac metode tworzaca\
+// odpowiednich userow: \
+// inMemoryUsers to bardziej do testow i do dev a nie do produkcji !!!\
+@Autowired\
+public void securityUsers(AuthenticationManagerBuilder auth) throws Exception\{\
+	auth.inMemoryAuthentication().withUser(\'84user1\'94).password(\'84user2\'94).roles(\'84USER\'94).\
+		and().\
+	withUser(\'84user2\'94).password(\'84user2\'94).roles(\'84ADMIN\'94);\
+\
+\}\
+\
+//			PROSTY FORMULARZ LOGOWANIA\
+\
+\
+// przycisk do wylogowywania: \
+# ->  bo zostaje na tej samej stronie \
+<form action=\'84#\'94  th:action=\'84@\{/logout\}\'94 method=\'84post\'94>\
+	<input type=\'84submiT\'94 value=\'84Logout\'94/>\
+</form>\
+-> pod /logout -> Spring domyslnie tworzy  wylogowywanie sesji usera\
+\
+// mozemy stworzyc odpowiednia klase odpoweidzialna za konfigurowanie logowania (bezpieczenstwa)\
+	naszej aplikacji\
+@Configuration\
+public class SecurityConfig extends WebSecurityConfigurerAdapter\{\
+	@Autowired\
+	public void securityUsers(AuthenticationManagerBuilder auth) throws Exception\{\
+		auth.inMemoryAuthentication().withUser(\'84user1\'94).password(\'84user2\'94).roles(\'84USER\'94).\
+			and().\
+		withUser(\'84user2\'94).password(\'84user2\'94).roles(\'84ADMIN\'94);\
+\
+	\}	\
+\
+\
+\
+	@Override\
+	public void configure(HttpSecurity security) throws Exception\{\
+		// dzieki obiektowi HttpSecurity mosey ustalic regally ktore beda dotyczyly\
+		// naszej strony; bedzie mozna ustalic. Jakie url\'92y maja jaki poziom dostepu\
+		// i kto bedzie (z jakimi rolami) bedzie mogl na nie wchodzic\
+		// dwie gwiazdki oznaczaja ze wszystko co jest za tym adresem rowniez\'85\
+		security.authorizeRequests().antMatchers(\'84/h2-console/**\'94).permitAll().\
+			antMatchers(\'84/knights\'94).hasAnyRole(\'84USER\'94,\'94ADMIN\'94).\
+				antMatchers(\'84/knight\'94).hasAnyRole(\'84ADMIN\'94).\
+					anyRequest().authenticated().and().formLogin().\
+						defaultSuccessUrl(\'84/knights\'94);\
+			//defaultSuccessUrl() przekierowuje pod zadany link po stwierdzeniu udanego logowania\
+			// metoda httpBasic() wywoluje podstawowy \'84formularz\'94 logowania\
+				// -> wyskakujace okienko proszace o logowanie ;) \
+			//formLogin() -> predefiniowany formularz do logowania ktory ma sie wyswietlic\
+	\}\
+\
+\
+\}\
+\
+\
+//					AUTENTYKACJA Z UZYCIEM BAZY DANYCH\
+\
+\
+// oczywiscie haslo nalezy zakodowac jako hasha a nie trzymac jawnie jak w kursie ;) \
+\
+1. Potrzebujmy obiektu ktory bedzie trzymal informacje o userze.\
+2. Potrzebujemy obiketu ktory bedzie trzymal informacje o rolach\
+3. Repozytorium\
+\
+\
+
+\b // uwga jak przechodzimy w Springu na baze danych to zmiast uzywac hasAnyRole\
+// nalezy uzywac hasAnyAuthority !!! Do konfiguracji dostepu po rolach\
+\
+
+\b0 pobranie odpowiednich uzytkownikow oraz ich rol z bazy danych\
+\
+@Autowired\
+public void security(AuthenticationManagerBuilder auth) throws Exception\{\
+	// datasouce mozemy wstrzyknac\
+	auth.jdbcAuthentication().dataSoutce(dataSource).\
+		usersByUsernameQuery(\'84SELECT username, password, enabled FROM PLAYER_INFORMATION WHERE username = ? \'84) .\
+			authoritiesByUsernameQuery(\'84SELECT username, role FROM ROLE WHERE username = ?\'94);\
+\
+// w metodzie userByUsernameQuery() podajemy zpaytanie wyybierajace na podstawie ktorego\
+// maja zostac pobrani uzytkownicy naszej aplikacji \
+\
+// w authoritiesByUsernameQuery() podajemy role (zapytanie wybierajace role)\
+\
+\}\
+\
+\
+//			DEPLOYMENT NA SERWER ZEWNETRZNY\
+\
+mozna wykupic swoja wlasna maszyne wirtualna i tam postawic swoja aplikacje\
+\
+-> Digital Ocean cala wirtualna maszyna\
+-> MyDevil.net -> troche tanszy ale nie ma wszystkich opcji \
+\
+Logowanie na server za pomoca ssh:\
+\
+ssh root@odpowiednie_ip_servera\
+\
+Zeby aplikacja sie nie zamknela po zamknieciu konsoli mozna uruchomic ja w tle \
+	-> uzywajac na koncu java -jar aplikacja.jar & \
+\
+Lub\
+\
+1. Komenda screen \
+2. java -jar jakasNazwa.jar \
+3. Zamknac screena -> ctrl+a a nastepnie t -> poprzedni widok lub controt + a + d \
+Powrot do niego screen -dr \
+\
+//			Rozszerzenie: \
+\
+Customowy formularz rejestracji z opcja rejestracji i akceptacji uzytkownikow\
+Postres na wirtualnej i laczyc sie z nim \
+Losowe czasy i nagrody za zadania\
+Ekwipunek\
+\
+\
+\
+\
 \
 \
 \

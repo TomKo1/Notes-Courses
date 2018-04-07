@@ -1,0 +1,242 @@
+{\rtf1\ansi\ansicpg1250\cocoartf1561\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 AvenirNext-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red27\green31\blue34;\red244\green246\blue249;\red6\green33\blue79;
+\red15\green121\blue172;\red26\green26\blue26;}
+{\*\expandedcolortbl;;\cssrgb\c14118\c16078\c18039;\cssrgb\c96471\c97255\c98039;\cssrgb\c1176\c18431\c38431;
+\cssrgb\c0\c54902\c72941;\cssrgb\c13333\c13333\c13333;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8160\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 gem list  -> menad\uc0\u380 er gemow, wyswietla posiadane gemy\
+\
+gem  update - -system  -> aktualizacja gemow\
+\
+rails - -version \
+\
+rail new ProjectName\
+\
+Gemfile.lock -> zawiera wszystkie informacje o zainstalowanych Gemach\
+\
+Gemfile -> to co dolaczylismy do naszego projektu \
+\
+\
+Gem odpowiedzialny za upload zdjec: \
+\
+gem paperclip\
+\
+# gem install\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs27\fsmilli13600 \cf2 \cb3 \expnd0\expndtw0\kerning0
+gem \cf4 ;paperclip\'92\cf2 , \cf4 \'82~> 6.0.0\'92\
+\
+
+\f0\fs24 \cf0 \cb1 \kerning1\expnd0\expndtw0 \
+bundle install # aktualizacja Gemfile\
+\
+W RoR pomiedzy uzytkownikiem a  MVC jest obiekt routing -> przekierowuje \
+\
+rails generate controller NazwaKontrollera index\
+// index to widok do tego controllera\
+\
+layout = false # w kontrolerze mowimy zeby nie odwolywal sie jeszcze do zadnego layoutu\
+\
+Katalog public -> pliki odpowiedzialne za wyswietlanie odpowiednich komunikatow\
+	404 -> nie znaleziono odpowiedniego zasobu \
+	422 -> proba zmiany zasobu do ktorego uzytkownik nie ma dostepu \
+	500 -> wewnetrzny blad servera \
+\
+match \'82:controller(/:action(/:id))\'92, :via => [:get, :post]\
+// id to parametr\
+\
+Ustawianie strony domyslnej ( w pliki routes.rb): \
+\
+root \'84test#index\'94 # znak \'82#\'92 symbolizuje przekierowanie\
+\
+Railsy domyslnie przyjmjuja ze jak nie ma w danym kontrolerze jakiejsc metody\
+	(reprezentujacej przecez odpowiednia strone) to przeszukuje katalogi i jak \
+		znajdzie dana strone to ja otwiera\
+\
+// jawne przekierowanie na jakas strone:\
+def test\
+	render(\'82index\'92) // ten widok musi istniec!!!\
+end\
+\
+def kurs\
+	redirect_to(\'82htttp://www.google.com\'92) # przenosiny do zewnetrznych zasobow\
+end\
+\
+// ruby zaglada do wszystkich plikow erb szukajac kodu Rubiego\
+<%  %> <!-- tutaj wpisujemy kod rubiego \'97>\
+\
+<%= %> <!\'97 znak = to zeby wyswietlic, bez tego to tylko jest wykomnywane \'97>\
+\
+<% imie = \'84Tomek\'94 %>\
+<%= Witaj #\{imie\} %> <!\'97 wyswietlanie zmiennej \'97>\
+\
+// miedzy kontrolerem a widokiem moga byc rowniez przekazywane jakies zmienne\
+\
+@ - zmienna instancji \'85 obowiazuje miedzy kontrolerem a widokiem \
+Bez znaku @ to nie zostanie przekazana do widoku \
+$ -> zmienna globalna \
+\
+@imiona = [ \'84ala\'94, \'84ewa\'94, \'84ola\'94 ]\
+\
+// wyswietlanie w pliku html\
+<% @imiona.each do |imie| %>\
+	<%= \'84Witaj #\{imie.capitalize\} w kursie!\'94 %>\
+	<br> <!\'97 przejscie do nowej linii czysto html \'97>\
+<% end %>\
+\
+\
+<a href=\'84jakasStorna.html\'94>Link</a>\
+W Rubym inaczej: \
+<%= link_to(\'82Opis linku\'92,\{:action=>\'92test\'92\}%> \
+\
+Lepsza wersja (z \'84lepszym\'94 hashem): \
+\pard\pardeftab720\partightenfactor0
+\cf0 <%= link_to(\'82Opis linku\'92,\{:action=>:test\}%> \
+\
+Witam?id=2&strona=2\
+& - oddziela poszczeg\'f3lne argumenty\
+\
+Parametry w RoR przekazujemy w hashu\
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\partightenfactor0
+\cf0 <%= link_to(\'82Opis linku\'92,\{:action=>:test, :id => 2, :strina=>3\}%> \
+\
+Takie parametry z linku mozemy nastepnie odczytacv przy pomocy \
+Metody params -> \
+\
+<%= \'84Jakis teskt: \'84 + params[:id] %> \
+Gdzie :id to odpowiednia nazwa jaka nadali\uc0\u347 my parametrowi.w konkretnym linku\
+\
+<%= params[:strona] + 1 %> <!\'97 blad bo konwersja do STringa dodajemy int \'97 > \
+\
+<%= params[:strona].to_i + 1 %> <!\'97 teraz jest poprawnie bo skownertowalismy \'97>\
+\
+Mozna oczywiscie takie parametry rowniez odczytywac w kontrolerze: \
+def index\
+	@id=params[:id].to_i\
+end\
+\
+Taka zmienna moge potem poslugiwac sie w odpowiednim widoku: \
+<p>\
+	Parametr ID = <%= @id+10 %>\
+</p>\
+\
+Mozna wyswietlic wszystkie parametry ktore sa przekazywane: \
+<!\'97 <hr> \'97>\
+	<%= params.inspect %> <!\'97 wyswietla wszystkie parametry \'97>\
+\
+\
+SQLite jest domyslna baza danych dla Rails\
+\
+rake -> odpowiada poleceniu make w systemach unixowych\
+1. Zrzucanie obiektu bazy danych do pliku -> mozna w notatniku podejrzec nawet co sie \
+		dzieje w bazie danych\
+	rake db:schema:dump -> powstanie plik schema.rb\
+\
+\
+Bez problemow mozna migrowac miedzy roznymi rodzajami baz danych\
+	mozna rollbacki robic \
+\
+- migracja posiada dwie metdoy: \
+		- up (stworzenie, edycjia)\
+		- down (wycofanie zmian, cofniecie) \
+\
+Bcrypt -> biblioteka Rubiego do tworzenia hase\uc0\u322 \
+\
+\
+rails generate model User  # tworzenie odpowiedniego modelu\
+\
+has_secure_password -> do odpowiedniego modelu zeby wlaczyc Bcrypt\
+\
+W pliku z migracja: \
+def CreateUsers < ActiveRecord::Migration[5.1]\
+	# tworzy odpowiednia tabele\
+	def up \
+		create_table :users do |t|\
+			# tu tworzymy odpowiednie kolumny\
+			# timestamp -> 2 kolumny kiedy update i kiedy stworzona \
+			t.string \'84name\'94 , :limit=>20\
+			t.string \'84surname\'94, :limit=>60\
+			t.string \'84user\'94, :limit=>25\
+			t.string \'84email\'94, :limit=>100, :default=>\'94\'94, :null=>false\
+			t.string \'84phone_number\'94, :defualt=>\'94\'94, :null => false\
+			# password_digest is required by bcrypt\
+			t.string \'84password_digest\'94\
+			t.timestamp\
+		end\
+		# this function adds index on specific column \
+		add_index(\'84Users\'94, \'84user\'94)\
+	end\
+\
+	# usuwa tabele\
+	def down\
+		drop_table :Users\
+	end\
+end\
+\
+rake db:migrate -> tworzymy tabele (uruchamia migracje)\
+\
+schema.rb -> zapisuje tylko strukture (czyli CReate Table \'85 ) \
+\
+rake db:migration VERSION = 0 -> tak wracamy do konkretnej wersji \
+\
+rails  c -> otwiera konsola Rubiego (Railsow)\
+\
+User.create(:name=>\'94Tomek\'94, :surname=>\'94Kot\'94, :user=>\'94admin\'94, :password=>\'94123456789\'94, :password_confirmation=>\'94123456789\'94, :email=>\'94kottomasz98@gmail.com\'94)\
+# tak tworzmym odpowiedni wpis w tabeli (Inser) \
+\
+Wpis id jest automatycznie tworzony przez Rails\
+\
+\'97 czy klucz obcy dodaje sie w Rails automatycznie tylko jakby po kluczu? \
+\
+Active Record\
+\
+Sluzy do odszukiwania/wyszukiwania \
+\
+Zamiast Pisa SELECT * FROM Articles WHERE Articles.id = 1\
+To w Rails jest rownowazne: \
+article = Articles.find(1)\
+\
+Active Redord jest kompatybilna praktycznie z kazdym systemenm bazodanowym\
+\
+ActiveRecord -> Create Read Update Delete (CRUD) -> 4 metody sa dosepne\
+class Article < ActiveREcord::Base\
+ 	belongs_to :page # zlaczenie 1:1 1 artykiul nalezy do jednej strony\
+end\
+\
+# 1 -  wielu\
+class Page < ActiveRecord::Base \
+	has_many :articles # to musi bye liczba mnoga !!!!\
+end\
+# wiele - wielu \
+\
+Relacje zapisujemy w odpowiednich klasach reprezentujacych modele\
+\
+W modelu mozemy zdefiniowac rowneiz scope (metody przeszukiwania) \
+np. \
+
+\fs20 # {\field{\*\fldinst{HYPERLINK "http://guides.rubyonrails.org/active_record_querying.html#scopes"}}{\fldrslt 
+\f2 \cf5 \expnd0\expndtw0\kerning0
+Scopes}}
+\f2 \cf6 \expnd0\expndtw0\kerning0
+ are a great way to grab the right objects out of your database:\
+
+\f0\fs24 \cf0 \kerning1\expnd0\expndtw0 # czyli za pomoca scope ograniczamy dane z tabeli do pewnego podzbioru\
+# spelniajacego dane warunki\
+scope :visible, -> \{where(:visible => true)\} # w railsach ponizej Rails 4.0 \
+# w wersji wyzszej (anonimowa funckja)\
+scope :visible lambdawhere(:visible => true)\} \
+# scope :nazwaScope, -> pewnaKlauzulaWhereDotyczacaModelu\
+\
+# scopy sortujace: \
+scope :sort, lambda\{order(\'84categories.position ASC\'94)\} # analogicznie DESC\
+\
+//		WPROWADZENIE\
+}
