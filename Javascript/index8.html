@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+
+
+<body>
+    <form method="post" action="plikObslugi.php" id="formularzID" name="formularzeNazwa">
+            <input type="button" value="Odczyt" onclick="usunAktywnaPozycje()"/>
+    </form>
+
+    <script>
+        // dynamiczne tworzenie lisy formularza i jej pol: 
+        var formularz = document.getElementById("formularzID");
+        var listaOpcji = document.createElement("select");
+        var kolejnaOpcja;
+
+        formularz.appendChild(listaOpcji);
+
+        //dodajemy atrubyty do listy: 
+        listaOpcji.setAttribute("name","listaOpcjiNazwa");
+        listaOpcji.setAttribute("id","listaOpcjiId");
+        
+        // etykiety pol
+        var opisyPol = new Array("Pierwsze pole", "Drugie pole","Trzecie pole","Czwarte pole");
+        var wartosciPol=new Array(10, 20, 30, 5);
+        // petla dodajacao pcje dynamicznie
+        for(var i = 0; i<opisyPol.length;i++){
+            kolejnaOpcja = document.createElement("option");
+            listaOpcji.appendChild(kolejnaOpcja);
+            listaOpcji.options[i].text = opisyPol[i];
+            listaOpcji.options[i].value = wartosciPol[i];
+        }
+        //          dynamiczne usuwanie z formularza: 
+        
+        //listaOpcji.options[0] = null //usuwanie -> starsza wersja
+
+        function usunAktywnaPozycje(){
+            
+            listaOpcji = document.forms[0].elements["listaOpcjiNazwa"];
+        
+            listaOpcji.remove(listaOpcji.selectedIndex);
+        
+        }
+    </script>
+</body> 
+</html>

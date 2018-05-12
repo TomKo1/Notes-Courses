@@ -1,0 +1,190 @@
+<script type="text/javascript">
+<!-- atrybut ten nie jest wymagany -->
+
+</script> 
+
+
+
+<script>
+	function funkcja1(){
+		alert("Cos tam"); //windows with text
+	}
+	
+	funkcja1();
+
+</script>
+
+
+When an HTML document is loaded into a web browser, it becomes a document object.
+
+The document object is the root node of the HTML document.
+(document)
+
+-> oddzielne watki -> oddzielne znaczniki <script> 
+
+-> jeżeli w bloku jest błąd składni to nic się nie wykona 
+
+-> mamy 2 rodzaje obsługi błędów: 
+		-> onError dla obrazku i okna 
+		-> try-catch 
+
+<script>
+	// windows to obiekt przegladarki
+	window.onerror = function(){ // nie reaguje na glad sklani
+		alert("Wystapil blad");
+
+	}
+	
+	document.otworzOkno(); // metoda nie istnieje 
+	
+
+</script> 
+
+
+
+<script>
+	window.onerror = function(komunikat, adresPliku, liniaZBledem){
+		alert("123 " + komunikat+"\n\n");
+	}
+	/*
+
+		window.onerror = function (msg, url, lineNo, columnNo, error) {
+			  // ... handle error ...
+
+			  return false;
+		}
+
+	*/
+
+
+</script>
+
+<!-- handlery dla bledow dla obrazka --> 
+1. Sposob: 
+	<img src="obrazek.jpg" onerror="alert('Blad ladowania obrazka')"/>
+2. W kodzie JS: 
+	<script>
+		function ladowanieObrazka(){
+			// document.images[0] -> wskazujemy na 1 obrazek na stronie
+			document.images[0].onerror = function(){
+				alert("Witam serdecznie w bledzie :)");
+			} 
+		// ladowanie obrazka z poziomu JS 
+		// document.images[0].src -> ladle strone
+		document.images[0].src = "obrazek.jpg"		
+			
+		}
+	
+	</script>
+	<body onload="ladowanieObrazka()">
+		<img />
+
+	</body>
+// unload attribute Executes a JavaScript immediately after a page has been loaded:
+
+// try-catch 
+
+try{
+	document.abc();
+	alert("second line!");
+
+
+}catch(myException){
+	// handles the exception 
+	// myException -> dowolna nazwa przez którą dowiemy się o błędzie 
+	alert("Exception occure");
+
+
+}finally{
+	// wykonywany zawsze -> opcjonalne
+	
+
+}
+
+
+// . .. . . 
+
+<script>
+	try{
+		
+		eval(a b c ); // przyjmuje kod JS jako String ->  
+		//The eval() function evaluates 
+		//JavaScript code represented as a string.
+	}catch(exception){
+		var komunikat = "Wlasciwosc name: "+ exception.name ;
+		var exceptionMsg = exception.message;
+		alert(komunikat + "" + exceptionMsg);
+	}
+
+</script>
+//...
+<script>
+	try{
+		
+		eval(a b c ); // przyjmuje kod JS jako String ->  
+		//The eval() function evaluates 
+		//JavaScript code represented as a string.
+	}catch(exception){
+		if(exception.name == "SyntaxError"){
+			alert("SyntaxError");
+		}else{
+			alert("Cos innego");
+		}
+	}
+
+</script>
+
+Jest tez operator instanceof <3 
+if(exception instanceof SyntaxError){
+	// cos tam .. .
+	
+}else{
+
+
+}
+
+// rzucanie wyjatkow:
+
+
+<script> 
+	throw "Błąd"; // ze string
+	throw true; // z wartoscia logiczna
+	throw 2123; //liczba
+	throw new Error("Blad w programie"); 
+
+</script> 
+
+function dzielenie(a,b){
+	
+	if(a==b){
+		throw new Error("Nastąpiła próba dzielenia przez zero");
+	}else if(arguments.lenght < 2 ){
+	// arguments to tablica argument funkcji 
+		throw new Error("Liczba argumentow jest zla!");
+	
+	}else{
+		return a/b;
+
+	}
+}
+
+isNaN(a); // true jesli wartosc nie jest liczbowa
+
+
+// petla for w JS jest 
+for(var i = 0;i<5; i++){
+}
+
+// funckja z parametrami
+function myFunction(x, y) {
+    if (y === undefined) {
+          y = 0;
+    } 
+}
+
+Var listaPol = new Array();
+listaPol.push('cos do wlozenia na liste');
+
+
+
+

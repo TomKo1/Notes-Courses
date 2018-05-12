@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import Kalkulator
 
 class KalkulatorTests: XCTestCase {
     
@@ -23,12 +24,20 @@ class KalkulatorTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let calculatorLogic = KalkulatorLogic()
+        XCTAssertEqual(calculatorLogic.add(fistNumber: 1, secondNumber: 2),3)
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
+            // fragment kodu ktorego wydajnosc bedziemy sprawdzac
+            // dziesieciokrotnie i sprawdza w jakim czasie
+            // poszczegolne wywolania funkcji sa wykonywane
+            let calculatorLogic = KalkulatorLogic()
+            XCTAssertEqual(calculatorLogic.add(fistNumber: 1, secondNumber: 2),3)
+            
         }
     }
     

@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<script>
+     function obslugaFocus(){
+        this.style.backgroundColor = "yellow";
+    }
+
+    function obslugaBlur(){
+        this.style.backgroundColor = "white";
+    }
+
+    function configureListeners(){
+        for(var i = 0 ; i < forumlarzId.childElementCount;i++){
+            if(forumlarzId.elements[i].type == "text" || forumlarzId.elements[i].type == "password") { 
+                forumlarzId.elements[i].addEventListener("focus" ,obslugaFocus);
+                forumlarzId.elements[i].addEventListener("blur" ,obslugaBlur);
+            }
+        }
+    }
+</script>
+
+
+
+<meta charset="utf-8">
+</head>
+
+
+<body onload="configureListeners()">
+    <form method="post" action="plikObslugiFormularza.php" id="forumlarzId" name="formularzNazwa">
+       
+        <label for="poleTekstoweID">Imię i nazwisko</label><br/>
+        <input type="text" id="poleTekstoweID" name="poleTekstoweNazwa"/><br/>
+
+        <label for="poleHasloID">Hasło</label><br/>
+        <input type="password" id="poleHasloID" name="poleHasloeNazwa"/><br/>
+        
+        <fieldset>
+            <legend>ELement ukryty</legend>
+           <input type="hidden"/>
+        </fieldset>
+
+
+
+    </form>
+
+<script>
+     //blokowanie formularza
+     //poleTekstoweID.disabled = true;
+    // czy pole tekstowe jest zablokowne
+    //alert(poleTekstoweID.disabled);
+   
+    //poleTekstoweID.form.style.border = "1px solid #000";
+    //poleTekstoweID.form.style.padding = "5px";
+    
+    // obsluga zdarzen z poziomu JS
+   /* function obslugaFocus(){
+        this.style.backgroundColor = "yellow";
+    }
+
+    function obslugaBlur(){
+        this.style.backgroundColor = "white";
+    }
+    */
+    // podpiecie zdarzenia do odpowiedniej pozycji 
+   /* poleTekstoweID.addEventListener("focus" ,obslugaFocus);
+    poleTekstoweID.addEventListener("blur" ,obslugaBlur);
+    
+    poleHasloID.addEventListener("focus" ,obslugaFocus);
+    poleHasloID.addEventListener("blur" ,obslugaBlur);*/
+
+    /*for(var i = 0 ; i < forumlarzId.childElementCount;i++){
+          if(forumlarzId.elements[i].type == "text" || forumlarzId.elements[i].type == "password") { 
+            forumlarzId.elements[i].addEventListener("focus" ,obslugaFocus);
+            forumlarzId.elements[i].addEventListener("blur" ,obslugaBlur);
+          }
+    }
+    
+*/
+</script>
+    
+    
+    
+</body>
+</html>

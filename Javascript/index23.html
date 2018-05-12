@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    
+  
+<script>
+   function dodajCookie(nazwa, wartosc, dataWygasniecia, sciezka, domena, znacznikBezpieczenstwa){
+       var noweCookie = nazwa + "=" + encodeURIComponent(wartosc);
+
+        // jesli parametr data wygasniecia bedzie mial jakas wartosc 
+       if(dataWygasniecia){
+           noweCookie += "; expires=" + dataWygasniecia.toUTCString();
+       }
+     
+       // sciezka 
+       if(sciezka){
+           noweCookie += "; path=" + sciezka;
+       }
+
+       if(domena){
+           noweCookie += "; domain=" + domena;
+       }
+
+       if(znacznikBezpieczenstwa){
+           noweCookie += "; secure;"
+       }
+     
+       document.cookie = noweCookie;
+   }
+
+   function odczytajCookie(nazwa){
+       var wzorzec = "(?:; )?" + nazwa + "=([^;]*);?";
+       var wyrazenie = new RegExp(wzorzec);
+
+       if(wyrazenie.test(document.cookie)){
+           // odnaleziono cookie 
+           return decodeURIComponent(RegExp["$1"]);
+       }else{
+           return null;
+       }
+   }
+
+// ususwanie cookies polega na ustawieniu daty wygasniecia na przeszlosc 
+function usunCookie(nazwa, sciezka, domena){ 
+    dodajCookie(nazwa, "",new Date(), sciezka, domena);
+}
+/*
+dodajCookie("nazwa1", "wartosc1");
+dodajCookie("nazwa2", "wartosc2");
+dodajCookie("nazwa3", "wartosc3");
+
+alert(odczytajCookie("nazwa1"));
+alert(odczytajCookie("nazwa2"));
+alert(odczytajCookie("nazwa3"));
+
+usunCookie("nazwa2");
+alert("Po usunieciu:");
+
+alert(odczytajCookie("nazwa1"));
+alert(odczytajCookie("nazwa2"));
+alert(odczytajCookie("nazwa3"));
+*/
+
+alert(document.cookie);
+
+
+</script>
+
+
+</body> 
+</html>

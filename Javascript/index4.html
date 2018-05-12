@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+
+
+<body onload="configureListeners()">
+    <!--action="javascript: alert('Formularz wyslany');"-->
+    <form method="post" action="javascript: alert('Formularz wyslany');" id="forumlarzId" name="formularzNazwa"
+    onsubmit="alert('wysylanie formularza')">
+       <!--zdarzenie onsubmit pozwala wykonac pewne czynnosci zaraz przed wyslaniem-->
+        <label for="poleTekstoweID">Imię i nazwisko</label><br/>
+        <input type="text" id="poleTekstoweID" name="poleTekstoweNazwa"/><br/>
+
+        <label for="poleHasloID">Hasło</label><br/>
+        <input type="password" id="poleHasloID" name="poleHasloeNazwa"/><br/>
+
+       <!-- <input type="submit" value="Wyslij formularz"/><input type="image" src="wyslij.jpg"/>
+       -->
+       <!-- w onClick odwolujemy sie do onSubmit z tego (this) formularza-->
+       <input type="button" value="Wyślij formularz" onCLick="this.form.submit()"/>
+    </form>
+    
+</body>
+</html>

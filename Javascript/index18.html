@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    
+<script>
+   
+    var liczba = 5;
+    
+    // modyfikowanie (dodawanie funkcji)
+    Number.prototype.zamienNaSlowo = function(){
+        // mozemy wywolywac mertody juz istniejace 
+        // jak w Javie 
+        // this.valueOf()
+
+        if(this == 0) return "zero";
+        else if(this == 1) return "jeden";
+        else if(this == 2) return "dwa";
+        else if(this == 3) return "trzy";
+        else if(this == 4) return "cztery";
+        else if(this == 5) return "piec";
+        else if(this == 6) return "szesc";
+        else if(this == 7) return "siedem";
+        else if(this == 8) return "osiem";
+        else if(this == 9) return "dziwiec";
+    }
+    alert(liczba.zamienNaSlowo());
+    var liczba2 = 9;
+    alert(liczba2.zamienNaSlowo());
+
+</script>
+
+
+</body> 
+</html>

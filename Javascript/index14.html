@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    
+<script>
+    // zeby nie marnowac pamieci najlepiej wspolne funkcje na zewnatrz
+    function informacjaOKsiazce() {
+        alert("Tytul: "+ this.tytul + "\nautor: "+this.autor);
+    }
+
+
+    // definicja konstruktora
+    function ksiazka(tytul, autor) {
+        var ksiazka = new Object();
+
+        this.tytul = tytul;
+        this.autor = autor;
+
+        this.informacjeOKsiazce = informacjaOKsiazce;
+    }
+    // teraz mozemy tworzyc nowe obiekty tego typu jak nizej: 
+    var ksiazka1 = new ksiazka("W pustyni i w puszczy","Henryk Sienkiewicz");
+    var ksiazka2 = new ksiazka("Granica","Zofia Nałkowska");
+    var ksiazka3 = new ksiazka("Pan Tadeusz","Adam Mickiewicz");
+    
+    ksiazka1.informacjeOKsiazce();
+    ksiazka2.informacjeOKsiazce();
+    ksiazka3.informacjeOKsiazce();
+
+   
+    
+</script>
+
+
+</body> 
+</html>

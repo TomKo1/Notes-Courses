@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    
+<script>
+  
+
+    // wzorzc hybrydowy konstruktor-prototype
+    function ksiazka(tytul, autor) {
+        
+
+        this.tytul = tytul;
+        this.autor = autor;
+        
+        this.informacjeDod = new Array();
+        
+        
+    }
+
+    // musimy wyciagnac funkcje na zewnatrz zeby nie duplikowac 
+    // tej funckji 
+    ksiazka.prototype.informacjaOKsiazce = function(){
+            alert("Tytul: "+ this.tytul + "\nautor: "+this.autor);
+        }
+
+    var ksiazka1 = new ksiazka("W pustyni i w puszczy","Henryk Sienkiewicz");
+    var ksiazka2 = new ksiazka("Granica","Zofia Nałkowska");
+   
+   
+    ksiazka1.informacjeDod[0] = "gruba okladka";
+    ksiazka1.informacjeDod[1] = "liczba stron: 600";
+    
+
+    ksiazka2.informacjeDod[0] = "brak dostępnych informacji o ksiązce";
+    ksiazka2.informacjeDod[1] = "liczba stron: 400";
+    
+    ksiazka1.informacjaOKsiazce();
+    alert(ksiazka1.informacjeDod[0]);
+    alert(ksiazka1.informacjeDod[1]);
+
+
+    ksiazka2.informacjaOKsiazce();
+    alert(ksiazka2.informacjeDod[0]);
+    alert(ksiazka2.informacjeDod[1]);
+
+
+        // hybrydowy wzorzec -> MUSIMY DEFINIOWAC METODY NA ZEWNATRZ
+</script>
+
+
+</body> 
+</html>

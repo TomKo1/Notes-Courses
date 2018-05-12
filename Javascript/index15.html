@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    
+<script>
+  
+
+    // wzorzec prototype
+    function ksiazka() {
+        
+
+        ksiazka.prototype.tytul;
+        ksiazka.prototypes.autor;
+        
+        // obiekty przekazywane przez referencje -> np. tablcie 
+        // rowniez sa wspolne dla wszystkich obiektow -> wada
+
+        // metoda teraz jest jedna dla wszystkich obiektow
+        ksiazka.prototype.informacjaOKsiazce = function(){
+            alert("Tytul: "+ this.tytul + "\nautor: "+this.autor);
+        }
+    }
+    // teraz mozemy tworzyc nowe obiekty tego typu jak nizej: 
+    var ksiazka1 = new ksiazka();
+    var ksiazka2 = new ksiazka();
+    var ksiazka3 = new ksiazka();
+    
+    ksiazka1.tytul  = "W pustyni i w puszczy";
+    ksiazka1.autor = "Henryk Sienkiewicz";
+   
+    
+    ksiazka2.tytul  ="Granica";
+    ksiazka2.autor = "Zofia Nałkowska";
+   
+
+    ksiazka3.tytul  = "Pan Tadeusz";
+    ksiazka3.autor = "Adam Mickiewicz";
+
+
+
+</script>
+
+
+</body> 
+</html>

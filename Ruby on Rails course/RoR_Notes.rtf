@@ -2,9 +2,9 @@
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 AvenirNext-Regular;
 }
 {\colortbl;\red255\green255\blue255;\red27\green31\blue34;\red244\green246\blue249;\red6\green33\blue79;
-\red15\green121\blue172;\red26\green26\blue26;}
+\red15\green121\blue172;\red26\green26\blue26;\red0\green0\blue0;\red255\green255\blue255;}
 {\*\expandedcolortbl;;\cssrgb\c14118\c16078\c18039;\cssrgb\c96471\c97255\c98039;\cssrgb\c1176\c18431\c38431;
-\cssrgb\c0\c54902\c72941;\cssrgb\c13333\c13333\c13333;}
+\cssrgb\c0\c54902\c72941;\cssrgb\c13333\c13333\c13333;\csgray\c0;\csgray\c100000;}
 \paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8160\viewkind0
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
 
@@ -96,17 +96,14 @@ W Rubym inaczej: \
 <%= link_to(\'82Opis linku\'92,\{:action=>\'92test\'92\}%> \
 \
 Lepsza wersja (z \'84lepszym\'94 hashem): \
-\pard\pardeftab720\partightenfactor0
-\cf0 <%= link_to(\'82Opis linku\'92,\{:action=>:test\}%> \
+<%= link_to(\'82Opis linku\'92,\{:action=>:test\}%> \
 \
 Witam?id=2&strona=2\
 & - oddziela poszczeg\'f3lne argumenty\
 \
 Parametry w RoR przekazujemy w hashu\
-\pard\pardeftab720\partightenfactor0
-\cf0 \
-\pard\pardeftab720\partightenfactor0
-\cf0 <%= link_to(\'82Opis linku\'92,\{:action=>:test, :id => 2, :strina=>3\}%> \
+\
+<%= link_to(\'82Opis linku\'92,\{:action=>:test, :id => 2, :strina=>3\}%> \
 \
 Takie parametry z linku mozemy nastepnie odczytacv przy pomocy \
 Metody params -> \
@@ -221,12 +218,14 @@ Relacje zapisujemy w odpowiednich klasach reprezentujacych modele\
 \
 W modelu mozemy zdefiniowac rowneiz scope (metody przeszukiwania) \
 np. \
+\pard\pardeftab720\partightenfactor0
 
-\fs20 # {\field{\*\fldinst{HYPERLINK "http://guides.rubyonrails.org/active_record_querying.html#scopes"}}{\fldrslt 
+\fs20 \cf0 # {\field{\*\fldinst{HYPERLINK "http://guides.rubyonrails.org/active_record_querying.html#scopes"}}{\fldrslt 
 \f2 \cf5 \expnd0\expndtw0\kerning0
 Scopes}}
 \f2 \cf6 \expnd0\expndtw0\kerning0
  are a great way to grab the right objects out of your database:\
+\pard\pardeftab720\partightenfactor0
 
 \f0\fs24 \cf0 \kerning1\expnd0\expndtw0 # czyli za pomoca scope ograniczamy dane z tabeli do pewnego podzbioru\
 # spelniajacego dane warunki\
@@ -238,5 +237,104 @@ scope :visible lambdawhere(:visible => true)\} \
 # scopy sortujace: \
 scope :sort, lambda\{order(\'84categories.position ASC\'94)\} # analogicznie DESC\
 \
-//		WPROWADZENIE\
-}
+rails generate controller Categories index show new edit delete # zawsze musi by\uc0\u263 \'a0liczba mnoga\
+\
+\
+Zdefiniowane scopy (z modelu danej tabeli) mozemy nastepinie wykorzystywac dalej w jakims \
+Kontrolerze np. Categories.sort\
+\
+# operator warunkowy: \
+category.visible ? \'82Tak\'92 : \'82Nie\'92\
+\
+\
+open -a Xcode plikDoOtwarcia.html\
+\
+Tworzenie formularza przy pomocy metod Rails: \
+\
+<%= form_for(:NazwaFormularza, :url => \{:action => \'82nazwaAkcjiObslugujacej\'92\} ) do |field|\
+	<table>\
+		<tr>\
+			# label tworzy etykiete dla formularza\
+			<th><%= field.label(:name) %></th>\
+			# text_field tworzy odpowiednie pole do wprowadzania danych (text_field tzn. Tekst)\
+			<th><%= field.text_field(:name) %></th>\
+		</tr>\
+		<tr>\
+			<th><%= field.label(:position) %></th>\
+			# lista rozwijana z jakimis parametrami -> 2 parametr to zakres wartosci\
+			<th><%= field.select(:position,1..@counter)%></th>\
+		</tr>\
+		<tr>\
+			<th><%= field.label(:visible) %></th>\
+			# check_box tworzy pole do zaznaczania 2 stanow  (RadioBtn)\
+			<th><%= field.check_box(:visible)%></th>\
+			\
+		</tr>\
+	<table>\
+<% end %> \
+\
+<%= submit_tag(\'84Tekst na przycisku\'94) %> <!\'97 tworzy odpowiedni przycisk do zatwierdzania \'97>\
+\
+# ponizsza konstrukcja sprawdza czy sa podane parametry (jezeli nie to rzuca errorem) \
+# jak sa to pobiera i zwraca\
+params.require(:nazwaFOrmularza).permit(:name, :postion, :visible) \
+\
+@categories = Category.new(jakies_parametry)\
+\
+@categories.save # zwraca wartosc boolowska czy zapisae czy nie (i zapisuje oczywiscie) \
+\
+<!\'97 przekazywanie parametru z jednego widoku do 2 widoku/kontrolera \'97>\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf7 \cb8 \CocoaLigature0 <%= link_to("Show", \{:action => 'show', :id => category.id\}) %>
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+# odczytywanie parametru przekazanego prze link\
+@category = Category.find(params[:id])\
+\
+Bez ma\uc0\u322 py (@) to jest zmienna lokalna a nie zmienna instancji\
+\
+Category.find(params[:id]).destroy # usuwanie danego rekordu z bazy danych\
+\
+@category = Category.find(params[:id])\
+# aktualizowanie wpisu w bazie danych\
+@category,update_attributes(hash_z_odpowiednimi_wartosciami_do_zaaktualizowania)\
+\
+\
+\
+Szablon czesciowy -> jego nazwa musi zaczynac sie od uzycia _ \
+\
+# partial ladujemy (z podaniem dla nich argumentow po :locals) jak ponizej: \
+<%= render(:partial => \'84form\'94, :locals => \{:field => field\}) %>\
+\
+\
+Mo\uc0\u380 emy utworzy\u263  datetime_select zeby miec w formularzu \'84\u322 adny\'94 wyb\'f3r daty\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f1\fs22 \cf7 \cb8 \CocoaLigature0 <th><%= field.datetime_select(:created_at) %></th>
+\f0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\
+// obiekty flash (do powiadamianai graficznie uzytkownika) : \
+flash[:notice] = \'84Category created\'94\
+\
+<! \'97 wyswietlanie flasha w widoku \'97 > \
+<% if !flash[:notice].blank? %> \
+	<%= flash[:notice] %> \
+<%end%>\
+\
+\
+\
+\
+Field.file_text -> do zaladowywania zdjec/plikow\
+\
+field.text_area # text_area do wprowadzania wiekszej ilosci tekstu :) \
+\
+image_tag(zdjecie_do_wyswietlenia)\
+\
+\
+\
+\
+ }

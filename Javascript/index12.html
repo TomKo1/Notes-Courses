@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    
+<script>
+    // zeby nie marnowac pamieci najlepiej wspolne funkcje na zewnatrz
+    function informacjaOKsiazce() {
+        alert("Tytul: "+ this.tytul + "\nautor: "+this.autor);
+    }
+
+
+    // wzorzec fabryki 
+    function utworzKsiazke(tytulWe, autorWe) {
+        var ksiazka = new Object();
+
+        ksiazka.tytul = tytulWe;
+        ksiazka.autor = autorWe;
+
+        ksiazka.informacjeOKsiazce = informacjaOKsiazce;
+        return ksiazka;
+    }
+    // teraz mozemy tworzyc nowe obiekty tego typu jak nizej: 
+    var ksiazka1 = utworzKsiazke("W pustyni i w puszczy","Henryk Sienkiewicz");
+    var ksiazka2 = utworzKsiazke("Granica","Zofia Nałkowska");
+    var ksiazka3 = utworzKsiazke("Pan Tadeusz","Adam Mickiewicz");
+    
+    ksiazka1.informacjeOKsiazce();
+    ksiazka2.informacjeOKsiazce();
+    ksiazka3.informacjeOKsiazce();
+</script>
+
+
+</body> 
+</html>

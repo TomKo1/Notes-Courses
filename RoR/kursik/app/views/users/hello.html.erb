@@ -1,0 +1,15 @@
+Hello 
+<br> 
+<p> 
+	Witaj w kursie RoR
+	<%= @variable %> 
+	<%= @user.name %> 
+	<%= @user.email %>
+	Dzisiaj jest: <%= @current_date %>
+	<%-@users.each do |user| %>
+		<div>
+			<%= user.name %>
+			<%= user.email %>
+		</div>
+	<% end %>
+</p>

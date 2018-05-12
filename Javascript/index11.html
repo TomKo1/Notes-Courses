@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    
+<script>
+/*
+this mozemy tez uzywac nie w programowaniu obiektowym ale jako odniesienie
+do elementu w ktorym teraz sie znajdujemy
+*/
+
+function zmienRamek(element){
+    element.style.border = "2px solid red";
+}
+</script>
+
+<div><input type="text" onClick= "zmienRamek(this)"/></div>
+<div><input  type="text" onClick= "zmienRamek(this)"/></div>
+<div><input  type="text" onClick= "zmienRamek(this)"/></div>
+<div><input  type="text" onClick= "zmienRamek(this)"/></div>
+
+
+
+</body> 
+</html>

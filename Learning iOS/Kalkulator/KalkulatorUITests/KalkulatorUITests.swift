@@ -31,6 +31,16 @@ class KalkulatorUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let app = XCUIApplication()
+        app.buttons["1"].tap()
+         XCTAssertTrue(app.staticTexts["1"].exists)
+        app.buttons["5"].tap()
+        app.buttons["6"].tap()
+        XCTAssertTrue(app.staticTexts["156"].exists)
+        app.buttons["+"].tap()
+        app.buttons["6"].tap()
+        app.buttons["="].tap()
+        XCTAssertTrue(app.staticTexts["162"].exists)
     }
     
 }

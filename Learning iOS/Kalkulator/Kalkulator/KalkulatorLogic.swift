@@ -9,5 +9,9 @@
 import UIKit
 
 class KalkulatorLogic: NSObject {
+    
+    func add(fistNumber: Int, secondNumber: Int) -> Int{
+        return fistNumber + secondNumber
+    }
 
 }

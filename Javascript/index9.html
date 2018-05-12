@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+
+
+<body>
+    <form method="post" action="plikObslugi.php" id="formularzID" name="formularzeNazwa">
+      
+        <select id="poleId" name="poleNazwa" size="5" style="width: 100px">
+            <option value="20">10-20</option>
+            <option value="30">21-30</option>
+            <option value="40">31-40</option>
+            <option value="50">41-50</option>
+            <option value="60">51-60</option>
+        </select>
+    <br/><br/>
+    <select id="pole2Id" name"=pole2Nazwa" size="5" style="width: 100px">
+
+    </select>
+    </form>
+
+
+    <script>
+        function przeniesOpcje(){
+            var lista1 = document.getElementById("poleId");
+            var lista2 = document.getElementById("pole2Id");
+            
+            lista2.appendChild(lista1.options[lista1.selectedIndex]);
+            lista2.options[lista2.selectedIndex].selected = false;
+        }
+        // tutaj nasluchujemy zdarzenia change -> czyli de facto zmiany zaznaczenia
+        document.getElementById("poleId").addEventListener("change",przeniesOpcje);
+
+    </script>
+    
+</body> 
+</html>

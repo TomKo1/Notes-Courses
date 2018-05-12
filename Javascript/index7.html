@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+
+
+<body>
+    <form method="post" action="plikObslugi.php" id="formularzID" name="formularzeNazwa">
+        <!-- mozna dodac element size zeby okreslic ile elementow ma byc na liscie-->
+        <select name="elementSelectNazwa" id="elementSelectID1", multiple="multiple">
+            <option value="1">10-20</option> <!-- value to wartosc a etykieta to 2-->
+            <option>21-30</option>
+            <option>31-40</option>
+            <option>41-50</option>
+            <option>51-60</option>
+        </select>
+        <br/>
+        <br/>
+    <!--mozna dodac do select'a atrybut multiple="multiple"  powoduje ze mozna wybierac wiele 
+            etykiet-->
+    <select name="elementSelectNazwa2" id="elementSelectID2", multiple="multiple">
+            <option value="1">10-20 bis</option> 
+            <option>21-30 bis</option>
+            <option>31-40 bis</option>
+            <option>41-50 bis</option>
+            <option>51-60 bis</option>
+        </select>
+        <br/><br/>
+    <input id="uaktualnij" type="button" value="uaktualnij"/>
+</form>
+
+<script>
+    
+    var elementSelect1 = document.getElementById("elementSelectID1");
+    var elementSelect2 = document.getElementById("elementSelectID2");
+    var uaktualnij = document.getElementById("uaktualnij");
+    
+/*
+    function uaktualnijListe(){
+        elementSelect2.selectedIndex = elementSelect1.selectedIndex
+    }
+
+    uaktualnij.addEventListener("click",uaktualnijListe);
+*/
+
+// gdy atrybut multiple jest aktywny to zeby zaznaczyc wszystkie elementy:
+// mozemy uzyc kodu jak nizej: 
+//elementSelect1.options[0].selected = true;
+elementSelect1.options[1].selected = true;
+
+function podajZaznaczonePola(poleList){
+   var listaPol = new Array();
+
+   for(var i = 0; i<poleList.options.length; i++){
+       if(poleList.options[i].selected == true){
+           listaPol.push(i);
+       }
+   }
+   return listaPol;
+}
+/*
+//alert(podajZaznaczonePola(elementSelect1));
+function uaktualnijListe(poleList){
+    // elementSelect2
+    var listPol = podajZaznaczonePola(elementSelect1);
+    for(var i = 0;i<listPol.length;i++){
+        elementSelect2.options[listPol[i]].selected = true;
+    }
+}
+
+uaktualnij.addEventListener("click",uaktualnijListe);
+
+*/
+function odczytajPola(){
+    for(var i=0 ; i< elementSelect1.options.length; i++){
+        document.body.innerHTML += "<br/> Index: " + i + "\
+        Tresc: " + elementSelect1.options[i].text +"; \
+        value: "+elementSelect1.options[i].value;
+    }
+}
+
+odczytajPola();
+</script>
+
+
+</body> 
+</html>

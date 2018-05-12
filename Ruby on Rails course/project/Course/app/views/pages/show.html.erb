@@ -1,0 +1,43 @@
+<div class="hero-unit">
+<h1>Show Page</h1>
+<%= link_to("Return", {:action => 'index'}) %>
+<table class="table table-striped">
+    <tr>
+        <th>Category</th>
+        <th><%= @page.category.name %></th>
+    </tr>
+    <tr>
+        <th>Name</th>
+        <th><%= @page.name %></th>
+    </tr>
+    <tr>
+        <th>Position</th>
+        <th><%= @page.position %></th>
+    </tr>
+    <tr>
+        <th>Visible</th>
+        <th><%= @page.visible ? 'Yes': 'No' %></th>
+    </tr>
+    <tr>
+        <th>Created</th>
+        <th><%= @page.created_at %></th>
+    </tr>
+    <tr>
+        <th>Updated</th>
+        <th><%= @page.updated_at %></th>
+    </tr>
+</table>
+<div style="text-align: center;">
+    <%= link_to("Return", {:action => 'index'}, :class => 'btn btn-primary')%>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+

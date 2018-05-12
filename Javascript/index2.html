@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+</head>
+
+
+<body>
+    <form method="post" action="plikObslugiFormularza.php" id="forumlarzId" name="formularzNazwa">
+        <div><input type="text" id="poleTekstoweId1" name="poleTekstowe1"/></div>
+        <div><input type="text" id="poleTekstoweId2" name="poleTekstowe2"/></div>
+        
+        <div><input type="button" value="Button"/></div>
+    </form>
+
+<script>
+    // dopisywanie czegos (kodu HTML) do strony
+    document.body.innerHTML += "<br/> Liczba\
+    elementów formularza "+document.getElementById("forumlarzId").childElementCount;
+    document.body.innerHTML += "<br/>";
+
+    // dynamiczna zmiana typu input'a
+    forumlarzId.elements[1].type = "password";
+
+    for(var i  = 0 ; document.forms[0].childElementCount; i++){
+        document.body.innerHTML += i + ". " + document.forms[0].elements[i]. type+"<br/>"
+    }
+
+</script>
+    
+    
+    
+</body>
+</html>

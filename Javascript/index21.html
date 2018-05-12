@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    
+  
+<script>
+   function dodajCookie(nazwa, wartosc, dataWygasniecia, sciezka, domena, znacznikBezpieczenstwa){
+       var noweCookie = nazwa + "=" + encodeURIComponent(wartosc);
+
+        // jesli parametr data wygasniecia bedzie mial jakas wartosc 
+       if(dataWygasniecia){
+           noweCookie += "; expires=" + dataWygasniecia.toUTCString();
+       }
+     
+       // sciezka 
+       if(sciezka){
+           noweCookie += "; path=" + sciezka;
+       }
+
+       if(domena){
+           noweCookie += "; domain=" + domena;
+       }
+
+       if(znacznikBezpieczenstwa){
+           noweCookie += "; secure;"
+       }
+     
+       document.cookie = noweCookie;
+   }
+
+
+   dodajCookie("imie1", "Jan");
+   // nie utworzone bo dana z przeszlosci
+   dodajCookie("imie2","Jacek", new Date(Date.parse("Aug 10, 2013")));
+   dodajCookie("wybranaKsiazka","Javascript. Programownaie", new Date(Date.parse("Aug 10,2020")));
+
+   alert(document.cookie);
+
+</script>
+
+
+</body> 
+</html>

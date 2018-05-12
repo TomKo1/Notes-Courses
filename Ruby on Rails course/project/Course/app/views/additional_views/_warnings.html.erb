@@ -1,0 +1,15 @@
+<% if object && object.errors.size > 0 %>
+    <div class="bg-danger">
+        <table class="table">
+            <tr class="danger">
+                <td>Errors occured during recrods saving. Number of errors: <%= object.errors.size %>
+                <br>
+            </tr>
+                <% object.errors.full_messages.each do |messageOne| %>
+                    <tr class="warning">
+                        <td><b><%= messageOne %></b></td>
+                    </tr>
+                <% end %>
+            </table>
+</div>
+<% end %>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+
+
+<body>
+    <form method="post" action="plikObslugi.php" id="formularzID" name="formularzeNazwa">
+        <!-- mozna dodac element size zeby okreslic ile elementow ma byc na liscie-->
+        <select name="elementSelectNazwa" id="elementSelectID">
+            <option value="1">10-20</option> <!-- value to wartosc a etykieta to 2-->
+            <option>21-30</option>
+            <option>31-40</option>
+            <option>41-50</option>
+            <option>51-60</option>
+        </select>
+    </form>
+
+
+    <script>
+        var elementSelect = document.getElementById("elementSelectID");
+        //alert(elementSelect.options.length);
+        // wartosc danego pola (tutaj pierwszego)  
+        //alert(elementSelect.options[0].firstChild.nodeValue);
+        // ustawianie wartosci opcji z poziomu JS 
+        //elementSelect.options[0].firstChild.nodeValue="Tekst JS";
+        
+        // to samo co nodeValue -> modyfikacja wartosci
+        //alert(elementSelect.options[2].text);
+        //elementSelect.options[2].text = "Tekst";
+        
+
+        // odczytanie wartosci dnaego atrybutu
+        //alert(elementSelect.options[0].getAttribute("value"));
+
+        // bezposrednie odczytanie wartosi: 
+        //alert(elementSelect.options[0].value);
+
+        // odczytywanie indeksu: 
+        //alert(elementSelect.options[0].index);
+
+        // odczytywanie i modyfikowanie wielkosci listy 
+        //(jezeli wczesniej zostal podaby atrybut size)
+        //alert(elementSelect.size);
+        
+    </script>
+</body> 
+</html>

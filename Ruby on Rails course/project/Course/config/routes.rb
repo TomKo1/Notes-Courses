@@ -1,4 +1,25 @@
 Rails.application.routes.draw do
+  
+  get 'articles/index'
+
+  get 'articles/new'
+
+  get 'articles/edit'
+
+  get 'articles/delete'
+
+  get 'articles/show'
+
+  get 'pages/index'
+
+  get 'pages/show'
+
+  get 'pages/new'
+
+  get 'pages/edit'
+
+  get 'pages/delete'
+
 #  get 'test/index'
 	root "test#index"
 	match ':controller(/:action(/:id))', :via => [:get, :post]
