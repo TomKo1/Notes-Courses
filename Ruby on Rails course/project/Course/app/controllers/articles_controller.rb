@@ -25,12 +25,37 @@ class ArticlesController < ApplicationController
   end
 
   def edit
+      @articles = Article.find(params[:id])
+      @page = Page.order('position ASC')
+      @counter = Article.count
   end
+
+  def update
+      @articles = Article.find(params[:id])
+      if @articles.update_attributes(articles_params)
+          flash[:notice] = "Article was successfully modified"
+          redirect_to(:action => 'show',:id => @articles.id)
+          else
+          @counter = Article.count
+          @page = Page.order('position ASC')
+          render('edit')
+      end
+  end
+
 
   def delete
+      @articles = Article.find(params[:id])
   end
+  
+  def remove
+      articles = Article.find(params[:id]).destroy
+      flash[:notice] = "Article #{articles.name} sucessfully removed!"
+      redirect_to(:action => 'index')
+  end
+  
 
   def show
+      @articles = Article.find(params[:id])
   end
   
   def articles_params

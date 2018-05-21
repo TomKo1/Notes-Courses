@@ -1,2 +1,17 @@
-<h1>Articles#edit</h1>
-<p>Find me in app/views/articles/edit.html.erb</p>
+<div class="hero-unit">
+<h1>Edit Article: <%=@articles.name%></h1>
+
+
+<%= form_for(:article, :url => {:action => 'update', :id => @articles.id} ) do |field| %>
+
+<%= render(:partial => "form", :locals => {:field => field}) %>
+
+<div style="text-align: center">
+    <%= link_to("Return", {:action => 'index'}, :class => 'btn btn-warning') %>
+    <%= submit_tag("Update", :class => 'btn btn-primary') %>
+</div>
+
+<% end %>
+<div>
+
+

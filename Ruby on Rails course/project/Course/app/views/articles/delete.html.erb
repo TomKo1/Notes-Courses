@@ -1,2 +1,18 @@
-<h1>Articles#delete</h1>
-<p>Find me in app/views/articles/delete.html.erb</p>
+<div class="hetero-unit">
+<h1>Removing of the article</h1>
+
+<%= form_for(:article, :url => {:action => 'remove', :id => @articles.id}) do |field| %>
+    <p> Do you really want to remove this article?</p>
+    <p><%= @articles.name %> </p>
+    <div style="text-align: center;">
+        <%= link_to("Return", {:action => 'index'}, :class => 'btn btn-primary') %>
+        <%= submit_tag("Delete", :class=> 'btn btn-danger') %>
+    </div>
+<% end %>
+</div>
+
+
+
+
+
+
