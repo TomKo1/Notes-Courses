@@ -1,0 +1,51 @@
+<div class="hero-unit">
+<h1>Show Galleries</h1>
+    <%= link_to("Return", {:action => 'index'}) %>
+<table class="table table-striped">
+    <tr>
+        <th>Name</th>
+        <th><%= @gallery.name %></th>
+    </tr>
+    <tr>
+        <th>Position</th>
+        <th><%= @gallery.position %></th>
+    </tr>
+    <% if !@gallery.picture.blank? %>
+        <tr>
+            <th>Image</th>
+            <td><%= image_tag(@gallery.picture) %></td>
+        </tr>
+    <% end %>
+    <tr>
+        <th>Description:</th>
+        <td><%= @gallery.description %></td>
+    </tr>
+    <tr>
+        <th>Visible</th>
+        <th><%= @gallery.visible ? 'Yes': 'No' %></th>
+    </tr>
+    <tr>
+        <th>Created</th>
+        <th><%= @gallery.created_at %></th>
+    </tr>
+    <tr>
+        <th>Updated</th>
+        <th><%= @gallery.updated_at %></th>
+    </tr>
+</table>
+<div style="text-align: center;">
+    <%= link_to("Return", {:action => 'index'}, :class => 'btn btn-primary')%>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+

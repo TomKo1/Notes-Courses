@@ -14,6 +14,10 @@ class Article < ApplicationRecord
             :in => 0..850.kilobytes,
             :message => 'The file is too large. max size is 850 KB'
  
+    validates :name,
+        :presence => true,
+        :length => {:maximum => 120, :message => ": The title is too long." }
+ 
     
     scope :visible, lambda {where(:visible => true)}
     scope :invisible, lambda{where(:visible => false)}

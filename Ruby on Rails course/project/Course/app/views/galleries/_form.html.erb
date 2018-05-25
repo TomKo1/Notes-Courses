@@ -1,0 +1,35 @@
+<%= error(@gallery) %>
+
+<table class="table table-striped">
+    <tr>
+        <th><%= field.label(:name) %></th>
+        <th><%= field.text_field(:name) %></th>
+    </tr>
+    <tr>
+        <th><%= field.label(:position) %></th>
+        <th><%= field.select(:position, 1..@counter, :class => 'form-control') %></th>
+    </tr>
+    <tr>
+        <th><%= field.label(:visible, "Is it visible?") %></th>
+        <th><%= field.check_box(:visible) %></th>
+    </tr>
+    <tr>
+        <th><%= field.label(:picture, "Image") %></th>
+        <th><%= field.file_field(:picture) %></th>
+    </tr>
+<% if !@gallery.picture.blank? %>
+    <tr>
+        <th>Picture: </th>
+        <th><%= image_tag(@gallery.picture) %></th>
+    </tr>
+<% end %>
+    <tr>
+        <th><%= field.label(:created_at, "Created at") %></th>
+        <th><%= field.datetime_select(:created_at, :class => 'form-control') %></th>
+    </tr>
+    <tr>
+        <th><%= field.label(:description) %></th>
+        <th><%= field.text_field(:description, :class => 'form-control') %></th>
+    </tr>
+</table>
+
