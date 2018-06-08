@@ -2,16 +2,17 @@
 <h1>Edit Article: <%=@articles.name%></h1>
 
 
-<%= form_for(:article, :url => {:action => 'update', :id => @articles.id} ) do |field| %>
+<%= form_for(:article, :url => {:action => 'update', :id => @articles.id, :page_id => @pages.id} ) do |field| %>
 
 <%= render(:partial => "form", :locals => {:field => field}) %>
 
 <div style="text-align: center">
-    <%= link_to("Return", {:action => 'index'}, :class => 'btn btn-warning') %>
+    <%= link_to("Return", {:action => 'index', :page_id => @pages.id}, :class => 'btn btn-warning') %>
     <%= submit_tag("Update", :class => 'btn btn-primary') %>
 </div>
 
 <% end %>
 <div>
+
 
 

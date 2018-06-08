@@ -1,0 +1,39 @@
+<%= error(@picture) %>
+
+<table class="table table-striped">
+    <tr>
+        <th><%= field.label(:gallery_id, 'Gallery') %> </th>
+        <th><%= field.select(:gallery_id, @gallery.map{|t| [t.name, t.id]}, :class => 'form-control') %> </td>
+    <tr>
+    <tr>
+        <th><%= field.label(:name) %></th>
+        <th><%= field.text_field(:name) %></th>
+    </tr>
+    <tr>
+        <th><%= field.label(:position) %></th>
+        <th><%= field.select(:position, 1..@counter, :class => 'form-control') %></th>
+    </tr>
+    <tr>
+        <th><%= field.label(:visible, "Is it visible?") %></th>
+        <th><%= field.check_box(:visible) %></th>
+    </tr>
+    <tr>
+        <th><%= field.label(:picture, "Image") %></th>
+        <th><%= field.file_field(:picture) %></th>
+    </tr>
+    <% if !@pictures.picture.blank? %>
+        <tr>
+            <th>Picture: </th>
+            <th><%= image_tag(@pictures.picture) %></th>
+        </tr>
+    <% end %>
+    <tr>
+        <th><%= field.label(:created_at, "Created at") %></th>
+        <th><%= field.datetime_select(:created_at, :class => 'form-control') %></th>
+    </tr>
+    <tr>
+        <th><%= field.label(:description) %></th>
+        <th><%= field.text_field(:description, :class => 'form-control') %></th>
+    </tr>
+</table>
+

@@ -1,0 +1,53 @@
+<% @title_page = 'Main Page' %>
+
+<div class="header-image">
+    <div class="headline">
+        <div class="container">
+            <h2>Inni dopiero sie ucza</h2>
+            <h1>Ty juz potrafisz</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container marketing">
+    <div class="row">
+        <% @articles.each do |article| %>
+            <div class="col-lg-4">
+                <%= image_tag(article.pictures.url(:thumb), :claas => 'img-circle') %>
+                <h2><%= article.name %></h2>
+                <p><%= truncate(article.content, :length => 200, :omission => '[...]')%></p>
+                <p><%= link_to('See article', {:action => 'news', :article_id => article.id }, :class => 'btn btn-default') %></p>
+            </div>
+        <% end %>
+    </div>
+
+    <% lp = 1 %>
+    <% @gallery.each do |gallerySingle| %>
+        <hr class = "featurette-divider">
+        <% if lp % 2 == 0 %>
+                <div class="row featurette">
+                    <div class="col-md-7">
+                        <h2 class="featurette-heading"><%= gallerySingle.name %></h2>
+                            <p class="lead"><%= truncate(gallerySingle.description, :length => 300, :immission => '[...]') %></p>
+                            <p><%= link_to('See gallery', {:action => 'galleries', :gallery_id => gallerySingle.id }, :class => 'btn btn-default') %></p>
+                        </div>
+                    <div class="col-md-5">
+                        <%= image_tag(gallerySingle.picture.url, :class => "featurette-image img-responsive") %>
+                    </div>
+                </div>
+        <% else %>
+                <div class="row featurette">
+                        <div class="col-md-5">
+                            <%= image_tag(gallerySingle.picture.url, :class => "featurette-image img-responsive") %>
+                        </div>
+                        <div class="col-md-7">
+                        <h2 class="featurette-heading"><%= gallerySingle.name %></h2>
+                        <p class="lead"><%= truncate(gallerySingle.description, :length => 300, :immission => '[...]') %></p>
+                        <p><%= link_to('See gallery', {:action => 'gallery', :gallery_id => gallerySingle.id }, :class => 'btn btn-default') %></p>
+                </div>
+            </div>
+        <% end %>
+        <% lp += 1 %>
+    <% end %>
+        <hr class = "featurette-divider">
+</div>

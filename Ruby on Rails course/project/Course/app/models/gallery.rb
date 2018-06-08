@@ -1,5 +1,5 @@
 class Gallery < ApplicationRecord
-	has_many :picture
+    has_many :picture
     
     attr_accessor :picture
     

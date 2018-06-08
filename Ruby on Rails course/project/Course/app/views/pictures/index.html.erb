@@ -1,6 +1,8 @@
 <div class="hero-unit">
     <h1>Pictures</h1>
-    <%= link_to("Add new picture", {:action => 'new'}, :class => 'btn btn-mini btn-primary') %>
+
+    <%= link_to('Return to galleries', {:controller => 'galleries', :action => 'index'},:class=> 'btn btn-xs btn-default') %>
+    <%= link_to("Add new picture", {:action => 'new', :gallery_id =>  @galleryOne.id}, :class => 'btn btn-mini btn-primary') %>
 
     <p style="text-align: right;">Number of pictures:<%= @pictures.size %></p>
 
@@ -22,9 +24,12 @@
         <td><%= truncate(foto.description, :length => 120, :omission => "[...]") %> </td>
         <td class="center"><%= con_visibility_helper(foto,{} ) %></td>
         <td class="actions">
-            <%= link_to("Show", {:action => 'show', :id => foto.id}, :class => 'btn btn-xs btn-default') %>
-            <%= link_to("Edit", {:action => 'edit', :id => foto.id}, :class => 'btn btn-xs btn-primary') %>
-            <%= link_to("Delete", {:action => 'delete', :id => foto.id}, :class => 'btn btn-xs btn-danger') %>
+
+            <%= link_to("Show", {:action => 'show', :id => foto.id, :gallery_id => @galleryOne.id}, :class => 'btn btn-xs btn-default') %>
+
+            <%= link_to("Edit", {:action => 'edit', :id => foto.id, :gallery_id => @galleryOne.id}, :class => 'btn btn-xs btn-primary') %>
+
+            <%= link_to("Delete", {:action => 'delete', :id => foto.id, :gallery_id => @galleryOne.id}, :class => 'btn btn-xs btn-danger') %>
     </td>
     </tr>
 <% end %>

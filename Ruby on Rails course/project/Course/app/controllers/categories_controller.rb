@@ -1,5 +1,7 @@
 class CategoriesController < ApplicationController
 	layout 'admin'
+    
+    before_action :check_if_logged
 
   	def index
   		@categories = Category.sort
@@ -50,9 +52,9 @@ class CategoriesController < ApplicationController
             render('new')
         end
     end
-    
-    def category_params
-        params.require(:Category).permit(:name, :position, :visible, :created_at)
-    end
+private 
+        def category_params
+            params.require(:Category).permit(:name, :position, :visible, :created_at)
+        end
     
 end

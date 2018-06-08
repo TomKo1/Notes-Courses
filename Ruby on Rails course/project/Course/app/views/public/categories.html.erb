@@ -1,0 +1,12 @@
+<% @title_page = "Categories" %>
+<div class="container">
+    <div id="row">
+        <h2>List of pages in category <%= @category.name %> :</h2>
+            <% @category.pages.visible.sort.each do |page| %>
+                <%=link_to(page.name, {:action => 'page',:page_id => page.id}, :class => 'btn btn-default btn-lg btn-block')%>
+            <%end%>
+    </div>
+</div>
+
+
+

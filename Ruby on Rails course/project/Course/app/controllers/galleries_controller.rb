@@ -1,6 +1,8 @@
 class GalleriesController < ApplicationController
     
     layout 'admin'
+    
+    before_action :check_if_logged
 
     def index
         @gallery = Gallery.sort
@@ -14,7 +16,7 @@ class GalleriesController < ApplicationController
     def create
         @gallery = Gallery.new(gallery_param)
         if @gallery.save
-            flash[:notice] = 'Article creted'
+            flash[:notice] = 'Gallery creted'
             redirect_to(:action => 'index')
         else
             @counter = Gallery.count + 1
@@ -34,7 +36,7 @@ class GalleriesController < ApplicationController
     def update
         @gallery = Gallery.find(params[:id])
         if @gallery.update_attributes(gallery_param)
-            flash[:notice] = 'Article updated'
+            flash[:notice] = 'Gallery updated'
             redirect_to(:action => 'show', :id => @gallery.id)
             else
                 @counter = Gallery.count + 1

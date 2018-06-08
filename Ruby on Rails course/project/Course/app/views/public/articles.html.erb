@@ -1,0 +1,12 @@
+<% @title_page = "Pages" %>
+<div class="container">
+    <div id="row">
+        <h2> The 10 newest pages <h2>
+        <% @page_menu.each do |page| %>
+            <%= link_to(page.name, {:action => 'page', :page_id => page.id}, :class => 'btn btn-default btn-lg btn-block') %>
+        <% end %>
+    </div>
+
+</div>
+
+

@@ -1,7 +1,7 @@
 <table class="table table-striped">
     <tr>
     <th><%= field.label(:category_id, "Kategoria") %></th>
-<th><%= field.select(:category_id,@category.map{ |t| [t.name, t.id] } , :class => 'form-control') %></th>
+    <th><%= field.select(:category_id,@categoryNew.map{ |t| [t.name, t.id] } , :class => 'form-control') %></th>
     </tr>
     <tr>
         <th><%= field.label(:name) %></th>

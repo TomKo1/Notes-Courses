@@ -1,0 +1,756 @@
+		Scaffolding
+rails g scuffed car make color year:integer -> Crudowe wygenerowanie websitu
+		- model  column column with type
+-> if not specified type It is a string
+
+rake db:migration
+
+Localhost:3000/cars.json -> bedziemy widziec JSON-y z bazy
+	-> mozemy widziec 
+Scaffolds creates: 
+1. Migration 
+2. Model
+3. Routes
+4. Controller with action 
+5. Views
+
+SQLite -> by default
+
+Config directory 
+
+	-> database.yml 
+		-> development: -> tam są informacje o bazie danych
+rails db -> komendy jakie mozna wykonywac na bazie (widok sqlite)
+	-> sqlite browser to zastepnik tego 
+
+Migration -> Ruby classes extend ActiveRecord::Migration
+
+W migracji (klasie) 
+	1. def up -> np. Tworzenie tabeli 
+	2. def down -> undo
+
+Typy z railsow z migracji sa mapowane na konkretne typy z danych silnikow
+	przez adapter
+null: true or false
+
+limit: size
+
+default: value
+
+If column is decimal: 
+precision :value -> total number of digits stored
+
+scale :value -> where to put decimal point
+
+Np. Scale 2 to wtedy np liczby od -999.99 do 999.99
+
+-> table names are always plural 
+
+create_table -> tworzy w migracji tablice
+
+drop_table -> usuwa w migracji tablice
+
+
+rake db:rollback -> undoes the last migration (possibly applies the down method)
+
+add_column :table_name,
+	:column_name, :column_type
+
+remove_column :table_name, :column_name
+
+Np dodawanie:
+						  scale, precision
+rails g migration add_price_to_cars 'price:decima{10,2}'
+
+	-- wygeneruje migracje poastaci:
+	add_column :cars, :price,:decimal, precision: 10, scale: 2
+
+Rename column: 
+
+rename_column :table_name, :old_column_name, :new_column_name
+
+rails g migration rename_make_to_company
+
+# rename_column :cars, :make, :company
+
+-> pending -> you generated. Migration but didn't make migration
+
+# 			DYNAMIC DISPATCH 
+
+-> w dynamicznych jezykach metody musza zostac tylko znalezione a w statycznych(Java)
+	to musi byc zdefiniowana
+
+Mozna dynamicznie wywolywac metody w Ruby: 
+
+# dynamic dispatch
+dog = Dog.new
+dog.bark #wywolanie normalne metody
+dog.send("bark") # wywolaj metod o nazwie ze stringa
+dog.send(:bark)
+method_name = :bark 
+dog.send method_name
+
+# dynamic`nie metoda z parametrem: 
+dog.send(:greet, "hello")
+
+			DYNAMIC METHODS:
+-> not only call (dynamic dispatch) + you can define dynamically your own
+
+-> define_method :method_name and a block which contains the method definition
+
+@store = Store.new 
+# dynamicznie wyszukiwanie metody 
+# methods to array 
+@store.methods.grep(/^get_(.*)_desc/) { # do sth }
+
+		    GHOST METHODS
+
+-> jezeli Ruby nie znajdzie jakiejsc metody w klasie 
+	( bo zwyczajnie nie istnieje) to wywoluje
+		method_missing story rzuca
+			NoMethodError
+-> mozna nadpisac taka metode 
+Zyskujemy dostep do: 
+	-> nazwy metody wywolanej
+	-> argumentow
+	-> bloku ktory zostal przeslany
+
+Mozemy 'fakowac'(przy pomocy method_missing)
+	 istnienie metody ktora nie isteniej -> ghost method
+
+@store.responds_to?(name_of_method) # sprawdza czy dany
+	# obiekt ma taka metode :) 
+
+ORM -> maps from the object to relational database :) 
+
+
+	Active Record konwencje:
+1. Active Record has to know how to find your database (when Rails is loaded, this 
+	info is read from config/database.yml file)
+2. (Convention) There is a table with plural name that corresponds to ActiveRecord::Basxe 
+	subclass with a singular name. 
+3. (Convention) Expects the table to have a primary key named id. 
+
+Table -> plural 
+Class name -> singular
+
+inflection.rb (initializers directory) -> to co przy starcie 
+	jest uruchamiane 
+	-> są tam nazwy
+ 
+
+To create: 
+	1. Use empty constructor and (ghost) attributes to set 
+		the values and then call save.
+	p1 = Person.new
+	p1.first_name = "Joe"
+	p1.last_name = "Smith"
+	p1.save
+	2. Pass a hash attributes into the constructor and then call 
+		save.
+	p2 = Person.new(first_name: "John", last_name: "Doe") 
+	p2.save
+
+	3. Use create method with hash to create an object and save
+		it to the database in one step.
+	p3 = Person.create(first_name: "John", last_name: "Doe")
+
+
+To retrive: 
+	1. find(id) or find(id1, id2) 
+		-> Throws a RecordNotFound exception if not found
+	2. first, last, take, all
+		-> return the results you expect or nil if nothing is found
+	3. order(:column) or order(column: :desc) 
+		-> allows ordering of the results, ascending or descending
+	4. pluck
+		-> allows to narrow down which fields are coming back 
+where(hash) -> hash -> condition 
+Person.where(last_name: "Doe")    -> lots of results(info) even if one 
+
+find_by(conditions_hash) 
+	-> same as where but returns a single result or nil if a 
+		record with the specified conditions in not found
+find_by!(condition_hahs) -> to samo ale rzuca wyjatkiem 
+
+limit(n) -> enables you to limit how many records come back 
+offset(n) -> don't start from the beginning, skip a few
+
+
+			CRUD 2: 
+
+Update: 
+	1. Retrieve a record, modify the values and then call save 
+		jane = Person.find_by first_name: "Jane"
+		jane.last_name = "Smithie"
+		jane.save
+
+	2. Retrieve a record and then call update method passing 
+	in a hash of attributes with new values
+		Jane = Person.find_by(last_name: "Smith").update(last_name: "Smithson")
+		
+
+	3. update_all for batch updates 
+		-> you can chain this to the end of where
+		
+Delete: 
+	1. destroy(id) or destroy
+		-> robi jakies obiekt
+	2. delete(id) 
+	3. delete_all 
+
+
+				MODULE 2
+	Seeding the database: 
+
+1. Pisz kod w seeds.rb file 
+2. rails db:seed
+
+np. 
+Person.create![
+	{first_name: "cos", last_name: "@#@#!"}
+	#...
+	#...
+	#...
+]
+
+create! -> z wykrzyknikiem zeby jak blad to powiedzialo 
+
+-> mozna uzywac czystego sql: 
+
+Person.where("age BETWEEN 30 and 33").to_a # ryzysko SQL Injection
+
+Person.find_by("first_name LIKE %man")
+
+-> Avoid SQL Injection :
+	->Array Condition Syntax -> ? ? ? zastepowane przez wartosci z tablicy z wartoscami 
+	Person.where("age BETWEEEN ? AND ?",28,34).to_a
+	
+	-> Hash condition syntax -> lepsza!
+		Person.where("age BETWEEN :min_age AND 
+				:max_age", min_age:28, max_age:32).to_a
+
+
+ONE-TO-ONE relation:
+
+-> "the belongs to" side is the one with a foreign key
+	
+	Convention: Default name for the 
+		foreign key is 
+			{master_table_singular}_id e.g. person_id
+Np.
+
+R
+rails g model personal_info heigh:float weight:float person:references
+
+	-> person:references to relacja :) -> w modulach
+	PersonIngfo -> belongs_to :person
+	Person -> has_one :personal_info
+belongs_to -> points 
+has_one -> doesn't point
+In addition you have also 2 method: 
+	build_personal_info(hash) => creates a record in the DB
+	create_personal_info(hash) -> does not create a record 
+			it a=only creates a record in memory
+
+	-> both remove the previous reference in the DB
+
+
+		ONE TO MANY ASSOCIATION 
+Convention: 
+	Default name for the foreign key 
+		is {master_table_singular}_id, e.g
+			person_id
+rails g model job title company position_id person:references
+
+	-> wygeneruje t.references :person, index: true, foreign_key: true
+
+Person: 
+	has_many: personal_info
+Job:
+	belongs_to: person
+
+ActiveRecord::Base.logger = nil # wylacza w console SQL-e
+
+p1.jobs << Job.first # przypisanie do zmiennej referencyjnej p1 (Person) 
+# pierwszej pracy -> w konsoli :) 
+
+person.jobs = jobs # jobs po prawej to more bye tablica prac
+person.jobs.clear # clears all association
+
+-> create and where methods for jobs become scoped to person!
+
+# przykład korzystania z takich relacji: 
+
+Person.first.jobs.where(company: "MS").count
+
+class_name: 'ModelName' 
+np. 
+has_many :my_jobs, class_name: "Job"
+# my_jobs to alias 
+#Person.first.my_jobs
+
+:depentent:
+	-> has_many, has_one and belongs_to 	
+		support :dependent option which lets you specify the
+			fate of the association when the parent gets destroyed
+
+1. :delete -> remove associated object(s)
+	#e.g when the person is destroyed, destroy the personal_info 
+		#connected with it
+
+2. :destroy - same as above but remove the association by calling destroy on it
+
+3. :nullify set the foreign key to null (leave the associated entity alone -
+		just desassociate) -> default behavior
+
+has_one :personal_info, dependent: :destroy
+
+		MANY TO MANY
+habtm (has_and_belongs_to_many)
+	-> both sides
+-> problem is which side will have the foreign key
+-> join table :) - third table that joins, only has to exists 
+	in DB not as model
+Convention(naming join table): Plural model names 
+	separated by an underscore in alphabetical order
+
+e.g 
+rails g model hobby name
+#create relation
+rails g migration create_hobbies_people person:references hobby:references #Hobbies_People table
+
+
+join table has no need for primary key
+
+# zeby nie wygenerowac
+create_table :hobbies_people. id: false do |t| 
+# ....
+
+
+class Person 
+	has_and_belongs_to_many :hobbies
+
+# ... 
+class Hobby 
+	has_and_belongs_to_many :people
+#...
+
+josh.hoobbies << programming; lebron.hobbies << programming
+
+# querring for people who has programming as hobby 
+programming.people
+
+
+			RICH-MANY-TO-MANY ASSOCIATION 
+-> sometimes you need to keep some data on the join table or
+-> you need to store grandchild relationships on a model, 
+	like user -> articles -> comments
+
+Active record provides a :through option for this purpose
+
+->basic idea: you first create a regular parent-child 
+	relationship and then use the child model as a
+	'join' between the parent and. Grandchild
+
+rails g model salary_range min_salary:float max_salary:float 
+		job:references
+
+
+References -> foreign key 
+
+class Job
+	belongs_to :person 
+	has_one :salary_range
+#...
+class SalaryRange
+	belongs_to :job
+
+#....
+
+# class method: 
+def self.cos
+	# do something
+end
+
+			ACTIVE RECORD SCOPES:
+Default: 
+	default_scope
+		class 'method' for specifying how the records
+		are retrieved by default from the database(instead of 
+		relying on the database default)
+
+	default_scope { order :name }
+#unscopped:
+	Hooby.unscoped 
+
+Named scopes:
+	scope :name, lambda 
+
+	scope :ordered_by_age, -> {order age: :desc}
+	# passing arguments: 
+	scope :starts_with, (starting_string){where("first_name LIKE ?", "#{starting_string}%")}
+
+
+# uzycie 
+Person.ordered_by_age
+
+# combining scopes: 
+Person.ordered_by_age.starts_with("JO")
+
+
+Scopes always return ActiveRecord::Relation
+
+
+				VALIDATIONS:
+
+presence :true 
+
+uniqueness :true
+
+:numericality # validates a numeric input
+
+:length
+
+:format # validates value compiles with some regular expression format
+
+:inclusion # validates value is inside specified range
+
+:exclusion # validates value is out of specified range
+
+# przyklad: 
+validates :title, :company, presence: true
+
+job = Job.new
+
+job.save
+# tutaj wystapily pewne bledy przy zapisie
+
+job.errors # errory jakie wystapily pry zapisie
+job.errors.full_messages # wiadomosci z tych errorow -> mozna pokazac uzytkownikowi\
+
+
+	Writing your own validator: 
+
+1. Write a method
+2. errors.add(column name, error)
+3. Specify it as a symbol for the validate method
+
+
+Example: 
+validate :min_is_less_than_max
+
+def min_is_less_than_max
+	if min_salary > max_salary	
+		# add to Active record error array :)
+		errors.add(:min_salary, "some error string")
+	end
+end
+
+			N+1 QUERIES ISSUE
+
+np. 
+	Person.all.each { |p| puts p.personal_info.weight }
+	# duzo zapytan dla personal_info 
+
+# find more efficient way :) 
+
+# n queries for personal_info +1 for Person 
+
+# 2 zapytania dzieki includes!
+Person.includes(:personal_info).all.each { |p| puts p.personal_info.weight}
+
+		Transactions:
+# jezeli ktoraa sie zapsuje to rollback :) 
+ActiveRecord::Base.transaction do 
+	david.withdraw(100)
+	mary.deposit(100)
+end
+
+
+				ACTION PACK 
+# ruby gem for Rest :) 
+
+ActionController + Action View = Action Pack 
+
+	Action Controller: 
+- by default action in AC renders view with the same name
+
+# w routes.rb
+resources :posts #CRUD :) 
+
+Rest: 
+1. List available resources
+2. Show a specific resource
+3. Destroy an existing resource
+4. Provide a way to create a new resource
+5. Create a new resource
+6. Provide a way yo update an existing resource
+7. Update an existing resource
+
+GET post_path     -   index
+GET post_path      ID  show
+GET new_post_path  -   new
+POST posts_path    Record hash   create
+GET edit_post_path   ID  edit
+PUT/PATCH post_path  ID and record hash  update
+DELETE post_path.   ID  destroy
+
+
+rake routes $# if you forget the chart on the previous page
+
+
+Views -> posts(nazwa modelow) -> uzywa Jbuilder 
+					- default way how rails build JSON
+Przykład:
+
+json.array!(@posts) do |post|
+	json.extrac! post, :id, :title, :content
+	json.url post_url(post, format: :json)
+end
+
+# moan idc do /posts/posts.json zebu zobaczyc
+
+
+edit_post_path(@post) # automagically
+
+respond_to - Rails helper that specifies how to respond to a request based on 
+		a request format
+
+		-> takes an optionl block where the argument is the format e.g html, json
+redirect_to ...
+
+np. 
+
+repond_to do |format|
+	format.html { redirect_to posts_url, notice: "STH" }
+	format.json { head :no_content }
+end
+
+			STRONG PARAMETERS AND FLASH:
+
+Strong parameters - forbidden to use in Active Model
+	- Strefa post_params private method in create
+
+	Flash: 
+flash[:attribute] = value
+:notice - good  :alert  - bad
+
+
+Render (partials) also accepts a second argument, a hash of local variables used in the partial
+
+
+form_for(@particular_variable)
+
+			FORM HELPERS AND LAYOUTS:
+
+form_for -> generates a form_tag for passed in object
+	-> form_for uzywa POST nie jak <form> z html
+
+f.label 
+f.text_field :placeholder
+
+f.text_area 
+
+f.date_select
+
+distance_of_time_in_words_to_now -> e.g 8 days ago :) etc.
+
+Other form helpers: 
+	search_field
+	telephone_field
+	url_field
+	email_field
+	number_field
+	range_field
+
+
+f.submit 
+
+
+application.html.erb -> is applied by default as a shell for any view template
+	layout that matches the name of a controller is applied if present
+	
+	you can use layout method inside controller (outside any action) 
+		to set a layout for the entire controller
+		-> layout 'same_layout'
+
+-> you cane include a layout for a specific action with an explicit call to render inside
+	the action 
+	render layout: 'my_layout'
+
+-> if you don't want a layout (for some reason) - just pass 
+	false instead of layout name render layout: false
+
+
+Authorization - jak jest zalogowany jakis np. Uzytkownik to nie oznacza
+		od razu ze ma widziec wszystko :) 
+Authentication - to ze user ma zostac zalogowany zeby cokolwiek zobaczyc :) 
+
+
+root to: "books#index"
+
+<p id="notice"><%= notice %></p> <!-- wyswietla notice -->
+
+Nested resource(jezeli jakis zasob jest 'w kontekscie'/zalezy od drugiego): 
+
+# w routes: 
+resources :books do
+	resources :notes
+end
+
+
+Routy dla nested resources: 
+	name of route -> book_notes_path
+	a url:	
+		'/books/:book_id/notes_id'
+
+# when we want only some actions: 
+resources :books do 
+	# only create and destroy for notes
+	resources :notes, only: [:create, :destroy]
+end
+
+content_tag -> nice rails helper to generate HTML content
+
+np. 
+content_tag :p, "Hello there"  # <p> Hello there </p>
+
+content_tag(:div, content_tag(:p, "Cool"), class:"world)
+#<div class="world"><p>Cool</p></div>
+
+
+simple_format -> rails helper wyswietla cos z <br> 
+		zamienia '\n' na <br>
+
+/*css -> flash messages*/
+
+
+#notice {color: green;}
+#alert {color: red;}		
+
+-> remember to always pass the parent and the child into	
+	the form_for and link_to helpers
+
+			AUTHENTICATION 
+has_secure_password 
+	(bcrypt-ruby)
+	-> make sure password_digest is table column 
+	->account for password (not password_digest) 
+		inside strong parameters list in the 
+		controller if you plan to use mass assignment when 
+		creating users
+	-> no need for password column in the table (virtual attribute)
+
+-> wystarczy dodać has_secure_password do modelu 
+some_object.authenticate("some password")
+
+			HTTP SESSIONS AND COOKIES
+session -> hash where we can put info about user etc. 
+
+-> session can be thought of as a resource e.g
+	rails g controller sessions new create destroy
+
+	-> new action -> login page
+	-> destroy -> logout
+
+	tzn. 
+	get "/login" =>"sessions#new", as: login
+
+<%= form_for(:reviewer, url: sessions_path) do |f| %>
+# reviewer - resource submition -> sessions_path
+
+reset_session # rails helper -> 
+# wipe out sessions and everything in it
+
+skip_before_action -> skip particular before_actions
+
+
+			AUTHORIZATION:
+
+-> e.g BooksController and scope things down based on 
+	the current_user
+
+
+
+-> to make protected methods defined in one controller 
+	visible in other controller 
+	use: 
+	helper_method :logged_in?, :current_user
+	# where for example logged_in is a name of the method
+
+		
+			PAGINATION:
+1. will_paginate gem 
+2. one line of code in the controller
+3. One line of code in view
+
+Example: 
+@books = current_user.books.paginate(page: params[:page], per_page: 10)
+
+<%= will_paginate @books %>
+
+			DEPLOYING TO HEROKU AND 
+				ENABLING SSL
+# in production section
+1. gem 'pg' # postgres 
+2. heroku login
+3. Heroku create ireview-books
+4. git push heroku master
+
+-> to push our database 
+heroku run rake db:migrate
+heroku run rake db:seed
+
+To enable ssl: 
+	-> in production:
+	config.assets.digest = true
+
+bundle --without production # instaluje gemy bez production :)
+
+				TESTING(RAILS DOCS)
+Unit testing -> basic functionalities 
+	(test database seeded by .yml files in fixtures)
+System testing -> testing integration of our app like
+	-> user's interaction with your controller. Model and view (like unit)
+		but also robust and actually tests my application as if a real user where 		using it
+
+
+	clik_on "Crate Article" 
+	
+	assert_text "Creating an article" 
+Integration test -> how various parts of our app works together
+
+Functional tests -> testing the various actions of a controller is a form of writing functional tests
+Testing views -> testing the response to your request by asserting the presence of key HTML elements and their content is a common way to test the views of your application. 
+
+Testing helpers -> A helper is just a simple module where you can define methods which are 	available into your views.
+
+	In order to test helpers, all you need to do is check that the output of the 		helper method matches what you'd expect.
+
+Testing mailers -> 
+
+Testing jobs ->. Since your custom jobs can be queued at different levels inside your application, you'll need to test both the jobs themselves (their behavior when they get enqueued) and that other entities correctly enqueue them.
+
+Additionaly -> testing time-dependent functions
+
+
+
+user.todo_lis.build(argumenty_dla_many) # jak mam user to many todo_list
+user.profile = Profile.new() # jak mam user to one profile :) 
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+

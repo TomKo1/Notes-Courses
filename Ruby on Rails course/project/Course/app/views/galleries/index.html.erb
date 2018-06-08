@@ -9,6 +9,7 @@
     <th>Name</th>
     <th>Position</th>
     <th>Visible</th>
+    <th>Images</th>
     <th>Action</th>
 </tr>
 
@@ -17,7 +18,10 @@
     <td><%= singleGallery.name %></td>
     <td><%= singleGallery.position %></td>
     <td class="center"><%= con_visibility_helper(singleGallery.visible,{} ) %></td>
+    <td class="center"><%= singleGallery.picture.size %></td>
     <td class="actions">
+        <%= link_to('Images',{:controller => 'pictures', :gallery_id => singleGallery.id},:class => 'btn btn-xs btn-success') %>
+
         <%= link_to("Show", {:action => 'show', :id => singleGallery.id}, :class => 'btn btn-xs btn-default') %>
 
         <%= link_to("Edit", {:action => 'edit', :id => singleGallery.id}, :class => 'btn btn-xs btn-primary') %>

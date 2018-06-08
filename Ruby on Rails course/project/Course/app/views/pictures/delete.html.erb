@@ -1,2 +1,13 @@
-<h1>Pictures#delete</h1>
-<p>Find me in app/views/pictures/delete.html.erb</p>
+<div class="hetero-unit">
+<h1>Removing of the pictures</h1>
+
+        <%= form_for(:pictures, :url => {:action => 'remove', :id => @pictures.id, :gallery_id =>  @galleryOne.id}) do |field| %>
+        <p> Do you really want to remove this gallery?</p>
+        <p class="text-warning"><%= @pictures.name %> </p>
+        <p class="text-warning"> <%= image_tag(@pictures.picture)%> </p>
+<div style="text-align: center;">
+    <%= link_to("Return", {:action => 'index', :gallery_id =>  @galleryOne.id}, :class => 'btn btn-primary') %>
+    <%= submit_tag("Delete", :class=> 'btn btn-danger') %>
+</div>
+    <% end %>
+</div>

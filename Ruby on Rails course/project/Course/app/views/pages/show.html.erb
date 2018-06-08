@@ -1,6 +1,6 @@
 <div class="hero-unit">
 <h1>Show Page</h1>
-<%= link_to("Return", {:action => 'index'}) %>
+<%= link_to("Return", {:action => 'index', :category_id => @category.id}) %>
 <table class="table table-striped">
     <tr>
         <th>Category</th>
@@ -28,7 +28,7 @@
     </tr>
 </table>
 <div style="text-align: center;">
-    <%= link_to("Return", {:action => 'index'}, :class => 'btn btn-primary')%>
+    <%= link_to("Return", {:action => 'index',  :category_id => @category.id}, :class => 'btn btn-primary')%>
 </div>
 
 </div>

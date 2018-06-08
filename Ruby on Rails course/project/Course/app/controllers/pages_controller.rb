@@ -1,36 +1,39 @@
 class PagesController < ApplicationController
   
   layout 'admin'
+  
+  before_action :check_if_logged
+  before_action :find_category
     
   def index
-      @pages = Page.sort
+      @pages = @category.pages.sort
   end
-
+ 
   def show
       @page = Page.find(params[:id])
   end
 
   def new
-      @page = Page.new({:name => "Enter the name of the page"})
+      @page = Page.new({:category_id => @category.id, :name => "Enter the name of the page"})
       @counter = Page.count + 1
-      @category = Category.order('position ASC')
+      @categoryNew = Category.order('position ASC')
   end
   
   def create
       @strona = Page.new(page_params)
       if @strona.save
           flash[:notice] = "Page creted"
-          redirect_to(:action => 'index')
+          redirect_to(:action => 'index', :category_id => @category.id )
           else
-          @counter = Page.count + 1
-          @category = Category.order('position ASC')
-          render('new')
+            @counter = Page.count + 1
+            @categoryNew = Category.order('position ASC')
+            render('new')
       end
   end
   
   def edit
       @page = Page.find(params[:id])
-      @category = Category.order('position ASC')
+      @categoryNew = Category.order('position ASC')
       @counter = Page.count
   end
   
@@ -38,7 +41,7 @@ class PagesController < ApplicationController
       @page = Page.find(params[:id])
       if @page.update_attributes(page_params)
           flash[:notice] = "Page successfully modified"
-          redirect_to(:action => 'show',:id => @page.id)
+          redirect_to(:action => 'show',:id => @page.id, :category_id => @category.id)
           else
           @counter = Page.count
           @category = Category.order('position ASC')
@@ -55,13 +58,22 @@ class PagesController < ApplicationController
   def remove
       page = Page.find(params[:id]).destroy
       flash[:notice] = "Page #{page.name} was successfully deleted"
-      redirect_to(:action => 'index')
+      redirect_to(:action => 'index', :category_id => @category.id)
   end
   
-  def page_params
-      params.require(:page).permit(:name, :position, :visible, :created_at, :category_id)
-  end
+
+
+private
+
+    def page_params
+        params.require(:page).permit(:name, :position, :visible, :created_at, :category_id)
+    end
   
+  def find_category
+      if params[:category_id]
+          @category = Category.find(params[:category_id])
+      end
+  end
   
   
 end

@@ -1,2 +1,19 @@
-<h1>Pictures#edit</h1>
-<p>Find me in app/views/pictures/edit.html.erb</p>
+<div class="hero-unit">
+<h1>Edit Picture: <%=@pictures.name%></h1>
+
+
+<%= form_for(:pictures, :url => {:action => 'update', :id => @pictures.id, :gallery_id =>  @galleryOne.id} ) do |field| %>
+
+<%= render(:partial => "form", :locals => {:field => field}) %>
+
+<div style="text-align: center">
+<%= link_to("Return", {:action => 'index', :gallery_id =>  @galleryOne.id}, :class => 'btn btn-warning') %>
+<%= submit_tag("Update", :class => 'btn btn-primary') %>
+</div>
+
+<% end %>
+<div>
+
+
+
+

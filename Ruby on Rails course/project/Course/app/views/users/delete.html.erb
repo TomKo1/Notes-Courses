@@ -1,0 +1,19 @@
+<div class="hetero-unit">
+<h1>Removing of the user</h1>
+
+<%= form_for(:user, :url => {:action => 'remove', :id => @user.id}) do |field| %>
+    <p> Do you really want to remove this user?</p>
+    <p><%= @user.name %> </p>
+<div style="text-align: center;">
+        <%= link_to("Return", {:action => 'index'}, :class => 'btn btn-primary') %>
+        <%= submit_tag("Delete", :class=> 'btn btn-danger') %>
+</div>
+<% end %>
+</div>
+
+
+
+
+
+
+
