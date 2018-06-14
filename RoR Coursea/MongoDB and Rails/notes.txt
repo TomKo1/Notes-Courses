@@ -1,0 +1,44 @@
+				CATEGORIES OF NOSQL:
+
+1. Key/value pair 
+	-> value can be string or json 
+	Solutions:
+	->Dynamo
+	->Redis
+2. Document oriented implementation 
+	-> json which get stored in db
+	-> stores documents based up of tagged elements
+	-> MongoDB
+
+3. Column:
+	->uses flat structure but with keys stored in columns
+		rather than rows
+	-> Cassandra
+
+
+4. Graph
+	-> a network database that uses edges and nodes 
+	to represent and store data
+
+
+- Joins are not supported ! -> ACID transactions (only supported at a document level only)
+
+				INTRODUCTION TO MONGODB:
+-> MongoDB is an open source, document-oriented database designed with both 
+	scalability and developer agility in mind
+RDBMS 		MongoDB
+Database -> Database
+Table, View -> Collection
+Column -> Field
+Index -> Index
+Join -> Embedded document/linking across dcocument
+Foreign key -> reference
+Partition key -> shard
+
+Ruby drivers:
+
+-> Ruby Driver 
+-> Mongoid
+
+
+
