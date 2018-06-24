@@ -14,6 +14,8 @@
 		402AA35A20C8976900D81671 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 402AA35820C8976900D81671 /* LaunchScreen.storyboard */; };
 		402AA35D20C8976900D81671 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 402AA35C20C8976900D81671 /* main.m */; };
 		402AA36520C89D8D00D81671 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402AA36420C89D8D00D81671 /* Contact.swift */; };
+		40F8554420DFBF5A00625284 /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F8554320DFBF5A00625284 /* NewContactViewController.swift */; };
+		40F8554720DFCCF100625284 /* DefaultImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F8554620DFCCF100625284 /* DefaultImage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,9 @@
 		402AA35C20C8976900D81671 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		402AA36320C89D8D00D81671 /* Contacts-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Contacts-Bridging-Header.h"; sourceTree = "<group>"; };
 		402AA36420C89D8D00D81671 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		40F8554320DFBF5A00625284 /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
+		40F8554520DFCCF100625284 /* DefaultImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefaultImage.h; sourceTree = "<group>"; };
+		40F8554620DFCCF100625284 /* DefaultImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefaultImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +77,9 @@
 				402AA35C20C8976900D81671 /* main.m */,
 				402AA36420C89D8D00D81671 /* Contact.swift */,
 				402AA36320C89D8D00D81671 /* Contacts-Bridging-Header.h */,
+				40F8554320DFBF5A00625284 /* NewContactViewController.swift */,
+				40F8554520DFCCF100625284 /* DefaultImage.h */,
+				40F8554620DFCCF100625284 /* DefaultImage.m */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -102,7 +110,7 @@
 		402AA34220C8976900D81671 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Tomasz Kot";
 				TargetAttributes = {
 					402AA34920C8976900D81671 = {
@@ -149,9 +157,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				402AA36520C89D8D00D81671 /* Contact.swift in Sources */,
+				40F8554420DFBF5A00625284 /* NewContactViewController.swift in Sources */,
 				402AA35220C8976900D81671 /* ContactsViewController.m in Sources */,
 				402AA35D20C8976900D81671 /* main.m in Sources */,
 				402AA34F20C8976900D81671 /* AppDelegate.m in Sources */,
+				40F8554720DFCCF100625284 /* DefaultImage.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +201,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -198,6 +209,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -246,6 +258,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -253,6 +266,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -277,6 +291,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

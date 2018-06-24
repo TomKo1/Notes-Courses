@@ -1,0 +1,131 @@
+testPerformance(){
+	self.measure{
+		var k = Kalkulator()
+		k.compute(a: 1, b: 2, o: "*")
+
+	}
+}
+
+
+Właściwość datasource jest weak :) 
+
+
+
+			Lazy properties 
+
+-> wlasciwosc ktora neijest potrzeban od razu tylko jest potrzebna po jakims czasie
+
+get  -> probuje zainicjalizowac cos co jest potrzebne :) 
+
+-> ladnie 
+
+-> parametr lazy to jest z automatu inicjalizacja 
+
+CoreData -> to nie jest baza danych a narzedzie pozwalajace do zarzadzania tymi 
+	danymi -> (ORM?)
+
+	-> mapowanie baza danych -> obiekt :)
+	-> cos jak Hibrernate :) 
+-> zapytania mozliwe -> predicate -> warunek jaki maja spelniach elementy jakie 
+	maja spelniac obiekty wyciagne z bazy danych 
+-> encja -> NSEntityDescription -> kolekcja 
+
+
+SplitViewController -> zachowanie w roznych sytuacjach -> np. W iPadzie
+
+Domyslnie w systemie sa 2 przejscia -> w prawo i z dolu (?) 
+	-> jak chcmey wlasne to podklasa seg (?) 
+
+AcessoryView -> zeby edytowac jakies rzeczy :) 
+
+
+Xcdatamodelid -> edytor modelu danych :) 
+
+
+fetchResultController -> do wspolpracy z baza danych 
+
+NSFetchResultsController<Event> -> jest generykiem :) 
+
+
+@objc -> Objective-C -> wywolanie funkcji bylo nazywane messeging -> 
+	wyslanie wiadomosci do obiektu tej funkcji ktorej nie 
+	implementowal moglo byc prawidlowe (mimo ze jej nie bylo) 
+	-> caly czas dostepna 
+
+	-> potem mozemy np. W przyciski (target -> obiekt na ktorym ma zostac wywolana
+	funkcja kiedy uzytjonik zaczyna interakcje, action -> to selector) np. 				#selector(nazwa_funckji(parametry)) -> gdyby byl string to nie ma kontroli 		nad tym czy istnieje
+
+-> wystarczy tylko na kontekscie wywolac save zeby zapisac do bazy danych 
+	-> automatycznie wszystkie obiekty zostaja zapisane
+	-> bo w kazdym jest Context
+-> SQLLite -> domyslna baza danych iOS :) 
+
+
+iCloud prawie jak w CoreData jednak troche inaczej odbywa sie odczytywanie 
+
+Do filtrowania danych służy NSPredicate
+
+
+%@ -> to jest obiekt (cos jak w C/C++ formatowane wyjscie) : )
+
+
+		SEARCH API 
+-> Core Data -> zeby dane byly indeksowane
+-> mozna zindeksowac recznie dane ktore zachowujemy -> musi byc konto developerskie
+
+	-> prywatny indeks -> tresci (po stronie uzytkownika?)
+	-> publiczny indeks -> po stronie servera
+
+CoreSpotlight- > umozliwia indeksowanie
+
+
+				ROZSZERZENIA APLIKACJI:
+-> "nastepna aplikacja ktora jest kompilowana i pakowana do naszej aplikacji"
+	np.
+	-> udostepnianie
+	-> centrum powiadomien
+	-> klawiatura
+
+Do EventKit moga juz stworzyc :) 
+
+
+
+				DOSTEP DO KALENDARZY SYSTEMOWYCH 
+
+Zapytanie o pozwolenie: 
+eventStore = EKEventStore()
+
+eventStore?.requestAccess(to: EKEntityType.event, competition: )
+
+				OBSLUGA PLIKOW:
+
+-> w ustawieniach uzytkownika -> NSUserDefaults
+
+	-> moze byc wspoldzielony NSUserDefaults
+	-> moze byc tez tylko dla aplikacji -> standard
+
+	-> moga byc udostepnione w tez w ustawieniach systemowych 
+
+-> Pliki - moga byc zapisane w: 
+	-> katalogu aplikacji (katalog Aplikacja.app -> wsyzstkie zasoby aplikacji) 
+		-> podkatalog Documents
+		-> Library
+		-> Documents.ibox -> tam dochodza pliki 
+	-> iCloud 
+
+-> korzystamy z FIleManager 
+
+
+
+// bledy w Swift sa kompatybilne z Objective - C
+// do
+
+Catch let e as NSError {
+	// mozna cos wypisac :) 
+}
+
+
+				Apple Watch
+
+
+
