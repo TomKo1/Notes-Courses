@@ -9,6 +9,12 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get products_url
     assert_response :success
+    # written by me 
+    # there are at least 3 fixtures each has 3 links
+    assert_select 'td.actions ul a', minimum: 9
+    # every book from fixtures should have image
+    assert_select 'img.list_image', 3
+
   end
 
   test "should get new" do
