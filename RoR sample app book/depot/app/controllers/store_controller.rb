@@ -1,7 +1,9 @@
 class StoreController < ApplicationController
   # for pluralize
   include ActionView::Helpers::TextHelper
-  
+  include CurrentCart
+  before_action :set_cart
+
   def index
     @products = Product.order(:title)
     @time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
