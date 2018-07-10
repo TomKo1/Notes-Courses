@@ -5,13 +5,13 @@
 # below each fixture, per the syntax in the comments below
 #
 
-one:
-   name: Dave Thomas
-   address: MyText
-   email: dave@example.org
-   pay_type: Check
-two:
-   name: MyString
-   address: MyText
-   email: MyString
-   pay_type: 1
+one: {}
+  #  name: Dave Thomas
+  #  address: MyText
+  #  email: dave@example.org
+  #  pay_type: Check
+two: {}
+  #  name: MyString
+  #  address: MyText
+  #  email: MyString
+  #  pay_type: 1

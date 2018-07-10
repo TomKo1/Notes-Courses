@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  SampleGame
-//
-//  Created by Tomasz Kot on 01.07.2018.
-//  Copyright © 2018 Tomasz Kot. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
