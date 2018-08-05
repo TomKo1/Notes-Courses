@@ -34,6 +34,7 @@ class OrdersController < ApplicationController
       if @order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
+        ChargeOrderJob.perform_later(@order, pay_type_params.to_h)
         format.html { redirect_to store_index_url, notice: 'Thank you for your order.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -43,7 +44,7 @@ class OrdersController < ApplicationController
     end
   end
 
- 
+
 
 
   # PATCH/PUT /orders/1
@@ -81,24 +82,24 @@ class OrdersController < ApplicationController
       params.require(:order).permit(:name, :address, :email, :pay_type)
     end
 
-    # order type params depending od dynamic React 
-    def pay_type_params 
-      if order_params[:pay_type] == 'Credit Card'
-        params.require(:order).permit(:credit_card_number, :expiration_date)
+    # order type params depending od dynamic React
+    def pay_type_params
+      if order_params[:pay_type] == 'Credit card'
+        params.require(:order).permit(:credit_card_nubmer, :expiration_date)
       elsif order_params[:pay_type] == 'Check'
         params.require(:order).permit(:routing_number, :account_number)
       elsif order_params[:pay_type] == 'Purchase Order'
         params.require(:order).permit(:po_number)
-      else 
+      else
         {}
       end
     end
 
 
 
-    private 
+    private
       def  ensure_cart_isnt_empty
-        if @cart.line_items.empty? 
+        if @cart.line_items.empty?
           redirect_to store_index_url, notice: 'Your cart is empty'
         end
       end
