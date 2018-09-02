@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   include CurrentCart
+  skip_before_action :authorize, only: [:new, :create]
   before_action :set_cart, only: [:new, :create]
   before_action :ensure_cart_isnt_empty, only: :new
   before_action :set_order, only: [:show, :edit, :update, :destroy]
@@ -43,9 +44,6 @@ class OrdersController < ApplicationController
       end
     end
   end
-
-
-
 
   # PATCH/PUT /orders/1
   # PATCH/PUT /orders/1.json

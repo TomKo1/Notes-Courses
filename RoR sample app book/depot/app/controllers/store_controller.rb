@@ -1,4 +1,6 @@
 class StoreController < ApplicationController
+  skip_before_action :authorize
+
   # for pluralize
   include ActionView::Helpers::TextHelper
   include CurrentCart
@@ -8,8 +10,8 @@ class StoreController < ApplicationController
     @products = Product.order(:title)
     @time = Time.now.strftime("%Y-%m-%d %H:%M:%S")
 
-    if session[:counter].nil? 
-        session[:counter] = 1 
+    if session[:counter].nil?
+        session[:counter] = 1
       else
           session[:counter] += 1
       end
