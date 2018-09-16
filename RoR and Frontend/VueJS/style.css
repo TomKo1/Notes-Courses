@@ -1,0 +1,20 @@
+.tasklist {
+  padding-top: 2em;
+}
+
+.task.done {
+  background: lightgreen;
+}
+
+.task.todo {
+  background: lightgoldenrodyellow;
+}
+
+.task.done label {
+  text-decoration: line-through;
+}
+
+.description {
+  color: slategrey;
+  font-style: italic;
+}
