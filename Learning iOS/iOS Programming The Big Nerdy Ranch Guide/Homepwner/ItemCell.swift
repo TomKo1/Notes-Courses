@@ -14,7 +14,7 @@ class ItemCell: UITableViewCell {
         
         valueLabel.text = "Dupa"
         
-        valueLabel.addObserver(self, forKeyPath: #keyPath(UILabel.text) , options: [.new], context: nil)
+        valueLabel.addObserver(self, forKeyPath: #keyPath(UILabel.text ) , options: [.new], context: nil)
     }
     
     

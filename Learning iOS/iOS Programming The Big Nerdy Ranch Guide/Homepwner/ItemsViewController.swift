@@ -5,7 +5,7 @@ class ItemsViewController: UITableViewController {
     
     var itemStore: ItemStore!
 
-    @IBAction func addNewItem(_ sender: UIButton) {
+    @IBAction func addNewItem(_ sender: UIBarButtonItem) {
         let newItem = itemStore.createItem()
         
         if let index = itemStore.allItems.index(of: newItem) {
@@ -27,6 +27,12 @@ class ItemsViewController: UITableViewController {
             sender.setTitle("Done", for: .normal)
             setEditing(true, animated: true)
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -106,6 +112,12 @@ class ItemsViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -136,6 +148,24 @@ class ItemsViewController: UITableViewController {
             return 0
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // if the triggered segue is the "showItem" segue
+        switch segue.identifier {
+        case "showItem"?:
+            // Figure out which row was just tapped
+            if let row = self.tableView.indexPathForSelectedRow?.row {
+                
+                // Get the item associated with this row and pass it along
+                let item = itemStore.allItems[row]
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.item = item
+            }
+        default:
+            preconditionFailure("Unexpected segue identifier.")
+        }
+    }
+    
     
 }
 

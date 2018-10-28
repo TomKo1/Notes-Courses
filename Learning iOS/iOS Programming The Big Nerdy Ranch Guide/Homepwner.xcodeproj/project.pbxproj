@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4033F7C021580CC200D58D53 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4033F7BF21580CC200D58D53 /* ItemCell.swift */; };
+		404B4BA621615938009C0404 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 404B4BA521615938009C0404 /* DetailViewController.swift */; };
 		409552102151372000FD9F8E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4095520F2151372000FD9F8E /* AppDelegate.swift */; };
 		409552152151372000FD9F8E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 409552132151372000FD9F8E /* Main.storyboard */; };
 		409552172151372100FD9F8E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 409552162151372100FD9F8E /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		4033F7BF21580CC200D58D53 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
+		404B4BA521615938009C0404 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		4095520C2151372000FD9F8E /* Homepwner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homepwner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4095520F2151372000FD9F8E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		409552142151372000FD9F8E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -72,6 +74,7 @@
 				4095522321513CD600FD9F8E /* Item.swift */,
 				40955225215147EB00FD9F8E /* ItemStore.swift */,
 				4095522721519A0C00FD9F8E /* TableSection.swift */,
+				404B4BA521615938009C0404 /* DetailViewController.swift */,
 			);
 			path = Homepwner;
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				4095522421513CD600FD9F8E /* Item.swift in Sources */,
 				40955226215147EB00FD9F8E /* ItemStore.swift in Sources */,
 				409552102151372000FD9F8E /* AppDelegate.swift in Sources */,
+				404B4BA621615938009C0404 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
