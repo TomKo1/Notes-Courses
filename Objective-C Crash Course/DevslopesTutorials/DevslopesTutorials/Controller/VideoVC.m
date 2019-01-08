@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLbl;
 @property (weak, nonatomic) IBOutlet UILabel *descLbl;
 
-@end
+@end   
 
 @implementation VideoVC
 
