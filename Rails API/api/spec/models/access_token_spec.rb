@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe AccessToken, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
   describe '#validations' do
   end
 
@@ -14,6 +13,13 @@ RSpec.describe AccessToken, type: :model do
       user = create :user
       expect{ user.create_access_token }.to change{ AccessToken.count }.by(1)
       expect(user.build_access_token).to be_valid
+    end
+
+    # this is a test covering the bug we found
+    it 'should generate token once' do
+      user = create :user
+      access_token = user.create_access_token
+      expect(access_token.token).to eq(access_token.reload.token)
     end
   end
 
